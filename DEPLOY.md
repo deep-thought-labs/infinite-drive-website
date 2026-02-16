@@ -1,6 +1,6 @@
 # Deploy guide
 
-This document describes how to run the site locally (development and production preview) and how to deploy it to **GitHub Pages** or **Cloudflare Pages**.
+This document describes how to run the site locally (development and production preview) and how to deploy it to **Cloudflare Pages**.
 
 The site is a **single-page application (SPA)**. After building with `npm run build`, the output is the `build/` folder. For deployment, any host must serve that folder and return `index.html` for all routes (SPA fallback) so that paths like `/project42` or `/privacy` work on refresh or direct open.
 
@@ -37,49 +37,35 @@ Use this to check the built site locally before deploying. You see exactly what 
 
 ---
 
-## GitHub Pages
-
-The repository includes a [GitHub Actions](https://docs.github.com/en/actions) workflow that builds the site and deploys it to [GitHub Pages](https://pages.github.com/). The workflow is in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-
-### What the workflow does
-
-On every push to `main` (or when you run it manually from the **Actions** tab):
-
-1. **Build job:** Checkout → install dependencies with `npm ci` → run `npm run build` with the correct base path for project pages (`/repo-name/`) → upload the `build/` folder as an artifact.
-2. **Deploy job:** Publish that artifact to GitHub Pages.
-
-The site will be available at `https://<owner>.github.io/<repo>/` (e.g. `https://myorg.github.io/Infinitedrivefront/`). You can add a custom domain in the repo **Settings → Pages**.
-
-### One-time setup
-
-1. In the repository, go to **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
-3. Push to `main` or run the workflow from the **Actions** tab. The first time, GitHub may ask to create the `github-pages` environment—accept if prompted.
-
-No secrets or tokens are required. If your default branch is not `main`, edit `on.push.branches` in `.github/workflows/deploy.yml` to match your branch.
-
----
-
 ## Cloudflare Pages
 
 You can deploy the same `build/` output to [Cloudflare Pages](https://pages.cloudflare.com/) by connecting your Git repository and configuring the build.
 
 ### Wrangler config (required)
 
-You must have a **Wrangler** configuration file in the repository so Cloudflare can recognize and manage the project. The standard file is `wrangler.toml` in the project root. It should include at least:
+You must have a **Wrangler** configuration file in the project root so Cloudflare can deploy the site. This project uses **`wrangler.jsonc`** (JSON with comments); Cloudflare also supports `wrangler.toml`.
 
-- **Project name** (`name`) — identifies the project in the Cloudflare dashboard.
-- **Pages-specific settings** — e.g. compatibility date, or other values your project needs.
+The config must specify:
 
-Example minimal `wrangler.toml` for a static Pages site:
+- **`name`** — project identifier in the Cloudflare dashboard.
+- **`compatibility_date`** — e.g. `"2026-02-16"`.
+- **`assets.directory`** — path to the built static files. This project uses Vite with output in **`build/`** (not `dist/`), so the directory must be **`./build`**.
+- **`assets.not_found_handling`** — set to **`"single-page-application"`** so that routes like `/project42` or `/privacy` return `index.html` (SPA fallback).
 
-```toml
-name = "infinitedrivefront"
-compatibility_date = "2025-01-01"
-pages_build_output_dir = "build"
+Example `wrangler.jsonc` for this repo:
+
+```jsonc
+{
+  "name": "infinite-drive-website",
+  "compatibility_date": "2026-02-16",
+  "assets": {
+    "directory": "./build",
+    "not_found_handling": "single-page-application"
+  }
+}
 ```
 
-Adjust `name` and `compatibility_date` as needed. See [Cloudflare Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/) for all options. Without a valid Wrangler config in the repo, the Cloudflare project may not be set up correctly.
+The file is already in the repository. Adjust `name` or `compatibility_date` if needed. See [Cloudflare static assets](https://developers.cloudflare.com/workers/static-assets/) and [Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/) for more options.
 
 ### Option A: Connect with Git (recommended)
 

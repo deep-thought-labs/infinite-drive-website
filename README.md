@@ -47,7 +47,7 @@ Output is in `build/`. All assets (HTML, JS, CSS, images) are self-contained; no
 
 This is a **single-page application (SPA)**. Build with `npm run build`; the output is in the `build/` folder.
 
-For local runs (development or production preview) and for deploying to **GitHub Pages** or **Cloudflare Pages**, see **[DEPLOY.md](DEPLOY.md)**.
+For local runs (development or production preview) and for deploying to **Cloudflare Pages**, see **[DEPLOY.md](DEPLOY.md)**.
 
 ## Routes
 
