@@ -23,6 +23,7 @@ import {
   BASE_PATHS,
 } from "@/content/i18n";
 import { LocaleGuard } from "./components/layout/LocaleGuard";
+import { LocaleProvider } from "./contexts/LocaleContext";
 
 function NavLink({
   to,
@@ -113,11 +114,12 @@ function AppShell() {
   const privacyPath = pathWithLocale(currentLocale, BASE_PATHS.privacy);
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "#0d1117", color: "#e6edf3" }}
-    >
-      <NetworkCanvas />
+    <LocaleProvider locale={currentLocale}>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{ backgroundColor: "#0d1117", color: "#e6edf3" }}
+      >
+        <NetworkCanvas />
 
       <nav
         className="fixed top-0 left-0 right-0 transition-all duration-300"
@@ -282,7 +284,8 @@ function AppShell() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </LocaleProvider>
   );
 }
 
