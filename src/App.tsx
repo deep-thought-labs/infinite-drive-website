@@ -7,14 +7,7 @@ import { BlockchainPage } from "./pages/BlockchainPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { Menu, X } from "lucide-react";
-
-const ROUTES = {
-  home: "/",
-  project42: "/project42",
-  services: "/services",
-  blockchain: "/blockchain",
-  privacy: "/privacy",
-} as const;
+import { ROUTES, navRoutes } from "@/content/routes";
 
 function NavLink({
   to,
@@ -128,27 +121,11 @@ export default function App() {
           </Link>
 
           <div className="hidden md:flex gap-6">
-            <NavLink to={ROUTES.home} isActive={pathname === ROUTES.home}>
-              Home
-            </NavLink>
-            <NavLink
-              to={ROUTES.project42}
-              isActive={pathname === ROUTES.project42}
-            >
-              Project 42
-            </NavLink>
-            <NavLink
-              to={ROUTES.services}
-              isActive={pathname === ROUTES.services}
-            >
-              Network
-            </NavLink>
-            <NavLink
-              to={ROUTES.blockchain}
-              isActive={pathname === ROUTES.blockchain}
-            >
-              Foundation
-            </NavLink>
+            {navRoutes.map(({ path, label }) => (
+              <NavLink key={path} to={path} isActive={pathname === path}>
+                {label}
+              </NavLink>
+            ))}
           </div>
 
           <button
@@ -175,34 +152,16 @@ export default function App() {
             }}
           >
             <div className="flex flex-col gap-4">
-              <MobileNavLink
-                to={ROUTES.home}
-                isActive={pathname === ROUTES.home}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.project42}
-                isActive={pathname === ROUTES.project42}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Project 42
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.services}
-                isActive={pathname === ROUTES.services}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Network
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.blockchain}
-                isActive={pathname === ROUTES.blockchain}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Foundation
-              </MobileNavLink>
+              {navRoutes.map(({ path, label }) => (
+                <MobileNavLink
+                  key={path}
+                  to={path}
+                  isActive={pathname === path}
+                  onNavigate={() => setMobileMenuOpen(false)}
+                >
+                  {label}
+                </MobileNavLink>
+              ))}
             </div>
           </div>
         )}
