@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import {
   site,
@@ -11,9 +12,7 @@ import {
 } from "@/content";
 import dontPanicImage from "@/assets/dontpanic-space.jpg";
 
-interface HomePageProps {
-  onNavigate: (path: string) => void;
-}
+type OutletContext = { onNavigate: (path: string) => void };
 
 const cardStyle = {
   backgroundColor: "#1c2128",
@@ -21,7 +20,8 @@ const cardStyle = {
 };
 const headingStyle = { color: "#6ba3db", letterSpacing: "0.05em" as const };
 
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
+  const { onNavigate } = useOutletContext<OutletContext>();
   const heroAsset = assetsMeta[homeHero.imageKey];
 
   return (

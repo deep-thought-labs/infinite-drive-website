@@ -1,14 +1,14 @@
+import { useOutletContext } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 import { Network, Globe, Mail, HardDrive, Server, Shield, Wifi, Layers, Database } from "lucide-react";
 import networkMeshImage from "../assets/blocks.jpeg";
 import connectedSystemsImage from "../assets/dots.jpeg";
 
-interface ServicesPageProps {
-  onNavigate?: (path: string) => void;
-}
+type OutletContext = { onNavigate: (path: string) => void };
 
-export function ServicesPage({ onNavigate }: ServicesPageProps) {
+export function ServicesPage() {
+  const { onNavigate } = useOutletContext<OutletContext>();
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
       {/* Header */}
