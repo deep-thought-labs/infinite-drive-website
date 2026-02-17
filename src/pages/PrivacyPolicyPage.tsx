@@ -1,11 +1,5 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import {
-  privacyLastUpdated,
-  privacyIntro,
-  privacySections,
-  privacyFooterNote,
-  site,
-} from "@/content";
+import { useContent } from "@/contexts/LocaleContext";
 
 const sectionTitleStyle = {
   fontSize: "1.25rem",
@@ -15,6 +9,9 @@ const sectionTitleStyle = {
 const bodyStyle = { opacity: 0.9, lineHeight: "1.7", color: "#c9d1d9" };
 
 export function PrivacyPolicyPage() {
+  const content = useContent();
+  const { site, privacy } = content;
+
   return (
     <PageLayout variant="narrow">
       <h1
@@ -29,11 +26,11 @@ export function PrivacyPolicyPage() {
       </h1>
 
       <p className="mb-8" style={{ fontSize: "1rem", ...bodyStyle }}>
-        <strong>Last updated:</strong> {privacyLastUpdated}. {privacyIntro}
+        <strong>Last updated:</strong> {privacy.lastUpdated}. {privacy.intro}
       </p>
 
       <div className="space-y-10">
-        {privacySections.map((section) => (
+        {privacy.sections.map((section) => (
           <section key={section.id}>
             <h2 className="font-mono mb-4" style={sectionTitleStyle}>
               {section.title}
@@ -74,7 +71,7 @@ export function PrivacyPolicyPage() {
 
       <div className="mt-12 pt-8" style={{ borderTop: "1px solid #30363d" }}>
         <p className="text-sm" style={{ opacity: 0.7, color: "#8b949e" }}>
-          {privacyFooterNote}
+          {privacy.footerNote}
         </p>
       </div>
     </PageLayout>

@@ -19,16 +19,17 @@ Aquí vive **qué** se muestra en el sitio: textos, rutas, metadatos de assets, 
 | `i18n.ts` | `defaultLocale`, `supportedLocales`, `getContent(locale)` |
 | `routes.ts` | Reexporta ROUTES y nav del contenido por defecto |
 | `assets.ts` | Metadata de imágenes (id, alt, créditos, usedIn) |
-| `index.ts` | Barrel: reexporta contenido en inglés para compatibilidad con vistas actuales |
+| `index.ts` | Barrel: tipos, assets, i18n (getContent, pathWithLocale, etc.) |
 
-## Cómo usar desde una vista (actual)
+## Cómo usar desde una vista
 
 ```ts
-import { site, homeHero, homeFeatures } from "@/content";
-import { ROUTES, navRoutes } from "@/content/routes";
+import { useContent } from "@/contexts/LocaleContext";
+
+const content = useContent(); // content.site, content.home, content.privacy, etc.
 ```
 
-A partir de Fase 4 las vistas usarán `useContent()` para obtener el contenido del locale actual.
+Para nav y rutas: `import { ROUTES, navRoutes } from "@/content/routes";` (usan contenido por defecto para labels).
 
 ## Añadir un nuevo idioma
 
