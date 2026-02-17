@@ -7,6 +7,7 @@ import { Globe, Mail, HardDrive, Server, Shield, Wifi, Layers, Database } from "
 import networkMeshImage from "../assets/blocks.jpeg";
 import connectedSystemsImage from "../assets/dots.jpeg";
 import type { SovereignServiceCard } from "@/content/locales/types";
+import { PageHeader } from "@/components/site";
 
 type OutletContext = { onNavigate: (path: string) => void };
 
@@ -212,14 +213,7 @@ export function ServicesPage() {
 
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
-      <div className="mb-12">
-        <h1 className="font-mono mb-4" style={{ fontSize: "2.5rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {s.header.title}
-        </h1>
-        <p style={{ fontSize: "1.2rem", opacity: 0.8, maxWidth: "800px" }}>
-          {s.header.subtitle}
-        </p>
-      </div>
+      <PageHeader title={s.header.title} subtitle={s.header.subtitle} />
 
       <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
 

@@ -1,12 +1,13 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useContent } from "@/contexts/LocaleContext";
+import { PageHeader } from "@/components/site";
 
 const sectionTitleStyle = {
   fontSize: "1.25rem",
-  color: "#6ba3db",
+  color: "var(--id-accent)",
   letterSpacing: "0.05em",
 } as const;
-const bodyStyle = { opacity: 0.9, lineHeight: "1.7", color: "#c9d1d9" };
+const bodyStyle = { opacity: 0.9, lineHeight: "1.7", color: "var(--id-text-secondary)" };
 
 export function PrivacyPolicyPage() {
   const content = useContent();
@@ -14,16 +15,7 @@ export function PrivacyPolicyPage() {
 
   return (
     <PageLayout variant="narrow">
-      <h1
-        className="font-mono mb-8"
-        style={{
-          fontSize: "2rem",
-          color: "#e6edf3",
-          letterSpacing: "0.05em",
-        }}
-      >
-        {privacy.title}
-      </h1>
+      <PageHeader title={privacy.title} className="mb-8" />
 
       <p className="mb-8" style={{ fontSize: "1rem", ...bodyStyle }}>
         <strong>{privacy.lastUpdatedLabel}</strong> {privacy.lastUpdated}. {privacy.intro}

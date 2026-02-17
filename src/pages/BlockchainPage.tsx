@@ -1,5 +1,6 @@
 import { useContent } from "@/contexts/LocaleContext";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { PageHeader, SiteTable } from "@/components/site";
 
 export function BlockchainPage() {
   const content = useContent();
@@ -7,14 +8,7 @@ export function BlockchainPage() {
 
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
-      <div className="mb-12">
-        <h1 className="font-mono mb-4" style={{ fontSize: "2.5rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.header.title}
-        </h1>
-        <p style={{ fontSize: "1.2rem", color: "#c9d1d9", maxWidth: "800px" }}>
-          {b.header.subtitle}
-        </p>
-      </div>
+      <PageHeader title={b.header.title} subtitle={b.header.subtitle} />
 
       <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
 
@@ -163,44 +157,21 @@ export function BlockchainPage() {
         <p className="mb-8" style={{ color: "#c9d1d9" }}>
           {b.masterPools.paragraphs[2]}
         </p>
-        <div className="overflow-x-auto mb-6">
-          <table className="w-full border-collapse" style={{ backgroundColor: "#1c2128" }}>
-            <thead>
-              <tr style={{ borderBottom: "2px solid #30363d" }}>
-                <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                  {b.masterPools.tableColumns.pool}
-                </th>
-                <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                  {b.masterPools.tableColumns.percent}
-                </th>
-                <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                  {b.masterPools.tableColumns.purpose}
-                </th>
-                <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                  {b.masterPools.tableColumns.annualUnlock}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {b.masterPools.rows.map((row, i) => (
-                <tr key={i} style={{ borderBottom: i < b.masterPools.rows.length - 1 ? "1px solid #21262d" : undefined }}>
-                  <td className="py-3 px-4" style={{ color: "#6ba3db" }}>
-                    <strong>{row.pool}</strong>
-                  </td>
-                  <td className="py-3 px-4" style={{ color: "#c9d1d9" }}>
-                    {row.percent}
-                  </td>
-                  <td className="py-3 px-4" style={{ color: "#c9d1d9" }}>
-                    {row.purpose}
-                  </td>
-                  <td className="py-3 px-4" style={{ color: "#c9d1d9" }}>
-                    {row.annualUnlock}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <SiteTable
+          className="mb-6"
+          columns={[
+            { key: "pool", label: b.masterPools.tableColumns.pool },
+            { key: "percent", label: b.masterPools.tableColumns.percent },
+            { key: "purpose", label: b.masterPools.tableColumns.purpose },
+            { key: "annualUnlock", label: b.masterPools.tableColumns.annualUnlock },
+          ]}
+          rows={b.masterPools.rows.map((row) => ({
+            pool: <strong style={{ color: "var(--id-accent)" }}>{row.pool}</strong>,
+            percent: row.percent,
+            purpose: row.purpose,
+            annualUnlock: row.annualUnlock,
+          }))}
+        />
         <div className="p-6 rounded" style={{ backgroundColor: "#161b22", borderLeft: "3px solid #6ba3db" }}>
           <p style={{ color: "#c9d1d9", fontStyle: "italic" }}>
             <strong style={{ color: "#e6edf3" }}>{b.masterPools.closingTitle}</strong>
@@ -307,37 +278,17 @@ export function BlockchainPage() {
           <p className="mb-6" style={{ fontSize: "1.1rem", color: "#c9d1d9" }}>
             {b.technicalArch.sectionIntro}
           </p>
-          <div className="overflow-x-auto mb-6">
-            <table className="w-full border-collapse" style={{ backgroundColor: "#1c2128" }}>
-              <thead>
-                <tr style={{ borderBottom: "2px solid #30363d" }}>
-                  <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                    {b.technicalArch.tableColumns.layer}
-                  </th>
-                  <th className="text-left py-3 px-4 font-mono text-sm" style={{ color: "#8b949e" }}>
-                    {b.technicalArch.tableColumns.function}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {b.technicalArch.tableRows.map((row, i) => (
-                  <tr
-                    key={i}
-                    style={{
-                      borderBottom: i < b.technicalArch.tableRows.length - 1 ? "1px solid #21262d" : undefined,
-                    }}
-                  >
-                    <td className="py-3 px-4" style={{ color: "#6ba3db" }}>
-                      <strong>{row.layer}</strong>
-                    </td>
-                    <td className="py-3 px-4" style={{ color: "#c9d1d9" }}>
-                      {row.function}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <SiteTable
+            className="mb-6"
+            columns={[
+              { key: "layer", label: b.technicalArch.tableColumns.layer },
+              { key: "function", label: b.technicalArch.tableColumns.function },
+            ]}
+            rows={b.technicalArch.tableRows.map((row) => ({
+              layer: <strong style={{ color: "var(--id-accent)" }}>{row.layer}</strong>,
+              function: row.function,
+            }))}
+          />
           <div className="p-6 rounded" style={{ backgroundColor: "#161b22", borderLeft: "3px solid #6ba3db" }}>
             <p style={{ color: "#c9d1d9", fontStyle: "italic" }}>
               <strong style={{ color: "#e6edf3" }}>{b.technicalArch.noteTitle}</strong>
