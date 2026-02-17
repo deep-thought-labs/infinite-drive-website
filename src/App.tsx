@@ -21,6 +21,9 @@ import {
   pathWithLocale,
   BASE_PATHS,
   getContent,
+  getPreferredLocale,
+  getBasePathFromPathname,
+  setPreferredLocale,
 } from "@/content/i18n";
 import { LocaleGuard } from "./components/layout/LocaleGuard";
 import { LocaleProvider } from "./contexts/LocaleContext";
@@ -90,6 +93,84 @@ function MobileNavLink({
 }
 
 /**
+ * Selector de idioma: EN | ES. Navega a la misma ruta con el nuevo locale y persiste.
+ */
+function LocaleSelector({
+  currentLocale,
+  onNavigateLocale,
+  onMobileSelect,
+  variant = "desktop",
+}: {
+  currentLocale: string;
+  onNavigateLocale: (locale: "en" | "es") => void;
+  onMobileSelect?: () => void;
+  variant?: "desktop" | "mobile";
+}) {
+  const isMobile = variant === "mobile";
+  const linkStyle = isMobile
+    ? {
+        display: "block" as const,
+        padding: "0.5rem 1rem",
+        fontFamily: "monospace",
+        fontSize: "0.9rem",
+        letterSpacing: "0.05em",
+        color: "#8b949e",
+        textDecoration: "none" as const,
+        border: "none",
+        background: "none",
+        cursor: "pointer" as const,
+        width: "100%",
+        textAlign: "left" as const,
+      }
+    : {
+        fontFamily: "monospace" as const,
+        fontSize: "0.85rem",
+        letterSpacing: "0.05em",
+        color: "#8b949e",
+        textDecoration: "none" as const,
+        padding: "0.25rem 0.5rem",
+        border: "none",
+        background: "none",
+        cursor: "pointer" as const,
+      };
+
+  const activeStyle = { color: "#00d9ff" };
+
+  const handleClick = (locale: "en" | "es") => {
+    setPreferredLocale(locale);
+    onNavigateLocale(locale);
+    onMobileSelect?.();
+  };
+
+  return (
+    <div
+      className={isMobile ? "flex flex-col gap-1" : "flex items-center gap-1"}
+      style={isMobile ? { padding: "0 1rem" } : undefined}
+    >
+      {(["en", "es"] as const).map((locale) => (
+        <button
+          key={locale}
+          type="button"
+          onClick={() => handleClick(locale)}
+          style={{
+            ...linkStyle,
+            ...(currentLocale === locale ? activeStyle : {}),
+          }}
+          onMouseEnter={(e) => {
+            if (currentLocale !== locale) e.currentTarget.style.color = "#c9d1d9";
+          }}
+          onMouseLeave={(e) => {
+            if (currentLocale !== locale) e.currentTarget.style.color = "#8b949e";
+          }}
+        >
+          {locale.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/**
  * Shell con nav, footer y Outlet. Lee el locale de useParams (undefined = default).
  */
 function AppShell() {
@@ -100,9 +181,18 @@ function AppShell() {
   const currentLocale = paramLocale ?? defaultLocale;
   const pathname = location.pathname;
 
+  const basePath = getBasePathFromPathname(pathname);
+  const preferred = getPreferredLocale();
+  const shouldRedirectToPreferred =
+    !paramLocale && preferred && preferred !== defaultLocale;
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
+
+  if (shouldRedirectToPreferred && preferred) {
+    return <Navigate to={pathWithLocale(preferred, basePath)} replace />;
+  }
 
   const handleNavigate = (path: string) => {
     navigate(pathWithLocale(currentLocale, path));
@@ -110,9 +200,17 @@ function AppShell() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleLocaleChange = (locale: "en" | "es") => {
+    navigate(pathWithLocale(locale, basePath));
+    setMobileMenuOpen(false);
+  };
+
   const homePath = pathWithLocale(currentLocale, BASE_PATHS.home);
   const privacyPath = pathWithLocale(currentLocale, BASE_PATHS.privacy);
-  const navRoutes = getContent(currentLocale).routes.navRoutes;
+  const routesContent = getContent(currentLocale).routes;
+  const navRoutes = routesContent.navRoutes;
+  const privacyLabel =
+    routesContent.routeDefs.find((r) => r.path === BASE_PATHS.privacy)?.label ?? "Privacy";
 
   return (
     <LocaleProvider locale={currentLocale}>
@@ -146,7 +244,7 @@ function AppShell() {
             INFINITE DRIVE
           </Link>
 
-          <div className="hidden md:flex gap-6">
+          <div className="hidden md:flex gap-6 items-center">
             {navRoutes.map(({ path, label }) => {
               const to = pathWithLocale(currentLocale, path);
               return (
@@ -155,6 +253,11 @@ function AppShell() {
                 </NavLink>
               );
             })}
+            <LocaleSelector
+              currentLocale={currentLocale}
+              onNavigateLocale={handleLocaleChange}
+              variant="desktop"
+            />
           </div>
 
           <button
@@ -194,6 +297,20 @@ function AppShell() {
                   </MobileNavLink>
                 );
               })}
+              <div
+                className="pt-2 mt-2"
+                style={{ borderTop: "1px solid rgba(0, 217, 255, 0.1)" }}
+              >
+                <span className="font-mono text-xs px-4" style={{ color: "#8b949e" }}>
+                  {currentLocale === "es" ? "Idioma" : "Language"}
+                </span>
+                <LocaleSelector
+                  currentLocale={currentLocale}
+                  onNavigateLocale={handleLocaleChange}
+                  variant="mobile"
+                  onMobileSelect={() => setMobileMenuOpen(false)}
+                />
+              </div>
             </div>
           </div>
         )}
@@ -254,7 +371,7 @@ function AppShell() {
                   e.currentTarget.style.borderBottomColor = "transparent";
                 }}
               >
-                Privacy
+                {privacyLabel}
               </Link>
               {" • 2025"}
             </p>

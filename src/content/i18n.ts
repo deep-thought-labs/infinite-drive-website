@@ -11,8 +11,30 @@ export const defaultLocale = "en" as const;
 export const supportedLocales = ["en", "es"] as const;
 export type SupportedLocale = (typeof supportedLocales)[number];
 
+/** Clave en localStorage para la preferencia de idioma (Fase 6). */
+export const PREFERRED_LOCALE_KEY = "infinite-drive-preferred-locale";
+
 export function isSupportedLocale(locale: string): locale is SupportedLocale {
   return (supportedLocales as readonly string[]).includes(locale);
+}
+
+/** Lee el locale preferido guardado (o null si no hay). */
+export function getPreferredLocale(): SupportedLocale | null {
+  try {
+    const stored = localStorage.getItem(PREFERRED_LOCALE_KEY);
+    return stored && isSupportedLocale(stored) ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Guarda el locale preferido. */
+export function setPreferredLocale(locale: SupportedLocale): void {
+  try {
+    localStorage.setItem(PREFERRED_LOCALE_KEY, locale);
+  } catch {
+    // ignore
+  }
 }
 
 /** Contenido por locale. */
