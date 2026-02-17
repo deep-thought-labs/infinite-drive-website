@@ -57,7 +57,7 @@ export function HomePage() {
 
         <div className="space-y-6 max-w-3xl mx-auto">
           <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8" }}>
-            A <strong>complete digital ecosystem</strong> — a new kind of internet built from the ground up.
+            {home.ecosystemIntro}
           </p>
           <div className="p-8 rounded" style={{ ...cardStyle, border: "1px solid #444c56" }}>
             <blockquote
@@ -88,10 +88,10 @@ export function HomePage() {
 
         <div className="space-y-6 mt-16">
           <p style={{ fontSize: "1.1rem", opacity: 0.9 }}>
-            <strong>This is infrastructure for everyone.</strong>
+            <strong>{home.closingBlock.title}</strong>
           </p>
           <p style={{ fontSize: "1rem", opacity: 0.7 }}>
-            From individuals to enterprises — democratizing tools once controlled by the kraken.
+            {home.closingBlock.subtitle}
           </p>
           <div className="p-6 rounded mt-6" style={{ backgroundColor: "#161b22", ...cardStyle }}>
             <p style={{ fontSize: "0.95rem", color: "#c9d1d9" }}>
@@ -106,7 +106,7 @@ export function HomePage() {
                   onClick={() => onNavigate(cta.href)}
                   className="px-8 py-3 rounded font-mono transition-all"
                   style={
-                    cta.label.startsWith("Explore Project")
+                    cta.internal && cta.href === "/project42"
                       ? {
                           background: "linear-gradient(135deg, #00d9ff 0%, #a855f7 100%)",
                           color: "#0d1117",
@@ -124,7 +124,7 @@ export function HomePage() {
                         }
                   }
                   onMouseEnter={(e) => {
-                    if (cta.label.startsWith("Explore Project")) {
+                    if (cta.internal && cta.href === "/project42") {
                       e.currentTarget.style.boxShadow = "0 0 30px rgba(0, 217, 255, 0.5)";
                       e.currentTarget.style.transform = "translateY(-2px)";
                     } else {
@@ -133,7 +133,7 @@ export function HomePage() {
                     }
                   }}
                   onMouseLeave={(e) => {
-                    if (cta.label.startsWith("Explore Project")) {
+                    if (cta.internal && cta.href === "/project42") {
                       e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 217, 255, 0.3)";
                       e.currentTarget.style.transform = "translateY(0)";
                     } else {

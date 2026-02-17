@@ -1,5 +1,5 @@
 /**
- * Contenido completo para locale «en» (inglés).
+ * Contenido completo para locale «es» (español).
  */
 
 import type { LocaleContent } from "../types";
@@ -11,7 +11,7 @@ import { services } from "./marketing/services";
 import { blockchain } from "./marketing/blockchain";
 import { privacy } from "./legal/privacy";
 
-export const enContent: LocaleContent = {
+export const esContent: LocaleContent = {
   site,
   routes,
   home,

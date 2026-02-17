@@ -5,6 +5,7 @@
 
 import type { LocaleContent } from "./locales/types";
 import { enContent } from "./locales/en";
+import { esContent } from "./locales/es";
 
 export const defaultLocale = "en" as const;
 export const supportedLocales = ["en", "es"] as const;
@@ -14,11 +15,10 @@ export function isSupportedLocale(locale: string): locale is SupportedLocale {
   return (supportedLocales as readonly string[]).includes(locale);
 }
 
-/** Contenido por locale; solo «en» tiene contenido hasta Fase 5. */
+/** Contenido por locale. */
 const contentByLocale: Record<SupportedLocale, LocaleContent> = {
   en: enContent,
-  // es: se añade en Fase 5
-  es: enContent, // fallback a inglés hasta tener traducción
+  es: esContent,
 };
 
 /**

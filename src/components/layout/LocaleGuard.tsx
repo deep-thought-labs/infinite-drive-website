@@ -1,8 +1,9 @@
 /**
  * Envuelve las rutas bajo /:locale. Si el locale no está soportado, redirige a la misma ruta sin el segmento (idioma por defecto).
+ * Debe renderizar <Outlet /> para que React Router muestre las rutas anidadas.
  */
 
-import { Navigate, useParams, useLocation } from "react-router-dom";
+import { Navigate, useParams, useLocation, Outlet } from "react-router-dom";
 import { isSupportedLocale } from "@/content/i18n";
 
 /** Quita el primer segmento del pathname (ej. /fr/privacy → /privacy). */
@@ -11,7 +12,7 @@ function pathWithoutFirstSegment(pathname: string): string {
   return without.startsWith("/") ? without : `/${without}`;
 }
 
-export function LocaleGuard({ children }: { children: React.ReactNode }) {
+export function LocaleGuard() {
   const { locale } = useParams<"locale">();
   const location = useLocation();
 
@@ -20,5 +21,5 @@ export function LocaleGuard({ children }: { children: React.ReactNode }) {
     return <Navigate to={target || "/"} replace />;
   }
 
-  return <>{children}</>;
+  return <Outlet />;
 }

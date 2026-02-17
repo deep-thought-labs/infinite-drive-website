@@ -22,7 +22,7 @@ export function PrivacyPolicyPage() {
           letterSpacing: "0.05em",
         }}
       >
-        Privacy Policy
+        {privacy.title}
       </h1>
 
       <p className="mb-8" style={{ fontSize: "1rem", ...bodyStyle }}>

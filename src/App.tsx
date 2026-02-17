@@ -16,11 +16,11 @@ import { BlockchainPage } from "./pages/BlockchainPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { Menu, X } from "lucide-react";
-import { navRoutes } from "@/content/routes";
 import {
   defaultLocale,
   pathWithLocale,
   BASE_PATHS,
+  getContent,
 } from "@/content/i18n";
 import { LocaleGuard } from "./components/layout/LocaleGuard";
 import { LocaleProvider } from "./contexts/LocaleContext";
@@ -112,6 +112,7 @@ function AppShell() {
 
   const homePath = pathWithLocale(currentLocale, BASE_PATHS.home);
   const privacyPath = pathWithLocale(currentLocale, BASE_PATHS.privacy);
+  const navRoutes = getContent(currentLocale).routes.navRoutes;
 
   return (
     <LocaleProvider locale={currentLocale}>
