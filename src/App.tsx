@@ -24,152 +24,12 @@ import {
   getContent,
   getPreferredLocale,
   getBasePathFromPathname,
-  setPreferredLocale,
 } from "@/content/i18n";
 import { LocaleGuard } from "./components/layout/LocaleGuard";
+import { NavLink } from "./components/layout/NavLink";
+import { MobileNavLink } from "./components/layout/MobileNavLink";
+import { LocaleSelector } from "./components/layout/LocaleSelector";
 import { LocaleProvider } from "./contexts/LocaleContext";
-
-function NavLink({
-  to,
-  children,
-  isActive,
-}: {
-  to: string;
-  children: React.ReactNode;
-  isActive: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      className="text-sm font-mono transition-all duration-200"
-      style={{
-        color: isActive ? "#00d9ff" : "#8b949e",
-        borderBottomWidth: "2px",
-        borderBottomStyle: "solid",
-        borderBottomColor: isActive ? "#00d9ff" : "transparent",
-        paddingBottom: "0.25rem",
-        letterSpacing: "0.05em",
-        textDecoration: "none",
-      }}
-      onMouseEnter={(e) => {
-        if (!isActive) e.currentTarget.style.color = "#c9d1d9";
-      }}
-      onMouseLeave={(e) => {
-        if (!isActive) e.currentTarget.style.color = "#8b949e";
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function MobileNavLink({
-  to,
-  children,
-  isActive,
-  onNavigate,
-}: {
-  to: string;
-  children: React.ReactNode;
-  isActive: boolean;
-  onNavigate: () => void;
-}) {
-  return (
-    <Link
-      to={to}
-      onClick={onNavigate}
-      className="text-left font-mono transition-all duration-200 px-4 py-2 rounded block"
-      style={{
-        color: isActive ? "#00d9ff" : "#8b949e",
-        background: isActive ? "rgba(0, 217, 255, 0.1)" : "transparent",
-        border: "none",
-        cursor: "pointer",
-        letterSpacing: "0.05em",
-        textDecoration: "none",
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
-
-/**
- * Selector de idioma: EN | ES. Navega a la misma ruta con el nuevo locale y persiste.
- */
-function LocaleSelector({
-  currentLocale,
-  onNavigateLocale,
-  onMobileSelect,
-  variant = "desktop",
-}: {
-  currentLocale: string;
-  onNavigateLocale: (locale: "en" | "es") => void;
-  onMobileSelect?: () => void;
-  variant?: "desktop" | "mobile";
-}) {
-  const isMobile = variant === "mobile";
-  const linkStyle = isMobile
-    ? {
-        display: "block" as const,
-        padding: "0.5rem 1rem",
-        fontFamily: "monospace",
-        fontSize: "0.9rem",
-        letterSpacing: "0.05em",
-        color: "#8b949e",
-        textDecoration: "none" as const,
-        border: "none",
-        background: "none",
-        cursor: "pointer" as const,
-        width: "100%",
-        textAlign: "left" as const,
-      }
-    : {
-        fontFamily: "monospace" as const,
-        fontSize: "0.85rem",
-        letterSpacing: "0.05em",
-        color: "#8b949e",
-        textDecoration: "none" as const,
-        padding: "0.25rem 0.5rem",
-        border: "none",
-        background: "none",
-        cursor: "pointer" as const,
-      };
-
-  const activeStyle = { color: "#00d9ff" };
-
-  const handleClick = (locale: "en" | "es") => {
-    setPreferredLocale(locale);
-    onNavigateLocale(locale);
-    onMobileSelect?.();
-  };
-
-  return (
-    <div
-      className={isMobile ? "flex flex-col gap-1" : "flex items-center gap-1"}
-      style={isMobile ? { padding: "0 1rem" } : undefined}
-    >
-      {(["en", "es"] as const).map((locale) => (
-        <button
-          key={locale}
-          type="button"
-          onClick={() => handleClick(locale)}
-          style={{
-            ...linkStyle,
-            ...(currentLocale === locale ? activeStyle : {}),
-          }}
-          onMouseEnter={(e) => {
-            if (currentLocale !== locale) e.currentTarget.style.color = "#c9d1d9";
-          }}
-          onMouseLeave={(e) => {
-            if (currentLocale !== locale) e.currentTarget.style.color = "#8b949e";
-          }}
-        >
-          {locale.toUpperCase()}
-        </button>
-      ))}
-    </div>
-  );
-}
 
 /**
  * Shell con nav, footer y Outlet. Lee el locale de useParams (undefined = default).
@@ -246,7 +106,7 @@ function AppShell() {
     <LocaleProvider locale={currentLocale}>
       <div
         className="min-h-screen flex flex-col"
-        style={{ backgroundColor: "#0d1117", color: "#e6edf3" }}
+        style={{ backgroundColor: "var(--id-bg-page)", color: "var(--id-text-primary)" }}
       >
         <NetworkCanvas />
 
@@ -265,7 +125,7 @@ function AppShell() {
             to={homePath}
             className="font-mono hover:opacity-80 transition-opacity"
             style={{
-              color: "#e6edf3",
+              color: "var(--id-text-primary)",
               fontSize: "1.1rem",
               letterSpacing: "0.05em",
               textDecoration: "none",
@@ -297,7 +157,7 @@ function AppShell() {
               background: "none",
               border: "none",
               cursor: "pointer",
-              color: "#00d9ff",
+              color: "var(--id-accent-soft)",
               padding: "0.5rem",
             }}
           >
@@ -331,7 +191,7 @@ function AppShell() {
                 className="pt-2 mt-2"
                 style={{ borderTop: "1px solid rgba(0, 217, 255, 0.1)" }}
               >
-                <span className="font-mono text-xs px-4" style={{ color: "#8b949e" }}>
+                <span className="font-mono text-xs px-4" style={{ color: "var(--id-text-muted)" }}>
                   {currentLocale === "es" ? "Idioma" : "Language"}
                 </span>
                 <LocaleSelector
@@ -373,7 +233,7 @@ function AppShell() {
                   borderBottomColor: "transparent",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderBottomColor = "#00d9ff")
+                  (e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderBottomColor = "transparent")
@@ -393,8 +253,8 @@ function AppShell() {
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#00d9ff";
-                  e.currentTarget.style.borderBottomColor = "#00d9ff";
+                  e.currentTarget.style.color = "var(--id-accent-soft)";
+                  e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = "inherit";
@@ -413,14 +273,14 @@ function AppShell() {
                 rel="noopener noreferrer"
                 className="transition-colors font-mono"
                 style={{
-                  color: "#00d9ff",
+                  color: "var(--id-accent-soft)",
                   borderBottomWidth: "1px",
                   borderBottomStyle: "solid",
                   borderBottomColor: "transparent",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderBottomColor = "#00d9ff")
+                  (e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderBottomColor = "transparent")

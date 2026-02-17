@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
+import "./styles/tokens.css";
 import "./index.css";
 
 const basename = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "") || "/";

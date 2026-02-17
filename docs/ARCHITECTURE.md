@@ -168,4 +168,4 @@ Any other path is redirected to `/` (or `/es` when in the locale-prefixed branch
 | **SEO**           | `lang` on `<html>`; `hreflang` links for en, es, and x-default.                |
 | **Assets**        | Shared across locales; metadata in `content/assets.ts`.                       |
 
-For deployment and local run, see the root **README.md** and **DEPLOY.md**.
+For **how to add sections, edit content, or change the UI globally** (including a single entry point for humans and AI), see **[EDITING-AND-STRUCTURE.md](EDITING-AND-STRUCTURE.md)**. For deployment and local run, see the root **README.md** and **DEPLOY.md**.
