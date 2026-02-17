@@ -1,36 +1,38 @@
-# Capa de contenido
+# Content layer
 
-Aquí vive **qué** se muestra en el sitio: textos, rutas, metadatos de assets, datos estructurados. **Sin JSX.**
+This folder holds **what** the site displays: copy, route labels, asset metadata, and structured data. **No JSX.**
 
-## Reglas
+## Rules
 
-- Solo TypeScript (tipos, constantes, objetos, arrays). Nada de componentes React.
-- Las **vistas** (`pages/`, `components/`) importan desde `@/content` o `@/content/...` y renderizan estos datos.
-- Un cambio de copy o de dato se hace en un solo lugar.
+- **TypeScript only:** types, constants, objects, arrays. No React components.
+- **Views** (`src/pages/`, `src/components/`) get content via **`useContent()`** from `LocaleContext` and render it. They do not import content modules for copy.
+- A change to copy or a label is made in one place (the right locale file).
 
-## Estructura (con i18n)
+## Structure
 
-| Archivo / carpeta | Uso |
-|-------------------|-----|
-| `types.ts` | Tipos compartidos (Quote, FeatureItem, LegalSection, etc.) |
-| `locales/types.ts` | Tipo `LocaleContent` y subtipos por dominio (LocaleSite, LocaleHome, etc.) |
-| `locales/en/` | Contenido en inglés (site, routes, marketing/home, legal/privacy) |
-| `locales/es/` | Contenido en español (se añade en Fase 5) |
-| `i18n.ts` | `defaultLocale`, `supportedLocales`, `getContent(locale)` |
-| `routes.ts` | Reexporta ROUTES y nav del contenido por defecto |
-| `assets.ts` | Metadata de imágenes (id, alt, créditos, usedIn) |
-| `index.ts` | Barrel: tipos, assets, i18n (getContent, pathWithLocale, etc.) |
+| Path | Purpose |
+|------|--------|
+| `types.ts` | Shared types (e.g. `AssetMeta`) |
+| `locales/types.ts` | `LocaleContent` and per-domain types (`LocaleHome`, `LocalePrivacy`, `LocaleProject42`, etc.) |
+| `locales/en/` | English content: `site`, `routes`, `marketing/home`, `marketing/project42`, `marketing/services`, `marketing/blockchain`, `legal/privacy` |
+| `locales/es/` | Spanish content: same structure as `en` |
+| `i18n.ts` | `defaultLocale`, `supportedLocales`, `getContent(locale)`, `pathWithLocale`, persistence helpers |
+| `routes.ts` | Re-exports routes from the default locale (for non-view usage if needed) |
+| `assets.ts` | Image metadata (id, alt, credits, usedIn). Shared across locales. |
+| `index.ts` | Barrel: types, assets, i18n exports |
 
-## Cómo usar desde una vista
+## Using content in a view
 
 ```ts
 import { useContent } from "@/contexts/LocaleContext";
 
-const content = useContent(); // content.site, content.home, content.privacy, etc.
+const content = useContent();
+// content.site, content.home, content.project42, content.services, content.blockchain, content.privacy
 ```
 
-Para nav y rutas: `import { ROUTES, navRoutes } from "@/content/routes";` (usan contenido por defecto para labels).
+Navigation and route labels come from the current locale’s content: `content.routes.navRoutes`, `content.routes.routeDefs`, etc. The shell and footer use these; they do not import `@/content/routes` for labels.
 
-## Añadir un nuevo idioma
+## Adding a new locale
 
-Crear `locales/<locale>/` con la misma estructura que `locales/en/` y registrar el contenido en `i18n.ts`.
+1. Create `locales/<locale>/` with the same structure as `locales/en/` (e.g. `site.ts`, `routes.ts`, `marketing/*`, `legal/privacy.ts`, `index.ts`).
+2. In `i18n.ts`, add the locale to `supportedLocales` and to the `contentByLocale` map (import and register the new content object).

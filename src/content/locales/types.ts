@@ -41,6 +41,8 @@ export interface LocaleHome {
 
 export interface LocalePrivacy {
   title: string;
+  /** Etiqueta para la fecha, ej. "Last updated:" / "Última actualización:" */
+  lastUpdatedLabel: string;
   lastUpdated: string;
   intro: string;
   sections: LegalSection[];

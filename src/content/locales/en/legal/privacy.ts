@@ -6,6 +6,7 @@ import type { LocalePrivacy } from "../../types";
 
 export const privacy: LocalePrivacy = {
   title: "Privacy Policy",
+  lastUpdatedLabel: "Last updated:",
   lastUpdated: "16 February 2026",
   intro:
     "This Privacy Policy describes how we collect, use, and protect information when you use the Infinite Drive website and related ecosystem resources. We are committed to transparency and to handling data in line with industry best practices and applicable law.",

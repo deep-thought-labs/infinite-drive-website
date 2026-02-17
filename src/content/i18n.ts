@@ -45,9 +45,16 @@ const contentByLocale: Record<SupportedLocale, LocaleContent> = {
 
 /**
  * Devuelve el contenido para el locale dado. Si el locale no está soportado, devuelve el default.
+ * En desarrollo se hace log cuando se usa fallback (Fase 7).
  */
 export function getContent(locale: string): LocaleContent {
   const safeLocale = isSupportedLocale(locale) ? locale : defaultLocale;
+  if (import.meta.env.DEV && locale !== safeLocale) {
+    console.warn(
+      `[i18n] Locale "${locale}" no soportado; usando fallback "${safeLocale}". supportedLocales:`,
+      supportedLocales
+    );
+  }
   return contentByLocale[safeLocale];
 }
 
@@ -88,4 +95,24 @@ export function getBasePathFromPathname(pathname: string): string {
   if (!locale) return pathname || "/";
   const rest = pathname.slice(locale.length + 1) || "/";
   return rest.startsWith("/") ? rest : `/${rest}`;
+}
+
+/**
+ * Formato de fecha según el locale (Fase 7). Para uso cuando se muestren fechas en la UI.
+ * Si el contenido ya trae la fecha como string localizado (ej. privacy.lastUpdated), no es necesario usarlo.
+ */
+export function formatDateForLocale(locale: string, date: Date, options?: Intl.DateTimeFormatOptions): string {
+  const safeLocale = isSupportedLocale(locale) ? locale : defaultLocale;
+  return new Intl.DateTimeFormat(safeLocale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    ...options,
+  }).format(date);
+}
+
+/** Formato de número según el locale (Fase 7). Para cantidades o porcentajes en la UI. */
+export function formatNumberForLocale(locale: string, value: number, options?: Intl.NumberFormatOptions): string {
+  const safeLocale = isSupportedLocale(locale) ? locale : defaultLocale;
+  return new Intl.NumberFormat(safeLocale, options).format(value);
 }

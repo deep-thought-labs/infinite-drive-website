@@ -26,7 +26,7 @@ export function PrivacyPolicyPage() {
       </h1>
 
       <p className="mb-8" style={{ fontSize: "1rem", ...bodyStyle }}>
-        <strong>Last updated:</strong> {privacy.lastUpdated}. {privacy.intro}
+        <strong>{privacy.lastUpdatedLabel}</strong> {privacy.lastUpdated}. {privacy.intro}
       </p>
 
       <div className="space-y-10">

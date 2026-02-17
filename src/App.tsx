@@ -18,6 +18,7 @@ import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { Menu, X } from "lucide-react";
 import {
   defaultLocale,
+  supportedLocales,
   pathWithLocale,
   BASE_PATHS,
   getContent,
@@ -189,6 +190,35 @@ function AppShell() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
+
+  // Fase 7: lang y hreflang para SEO por idioma
+  useEffect(() => {
+    document.documentElement.lang = currentLocale;
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const dataAttr = "data-infinite-drive-hreflang";
+    document.querySelectorAll(`link[${dataAttr}]`).forEach((el) => el.remove());
+    if (origin) {
+      supportedLocales.forEach((locale) => {
+        const path = pathWithLocale(locale, basePath) || "/";
+        const link = document.createElement("link");
+        link.rel = "alternate";
+        link.hreflang = locale;
+        link.href = `${origin}${path}`;
+        link.setAttribute(dataAttr, "true");
+        document.head.appendChild(link);
+      });
+      const defaultPath = pathWithLocale(defaultLocale, basePath) || "/";
+      const xDefault = document.createElement("link");
+      xDefault.rel = "alternate";
+      xDefault.hreflang = "x-default";
+      xDefault.href = `${origin}${defaultPath}`;
+      xDefault.setAttribute(dataAttr, "true");
+      document.head.appendChild(xDefault);
+    }
+    return () => {
+      document.querySelectorAll(`link[${dataAttr}]`).forEach((el) => el.remove());
+    };
+  }, [currentLocale, basePath]);
 
   if (shouldRedirectToPreferred && preferred) {
     return <Navigate to={pathWithLocale(preferred, basePath)} replace />;
