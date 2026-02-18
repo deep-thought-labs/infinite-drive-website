@@ -123,8 +123,14 @@ export const blockchain: LocaleBlockchain = {
       { name: "Celestia", tag: "IBC nativo" },
     ],
     ecosystemsNote: "Y muchos más a través del universo IBC en expansión y protocolos de puente...",
-    whyItMatters:
-      "Por qué importa: Tus tokens [42], recompensas Fish y activos no están atrapados en un jardín vallado. Muévelos libremente entre ecosistemas. Opera en cualquier DEX. Úsalos en cualquier protocolo. El multiverso está abierto.",
+    whyItMatters: [
+      { type: "bold", content: "Por qué importa: " },
+      {
+        type: "text",
+        content:
+          "Tus tokens [42], recompensas Fish y activos no están atrapados en un jardín vallado. Muévelos libremente entre ecosistemas. Opera en cualquier DEX. Úsalos en cualquier protocolo. El multiverso está abierto.",
+      },
+    ],
     whyItMattersNote:
       "A diferencia de la demolición de la Tierra, estos desvíos del hiperespacio están bien documentados y son accesibles para todos.",
   },

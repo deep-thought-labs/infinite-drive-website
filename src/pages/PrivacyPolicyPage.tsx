@@ -1,12 +1,7 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useContent } from "@/contexts/LocaleContext";
-import { PageHeader } from "@/components/site";
+import { PageHeader, SectionHeading, SiteLink } from "@/components/site";
 
-const sectionTitleStyle = {
-  fontSize: "1.25rem",
-  color: "var(--id-accent)",
-  letterSpacing: "0.05em",
-} as const;
 const bodyStyle = { opacity: 0.9, lineHeight: "1.7", color: "var(--id-text-secondary)" };
 
 export function PrivacyPolicyPage() {
@@ -24,9 +19,9 @@ export function PrivacyPolicyPage() {
       <div className="space-y-10">
         {privacy.sections.map((section) => (
           <section key={section.id}>
-            <h2 className="font-mono mb-4" style={sectionTitleStyle}>
+            <SectionHeading level={3} colorVariant="accent" className="mb-4">
               {section.title}
-            </h2>
+            </SectionHeading>
             {Array.isArray(section.body) ? (
               section.body.map((paragraph, i) => (
                 <p key={i} style={bodyStyle} className={i > 0 ? "mt-4" : ""}>
@@ -38,23 +33,9 @@ export function PrivacyPolicyPage() {
             )}
             {section.id === "contact" && (
               <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-                <a
-                  href={site.links.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "var(--id-accent)", textDecoration: "underline" }}
-                >
-                  Telegram
-                </a>
+                <SiteLink href={site.links.telegram}>Telegram</SiteLink>
                 {" · "}
-                <a
-                  href={site.links.deepThoughtLabs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "var(--id-accent)", textDecoration: "underline" }}
-                >
-                  Deep Thought Labs
-                </a>
+                <SiteLink href={site.links.deepThoughtLabs}>Deep Thought Labs</SiteLink>
               </p>
             )}
           </section>

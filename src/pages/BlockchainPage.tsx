@@ -1,5 +1,17 @@
 import { useContent } from "@/contexts/LocaleContext";
-import { PageHeader, SiteTable, SectionDivider, QuoteBlock, PageSection, ContentCard, CalloutBox, BulletList } from "@/components/site";
+import {
+  PageHeader,
+  SiteTable,
+  SectionDivider,
+  QuoteBlock,
+  PageSection,
+  ContentCard,
+  CalloutBox,
+  BulletList,
+  FormattedText,
+  SectionHeading,
+  LeadParagraph,
+} from "@/components/site";
 
 export function BlockchainPage() {
   const content = useContent();
@@ -15,18 +27,17 @@ export function BlockchainPage() {
         <div className="mb-8">
           <QuoteBlock quote={b.intro.quote} author={b.intro.quoteAuthor} variant="muted" />
         </div>
-        {b.intro.paragraphs.map((p, i) => (
-          <p
-            key={i}
-            style={{
-              fontSize: i === 0 ? "1.1rem" : undefined,
-              color: "var(--id-text-secondary)",
-              marginBottom: i === 0 ? "1.5rem" : undefined,
-            }}
-          >
-            {p}
-          </p>
-        ))}
+        {b.intro.paragraphs.map((p, i) =>
+          i === 0 ? (
+            <LeadParagraph key={i} className="mb-6">
+              {p}
+            </LeadParagraph>
+          ) : (
+            <p key={i} style={{ color: "var(--id-text-secondary)" }}>
+              {p}
+            </p>
+          )
+        )}
       </section>
 
       <SectionDivider />
@@ -72,7 +83,7 @@ export function BlockchainPage() {
 
           <ContentCard title={b.coreComponents.fish.title}>
             <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.fish.summary}</p>
-            <CalloutBox className="mb-4">
+            <CalloutBox className="mt-4 mb-4">
               <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
                 {b.coreComponents.fish.howToEarn}
               </p>
@@ -105,9 +116,9 @@ export function BlockchainPage() {
       <SectionDivider />
 
       <PageSection title={b.masterPools.title}>
-        <p className="mb-4" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
+        <LeadParagraph className="mb-4">
           {b.masterPools.paragraphs[0]}
-        </p>
+        </LeadParagraph>
         <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
           {b.masterPools.paragraphs[1]}
         </p>
@@ -151,9 +162,9 @@ export function BlockchainPage() {
           <QuoteBlock quote={b.hyperspace.quote} author={b.hyperspace.quoteAuthor} variant="muted" />
         </div>
         {b.hyperspace.paragraphs.map((p, i) => (
-          <p key={i} className="mb-6" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
+          <LeadParagraph key={i} className="mb-6">
             {p}
-          </p>
+          </LeadParagraph>
         ))}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <ContentCard title={b.hyperspace.nativeTitle}>
@@ -196,7 +207,11 @@ export function BlockchainPage() {
         </ContentCard>
         <CalloutBox>
           <p style={{ color: "var(--id-text-secondary)" }}>
-            <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.whyItMatters}</strong>
+            {Array.isArray(b.hyperspace.whyItMatters) ? (
+              <FormattedText segments={b.hyperspace.whyItMatters} />
+            ) : (
+              <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.whyItMatters}</strong>
+            )}
           </p>
           <p className="mt-3 text-sm italic" style={{ color: "var(--id-text-muted)" }}>
             {b.hyperspace.whyItMattersNote}
@@ -208,12 +223,12 @@ export function BlockchainPage() {
 
       <PageSection title={b.technicalArch.title}>
         <div className="mb-12">
-          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
+          <SectionHeading level={3} className="mb-6">
             {b.technicalArch.sectionTitle}
-          </h3>
-          <p className="mb-6" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
+          </SectionHeading>
+          <LeadParagraph className="mb-6">
             {b.technicalArch.sectionIntro}
-          </p>
+          </LeadParagraph>
           <SiteTable
             className="mb-6"
             columns={[
@@ -237,17 +252,17 @@ export function BlockchainPage() {
           </CalloutBox>
         </div>
         <div>
-          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
+          <SectionHeading level={3} className="mb-6">
             {b.technicalArch.specsTitle}
-          </h3>
+          </SectionHeading>
           <ContentCard>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {b.technicalArch.specs.map((spec) => (
                   <div key={spec.label}>
-                    <h4 className="font-mono text-sm mb-2" style={{ color: "var(--id-text-muted)" }}>
+                    <SectionHeading level={4} colorVariant="muted" className="mb-2">
                       {spec.label}
-                    </h4>
+                    </SectionHeading>
                     <p style={{ color: "var(--id-text-secondary)" }}>{spec.value}</p>
                   </div>
                 ))}
@@ -276,17 +291,14 @@ export function BlockchainPage() {
 
       <SectionDivider />
 
-      <div
-        className="p-8 rounded text-center mb-16"
-        style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-accent)" }}
-      >
+      <ContentCard borderVariant="accent" className="p-8 text-center mb-16">
         <p className="font-mono mb-2" style={{ fontSize: "1.2rem", color: "var(--id-accent)", letterSpacing: "0.05em" }}>
           &quot;{b.finalQuote.quote}&quot;
         </p>
         <p className="text-sm" style={{ color: "var(--id-text-muted)" }}>
           — {b.finalQuote.author}
         </p>
-      </div>
+      </ContentCard>
     </main>
   );
 }

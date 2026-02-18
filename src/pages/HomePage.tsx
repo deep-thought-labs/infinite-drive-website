@@ -8,6 +8,8 @@ import {
   CalloutBox,
   SectionDivider,
   FormattedText,
+  SiteButton,
+  LeadParagraph,
 } from "@/components/site";
 import dontPanicImage from "@/assets/dontpanic-space.jpg";
 
@@ -109,66 +111,25 @@ export function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             {home.ctas.map((cta) =>
               cta.internal ? (
-                <button
+                <SiteButton
                   key={cta.href}
+                  variant={cta.href === "/project42" ? "primary" : "secondary"}
+                  size="lg"
                   onClick={() => onNavigate(cta.href)}
-                  className="px-8 py-3 rounded font-mono transition-all"
-                  style={
-                    cta.internal && cta.href === "/project42"
-                      ? {
-                          background: "linear-gradient(135deg, var(--id-accent-soft) 0%, var(--id-accent-secondary) 100%)",
-                          color: "var(--id-bg-page)",
-                          border: "none",
-                          cursor: "pointer",
-                          boxShadow: "0 0 20px rgba(0, 217, 255, 0.3)",
-                          letterSpacing: "0.05em",
-                        }
-                      : {
-                          backgroundColor: "var(--id-bg-card)",
-                          color: "var(--id-accent)",
-                          border: "1px solid var(--id-accent)",
-                          cursor: "pointer",
-                          letterSpacing: "0.05em",
-                        }
-                  }
-                  onMouseEnter={(e) => {
-                    if (cta.internal && cta.href === "/project42") {
-                      e.currentTarget.style.boxShadow = "0 0 30px rgba(0, 217, 255, 0.5)";
-                      e.currentTarget.style.transform = "translateY(-2px)";
-                    } else {
-                      e.currentTarget.style.backgroundColor = "var(--id-accent)";
-                      e.currentTarget.style.color = "var(--id-bg-page)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (cta.internal && cta.href === "/project42") {
-                      e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 217, 255, 0.3)";
-                      e.currentTarget.style.transform = "translateY(0)";
-                    } else {
-                      e.currentTarget.style.backgroundColor = "var(--id-bg-card)";
-                      e.currentTarget.style.color = "var(--id-accent)";
-                    }
-                  }}
                 >
                   {cta.label}
-                </button>
+                </SiteButton>
               ) : (
-                <a
+                <SiteButton
                   key={cta.href}
+                  variant="secondary"
+                  size="lg"
                   href={cta.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-3 rounded font-mono transition-all inline-block"
-                  style={{
-                    backgroundColor: "var(--id-bg-card)",
-                    color: "var(--id-accent)",
-                    border: "1px solid var(--id-accent)",
-                    textDecoration: "none",
-                    letterSpacing: "0.05em",
-                  }}
                 >
                   {cta.label}
-                </a>
+                </SiteButton>
               )
             )}
           </div>
@@ -177,51 +138,25 @@ export function HomePage() {
         <SectionDivider />
 
         <section className="mb-16">
-          <div
-            className="p-8 rounded text-center"
-            style={{
-              backgroundColor: "var(--id-bg-card)",
-              border: "1px solid var(--id-accent)",
-            }}
+          <ContentCard
+            borderVariant="accent"
+            title={home.joinSection.title}
+            titleAlign="center"
+            className="p-8 text-center"
           >
-            <h2
-              className="font-mono mb-4"
-              style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}
-            >
-              {home.joinSection.title}
-            </h2>
-            <p
-              className="mb-6"
-              style={{
-                fontSize: "1.1rem",
-                color: "var(--id-text-secondary)",
-                maxWidth: "600px",
-                margin: "0 auto 1.5rem",
-              }}
-            >
+            <LeadParagraph className="mb-6 max-w-[600px] mx-auto">
               {home.joinSection.description}
-            </p>
-            <a
+            </LeadParagraph>
+            <SiteButton
+              variant="accent"
+              size="lg"
               href={site.links.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-3 rounded font-mono transition-all"
-              style={{
-                backgroundColor: "var(--id-accent)",
-                color: "var(--id-bg-page)",
-                textDecoration: "none",
-                letterSpacing: "0.05em",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = "0.9";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = "1";
-              }}
             >
               {home.joinSection.ctaLabel}
-            </a>
-          </div>
+            </SiteButton>
+          </ContentCard>
         </section>
       </div>
     </PageLayout>

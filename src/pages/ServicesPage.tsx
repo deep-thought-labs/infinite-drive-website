@@ -7,7 +7,17 @@ import { Globe, Mail, HardDrive, Server, Shield, Wifi, Layers, Database } from "
 import networkMeshImage from "../assets/blocks.jpeg";
 import connectedSystemsImage from "../assets/dots.jpeg";
 import type { SovereignServiceCard } from "@/content/locales/types";
-import { PageHeader, SectionDivider } from "@/components/site";
+import {
+  PageHeader,
+  PageSection,
+  SectionDivider,
+  SectionHeading,
+  ContentCard,
+  CalloutBox,
+  SiteButton,
+  SiteLink,
+  LeadParagraph,
+} from "@/components/site";
 
 type OutletContext = { onNavigate: (path: string) => void };
 
@@ -217,17 +227,16 @@ export function ServicesPage() {
 
       <SectionDivider />
 
-      <section className="mb-16">
+      <PageSection title={s.babelfish.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
           <div>
-            <h2 className="mb-6 font-mono" style={{ fontSize: "2rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
-              {s.babelfish.title}
-            </h2>
             <div className="space-y-4">
               {s.babelfish.paragraphs.map((p, i) => (
-                <p key={i} style={{ fontSize: i === 0 ? "1.1rem" : undefined, opacity: i === 0 ? 0.9 : 0.85, color: "var(--id-text-secondary)" }}>
-                  {p}
-                </p>
+                i === 0 ? (
+                  <LeadParagraph key={i} style={{ opacity: 0.9 }}>{p}</LeadParagraph>
+                ) : (
+                  <p key={i} style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>{p}</p>
+                )
               ))}
             </div>
           </div>
@@ -241,18 +250,18 @@ export function ServicesPage() {
           </div>
         </div>
 
-        <div className="mb-8 p-6 rounded" style={{ backgroundColor: "var(--id-bg-card)", borderLeft: "3px solid var(--id-accent)" }}>
-          <h3 className="font-mono mb-4" style={{ fontSize: "1.2rem", color: "var(--id-accent)", letterSpacing: "0.05em" }}>
+        <CalloutBox variant="accent" borderWidth="3px" className="mb-8 p-6">
+          <SectionHeading level={3} colorVariant="accent" className="mb-4">
             {s.babelfish.protocol.title}
-          </h3>
+          </SectionHeading>
           <p className="mb-4" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
             {s.babelfish.protocol.intro}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)", letterSpacing: "0.05em" }}>
+              <SectionHeading level={4} colorVariant="muted" className="mb-3">
                 {s.babelfish.protocol.whatItDoesLabel}
-              </h4>
+              </SectionHeading>
               <ul className="space-y-2 text-sm" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
                 {s.babelfish.protocol.whatItDoes.map((f, i) => (
                   <li key={i}>→ {f}</li>
@@ -260,9 +269,9 @@ export function ServicesPage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)", letterSpacing: "0.05em" }}>
+              <SectionHeading level={4} colorVariant="muted" className="mb-3">
                 {s.babelfish.protocol.howItWorksLabel}
-              </h4>
+              </SectionHeading>
               <ul className="space-y-2 text-sm" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
                 {s.babelfish.protocol.howItWorks.map((f, i) => (
                   <li key={i}>→ {f}</li>
@@ -272,66 +281,52 @@ export function ServicesPage() {
           </div>
           <p className="text-sm italic mt-6" style={{ opacity: 0.7, color: "var(--id-text-muted)" }}>
             {s.babelfish.protocol.whitepaperLabel}{" "}
-            <a
-              href={s.babelfish.protocol.whitepaperUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--id-accent)", textDecoration: "underline" }}
-            >
+            <SiteLink href={s.babelfish.protocol.whitepaperUrl}>
               deep-thought.computer/projects/babelfish
-            </a>
+            </SiteLink>
           </p>
-        </div>
+        </CalloutBox>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[Layers, Wifi, Shield].map((Icon, i) => (
-            <div
+            <ContentCard
               key={i}
-              className="p-6 rounded text-center"
-              style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-border)" }}
+              icon={Icon}
+              iconPosition="top"
+              title={s.babelfish.architectureCards[i].title}
             >
-              <Icon className="mx-auto mb-4" size={40} style={{ color: "var(--id-accent)" }} />
-              <h4 className="font-mono mb-2" style={{ color: "var(--id-text-secondary)", letterSpacing: "0.05em" }}>
-                {s.babelfish.architectureCards[i].title}
-              </h4>
               <p className="text-sm" style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
                 {s.babelfish.architectureCards[i].description}
               </p>
-            </div>
+            </ContentCard>
           ))}
         </div>
-      </section>
+      </PageSection>
 
       <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-6 font-mono" style={{ fontSize: "2rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
-          {s.sovereign.title}
-        </h2>
-        <p className="mb-8" style={{ fontSize: "1.1rem", opacity: 0.9, maxWidth: "800px", color: "var(--id-text-secondary)" }}>
+      <PageSection title={s.sovereign.title}>
+        <LeadParagraph className="mb-8 max-w-[800px]" style={{ opacity: 0.9 }}>
           {s.sovereign.intro}
-        </p>
-
+        </LeadParagraph>
         <div className="space-y-6">
           {s.sovereign.services.map((card, i) => (
             <SovereignCard key={i} card={card} icon={[Globe, Server, Mail, HardDrive, Database][i]} />
           ))}
         </div>
-      </section>
+      </PageSection>
 
       <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-6 font-mono" style={{ fontSize: "2rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
-          {s.howItConnects.title}
-        </h2>
-
+      <PageSection title={s.howItConnects.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
           <div className="space-y-4">
             {s.howItConnects.paragraphs.map((p, i) => (
-              <p key={i} style={{ fontSize: i === 0 ? "1.1rem" : undefined, color: "var(--id-text-secondary)" }}>
-                {p}
-              </p>
+              i === 0 ? (
+                <LeadParagraph key={i}>{p}</LeadParagraph>
+              ) : (
+                <p key={i} style={{ color: "var(--id-text-secondary)" }}>{p}</p>
+              )
             ))}
           </div>
           <div>
@@ -344,10 +339,10 @@ export function ServicesPage() {
           </div>
         </div>
 
-        <div className="p-8 rounded" style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-accent)" }}>
-          <h3 className="font-mono mb-4 text-center" style={{ fontSize: "1.3rem", color: "var(--id-accent)", letterSpacing: "0.05em" }}>
+        <ContentCard borderVariant="accent" className="p-8">
+          <SectionHeading level={3} colorVariant="accent" className="mb-4 text-center">
             {s.howItConnects.stackTitle}
-          </h3>
+          </SectionHeading>
           <div className="space-y-4">
             {s.howItConnects.layers.map((layer) => (
               <div
@@ -367,22 +362,24 @@ export function ServicesPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </ContentCard>
+      </PageSection>
 
       <SectionDivider />
 
-      <section className="mb-16">
+      <PageSection>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h2 className="mb-6 font-mono" style={{ fontSize: "2rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
+            <SectionHeading level={2} className="mb-6">
               {s.blockchainCta.title}
-            </h2>
+            </SectionHeading>
             <div className="space-y-4">
               {s.blockchainCta.paragraphs.map((p, i) => (
-                <p key={i} style={{ fontSize: i === 0 ? "1.1rem" : undefined, color: "var(--id-text-secondary)" }}>
-                  {p}
-                </p>
+                i === 0 ? (
+                  <LeadParagraph key={i}>{p}</LeadParagraph>
+                ) : (
+                  <p key={i} style={{ color: "var(--id-text-secondary)" }}>{p}</p>
+                )
               ))}
               <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-secondary)" }}>
                 {s.blockchainCta.bullets.map((b, i) => (
@@ -392,127 +389,74 @@ export function ServicesPage() {
             </div>
           </div>
           <div>
-            <div className="p-6 rounded" style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-border)" }}>
-              <Database size={48} className="mb-4" style={{ color: "var(--id-accent)" }} />
-              <h3 className="font-mono mb-3" style={{ color: "var(--id-accent)", letterSpacing: "0.05em" }}>
-                INFINITE IMPROBABILITY DRIVE
-              </h3>
+            <ContentCard icon={Database} iconPosition="top" title="INFINITE IMPROBABILITY DRIVE">
               <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
                 A sovereign blockchain designed for a digital nation — where trust meets Bistromathics.
               </p>
               {onNavigate && (
-                <button
+                <SiteButton
+                  variant="accent"
+                  className="w-full"
                   onClick={() => onNavigate("/blockchain")}
-                  className="px-6 py-3 rounded font-mono transition-all"
-                  style={{
-                    backgroundColor: "var(--id-accent)",
-                    color: "var(--id-bg-page)",
-                    border: "none",
-                    cursor: "pointer",
-                    letterSpacing: "0.05em",
-                    width: "100%",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "var(--id-accent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "var(--id-accent)";
-                  }}
                 >
                   {s.blockchainCta.ctaButtonText}
-                </button>
+                </SiteButton>
               )}
-            </div>
+            </ContentCard>
           </div>
         </div>
-      </section>
+      </PageSection>
 
       <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-6 font-mono" style={{ fontSize: "2rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
-          {s.getStarted.title}
-        </h2>
-
+      <PageSection title={s.getStarted.title}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="p-6 rounded" style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-border)" }}>
-            <h3 className="font-mono mb-3" style={{ color: "var(--id-accent)", fontSize: "1.1rem", letterSpacing: "0.05em" }}>
-              {s.getStarted.asUser.title}
-            </h3>
+          <ContentCard title={s.getStarted.asUser.title}>
             <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-secondary)" }}>
               {s.getStarted.asUser.steps.map((step, i) => (
                 <li key={i}>{i + 1}. {step}</li>
               ))}
             </ul>
-            <a
+            <SiteButton
+              variant="accent"
+              size="small"
               href={s.getStarted.asUser.ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-center px-4 py-2 rounded font-mono transition-all text-sm"
-              style={{
-                backgroundColor: "var(--id-accent)",
-                color: "var(--id-bg-page)",
-                textDecoration: "none",
-                letterSpacing: "0.05em",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--id-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--id-accent)";
-              }}
+              className="block w-full text-center"
             >
               {s.getStarted.asUser.ctaText}
-            </a>
-          </div>
+            </SiteButton>
+          </ContentCard>
 
-          <div className="p-6 rounded" style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-border)" }}>
-            <h3 className="font-mono mb-3" style={{ color: "var(--id-accent)", fontSize: "1.1rem", letterSpacing: "0.05em" }}>
-              {s.getStarted.asBuilder.title}
-            </h3>
+          <ContentCard title={s.getStarted.asBuilder.title}>
             <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-secondary)" }}>
               {s.getStarted.asBuilder.steps.map((step, i) => (
                 <li key={i}>{i + 1}. {step}</li>
               ))}
             </ul>
-            <a
+            <SiteButton
+              variant="accent"
+              size="small"
               href={s.getStarted.asBuilder.ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-center px-4 py-2 rounded font-mono transition-all text-sm"
-              style={{
-                backgroundColor: "var(--id-accent)",
-                color: "var(--id-bg-page)",
-                textDecoration: "none",
-                letterSpacing: "0.05em",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--id-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--id-accent)";
-              }}
+              className="block w-full text-center"
             >
               {s.getStarted.asBuilder.ctaText}
-            </a>
-          </div>
+            </SiteButton>
+          </ContentCard>
         </div>
 
-        <div
-          className="mt-8 p-6 rounded text-center"
-          style={{
-            backgroundColor: "var(--id-bg-elevated)",
-            border: "1px solid var(--id-border)",
-          }}
-        >
+        <CalloutBox variant="muted" className="mt-8 p-6 text-center">
           <p style={{ fontSize: "1.1rem", color: "var(--id-text-primary)", marginBottom: "1rem" }}>
             <strong>{s.getStarted.footer.line1}</strong>
           </p>
           <p style={{ opacity: 0.8, color: "var(--id-text-secondary)" }}>
             {s.getStarted.footer.line2}
           </p>
-        </div>
-      </section>
+        </CalloutBox>
+      </PageSection>
     </main>
   );
 }

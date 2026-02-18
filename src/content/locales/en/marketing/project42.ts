@@ -20,13 +20,24 @@ export const project42: LocaleProject42 = {
   newWorld: {
     title: "We Are Building a New World",
     imageKey: "newWorld",
+    tightParagraphIndices: [2, 3, 4, 5],
     paragraphs: [
       "We are not launching a product.",
       "We are founding a nation.",
-      "A cyberspace nation — open to all, owned by none, ruled by code.",
-      "Where your data is yours.",
-      "Where your voice cannot be silenced.",
-      "Where your world is built by you — not rented from a corporation.",
+      [
+        { type: "bold", content: "A cyberspace nation" },
+        { type: "text", content: " — open to all, owned by none, ruled by code." },
+      ],
+      [
+        { type: "bold", content: "Where your data is yours." },
+      ],
+      [
+        { type: "bold", content: "Where your voice cannot be silenced." },
+      ],
+      [
+        { type: "bold", content: "Where your world is built by you" },
+        { type: "text", content: " — not rented from a corporation." },
+      ],
       "This is Project 42 — the answer to life, the universe, and digital freedom.",
     ],
   },

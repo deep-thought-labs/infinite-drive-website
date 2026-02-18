@@ -123,8 +123,14 @@ export const blockchain: LocaleBlockchain = {
       { name: "Celestia", tag: "IBC Native" },
     ],
     ecosystemsNote: "And many more through the expanding IBC universe and bridge protocols...",
-    whyItMatters:
-      "Why it matters: Your [42] tokens, Fish rewards, and assets aren't trapped in a walled garden. Move them freely across ecosystems. Trade on any DEX. Use them in any protocol. The multiverse is open.",
+    whyItMatters: [
+      { type: "bold", content: "Why it matters: " },
+      {
+        type: "text",
+        content:
+          "Your [42] tokens, Fish rewards, and assets aren't trapped in a walled garden. Move them freely across ecosystems. Trade on any DEX. Use them in any protocol. The multiverse is open.",
+      },
+    ],
     whyItMattersNote:
       "Unlike Earth's demolition, these hyperspace bypasses are well-documented and accessible to everyone.",
   },

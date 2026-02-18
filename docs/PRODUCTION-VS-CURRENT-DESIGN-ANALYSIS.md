@@ -4,6 +4,10 @@ This document compares the **live production site** ([https://infinitedrive.xyz/
 
 **Methodology:** Content and structure were fetched from production (home, blockchain; project42 and services timed out). Our codebase (pages, `components/site`, tokens) was reviewed to list what we render and which variants we support. Gaps are listed below with recommendations.
 
+**Auditoría completa:** Para un **análisis exhaustivo** de todo lo que producción imprime (negritas, colores, espaciados, contenedores) y una checklist por página para verificar bloque a bloque, ver **[PRODUCTION-AUDIT-FULL.md](./PRODUCTION-AUDIT-FULL.md)**.
+
+**Centralización:** Para un **escaneo de remanentes** (estilos o patrones repetidos que aún no están en componentes o tokens), ver **[CENTRALIZATION-REMANENTS.md](./CENTRALIZATION-REMANENTS.md)**.
+
 ---
 
 ## 1. Typography and text styling
@@ -131,6 +135,46 @@ This document compares the **live production site** ([https://infinitedrive.xyz/
 
 **Recommendation:**  
 - Add optional **SiteTable** props only if we need per-page or per-table differences (e.g. `headerBorderWeight?: '1' | '2'`, `dense?: boolean` for smaller padding). Otherwise keep a single style.
+
+---
+
+## 4.1 Bold and color audit (match production)
+
+Ensure only the **intended phrase** is bold or accent, not the whole paragraph. Use **FormattedText** / **FormattedSegment[]** where production has mixed formatting.
+
+| Location | Production | Current implementation | Status |
+|----------|------------|-------------------------|--------|
+| **Blockchain – Why it matters** | Only "Why it matters: " bold, rest normal | `whyItMatters` as `FormattedSegment[]`; only title phrase bold | ✅ Fixed |
+| **Project 42 – New World block** | 4 lines ("A cyberspace nation…", "Where your…") with **reduced spacing** and **bold** on key phrases | `tightParagraphIndices` + segments for bold; `space-y-1` for that group | ✅ Fixed |
+| **Home – closing title** | "Why Infinite Drive" (or similar) as title bold | `closingBlock.title` in `<strong>` | OK |
+| **Home – open source note** | Mixed bold/accent in one line | `openSourceNote` as `FormattedSegment[]` or string | OK |
+| **Project 42 – header subtitle** | "The answer…" bold, rest normal | FormattedText segments | OK |
+| **Blockchain – note titles** (e.g. masterPools.noteTitle, closingTitle, technicalArch.noteTitle) | Subheading bold only | `<strong>{noteTitle}</strong>` + rest plain | OK |
+| **Blockchain – table cells** (pool name, layer) | Accent + bold | `<strong style={{ color: "var(--id-accent)" }}>` | OK |
+| **Services – layer title, getStarted footer** | Title bold | `<strong>` | OK |
+| **Privacy – last updated** | Label bold | `<strong>{lastUpdatedLabel}</strong>` | OK |
+
+**Rule:** If production shows a **single sentence or phrase** in bold within a paragraph, use content as `FormattedSegment[]` and render with **FormattedText**; do not wrap the whole paragraph in `<strong>`.
+
+---
+
+## 4.2 Quotes and callout containers (border: accent vs muted)
+
+Use **QuoteBlock** for standalone quotes (with author/source). Use **CalloutBox** for info/notes. Choose border by context:
+
+| Page | Block | Container | Border (accent = blue, muted = gray) | Notes |
+|------|--------|-----------|--------------------------------------|--------|
+| Home | Main quote | QuoteBlock | `fullBorder` (gray card) | Hero quote |
+| Home | Open source note | CalloutBox | default (accent) | Emphasis |
+| Project 42 | Hero quote (Barlow) | QuoteBlock | default accent | Strong statement |
+| Project 42 | Library quote | QuoteBlock | `muted` | Softer |
+| Project 42 | Thursday note | CalloutBox | `muted` | Softer |
+| Project 42 | Ecosystem closing, survival | CalloutBox | default | Info |
+| Blockchain | Intro quote | QuoteBlock | `muted` | Softer |
+| Blockchain | Hyperspace quote | QuoteBlock | `muted` | Softer |
+| Blockchain | Key Use, How to Earn, Governance quote, Why it matters, etc. | CalloutBox | default or `muted` per block | See §2.2 |
+
+**Spacing:** Callouts that follow a paragraph should have **margin-top** (e.g. `mt-4`) so they are not flush with the text above. ContentCards that follow text should have **mt-8** or consistent gap. Same padding for same container type (e.g. do not use `compact` on one ContentCard if the previous one is normal).
 
 ---
 

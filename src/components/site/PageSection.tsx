@@ -13,7 +13,7 @@ export function PageSection({
 }: {
   title?: string;
   children: React.ReactNode;
-  headingLevel?: 1 | 2;
+  headingLevel?: 1 | 2 | 3 | 4;
   showDividerAbove?: boolean;
   className?: string;
 }) {

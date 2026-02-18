@@ -11,6 +11,7 @@ import {
   BulletList,
   SiteTable,
   FormattedText,
+  LeadParagraph,
 } from "@/components/site";
 import newWorldImage from "../assets/DaVincisASCII.jpeg";
 import cypherpunkImage from "../assets/punks.jpeg";
@@ -55,9 +56,53 @@ export function Project42Page() {
       <PageSection title={p.newWorld.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-4" style={{ color: "var(--id-text-secondary)" }}>
-            {p.newWorld.paragraphs.map((text, i) => (
-              <p key={i}>{text}</p>
-            ))}
+            {(() => {
+              const tightSet = new Set(p.newWorld.tightParagraphIndices ?? []);
+              const groups: { tight: boolean; indices: number[] }[] = [];
+              let i = 0;
+              while (i < p.newWorld.paragraphs.length) {
+                if (tightSet.has(i)) {
+                  const indices: number[] = [];
+                  while (i < p.newWorld.paragraphs.length && tightSet.has(i)) {
+                    indices.push(i);
+                    i++;
+                  }
+                  groups.push({ tight: true, indices });
+                } else {
+                  groups.push({ tight: false, indices: [i] });
+                  i++;
+                }
+              }
+              return groups.map((g, gi) =>
+                g.tight ? (
+                  <div key={gi} className="space-y-1">
+                    {g.indices.map((idx) => {
+                      const item = p.newWorld.paragraphs[idx];
+                      return (
+                        <p key={idx}>
+                          {Array.isArray(item) ? (
+                            <FormattedText segments={item} />
+                          ) : (
+                            item
+                          )}
+                        </p>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p key={gi}>
+                    {(() => {
+                      const item = p.newWorld.paragraphs[g.indices[0]];
+                      return Array.isArray(item) ? (
+                        <FormattedText segments={item} />
+                      ) : (
+                        item
+                      );
+                    })()}
+                  </p>
+                )
+              );
+            })()}
           </div>
           <div className="order-first lg:order-last">
             <ImageWithFallback
@@ -103,9 +148,9 @@ export function Project42Page() {
 
       {/* The Ecosystem */}
       <PageSection title={p.ecosystem.title}>
-        <p className="mb-8" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
+        <LeadParagraph className="mb-8">
           {p.ecosystem.intro}
-        </p>
+        </LeadParagraph>
 
         <div className="space-y-6">
           {p.ecosystem.pillars.map((pillar) => (
@@ -155,7 +200,7 @@ export function Project42Page() {
           ))}
         </ContentCard>
 
-        <ContentCard title={p.library.protocolsTitle} compact className="mt-8">
+        <ContentCard title={p.library.protocolsTitle} className="mt-8">
           <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
             {p.library.protocolsIntro}
           </p>

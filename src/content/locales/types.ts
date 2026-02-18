@@ -80,7 +80,13 @@ export interface ProtocolItem {
 export interface LocaleProject42 {
   header: { title: string; subtitle: string | FormattedSegment[] };
   heroQuote: { text: string; author: string; source?: string };
-  newWorld: { title: string; paragraphs: string[]; imageKey: string };
+  newWorld: {
+    title: string;
+    /** Each item can be plain string or rich segments (bold/accent). Use tightParagraphIndices for the 4 "nation" lines. */
+    paragraphs: (string | FormattedSegment[])[];
+    tightParagraphIndices?: number[];
+    imageKey: string;
+  };
   philosophy: { title: string; intro: string; tableHeaderVoice: string; tableHeaderTruth: string; tableRows: VoiceTruthRow[]; imageKey: string };
   ecosystem: { title: string; intro: string; pillars: EcosystemPillar[]; closing: string };
   library: {
@@ -266,7 +272,8 @@ export interface LocaleBlockchain {
     ecosystemsTitle: string;
     ecosystems: EcosystemCard[];
     ecosystemsNote: string;
-    whyItMatters: string;
+    /** In production only the title phrase is bold (e.g. "Why it matters: "). */
+    whyItMatters: string | FormattedSegment[];
     whyItMattersNote: string;
   };
   technicalArch: {

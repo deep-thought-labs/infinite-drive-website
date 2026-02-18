@@ -6,11 +6,13 @@ export function CalloutBox({
   children,
   variant = "accent",
   paddingSize = "default",
+  borderWidth = "2px",
   className = "",
 }: {
   children: React.ReactNode;
   variant?: "accent" | "muted";
   paddingSize?: "default" | "spacious";
+  borderWidth?: "2px" | "3px";
   className?: string;
 }) {
   const borderColor = variant === "accent" ? "var(--id-accent)" : "var(--id-text-muted)";
@@ -21,7 +23,7 @@ export function CalloutBox({
       className={`${padding} rounded ${className}`.trim()}
       style={{
         backgroundColor: "var(--id-bg-elevated)",
-        borderLeft: `2px solid ${borderColor}`,
+        borderLeft: `${borderWidth} solid ${borderColor}`,
       }}
     >
       {children}
