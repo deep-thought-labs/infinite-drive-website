@@ -7,6 +7,7 @@ import {
   ContentCard,
   CalloutBox,
   SectionDivider,
+  FormattedText,
 } from "@/components/site";
 import dontPanicImage from "@/assets/dontpanic-space.jpg";
 
@@ -56,10 +57,19 @@ export function HomePage() {
         </div>
 
         <div className="space-y-6 max-w-3xl mx-auto">
-          <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}>
-            {home.ecosystemIntro}
-          </p>
-          <QuoteBlock quote={home.quote.text} author={home.quote.author} />
+          {Array.isArray(home.ecosystemIntro) ? (
+            <FormattedText
+              segments={home.ecosystemIntro}
+              as="p"
+              className="block"
+              style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}
+            />
+          ) : (
+            <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}>
+              {home.ecosystemIntro}
+            </p>
+          )}
+          <QuoteBlock quote={home.quote.text} author={home.quote.author} variant="fullBorder" />
           <p style={{ fontSize: "1.1rem", opacity: 0.85, lineHeight: "1.8", color: "var(--id-text-secondary)" }}>
             {site.descriptionLong}
           </p>
@@ -67,7 +77,7 @@ export function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12">
           {home.features.map((feature) => (
-            <ContentCard key={feature.title} title={feature.title}>
+            <ContentCard key={feature.title} title={feature.title} titleAlign="center">
               <p style={{ opacity: 0.9, fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
                 {feature.description}
               </p>
@@ -82,10 +92,19 @@ export function HomePage() {
           <p style={{ fontSize: "1rem", opacity: 0.7, color: "var(--id-text-muted)" }}>
             {home.closingBlock.subtitle}
           </p>
-          <CalloutBox className="mt-6">
-            <p style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
-              <strong style={{ color: "var(--id-accent)" }}>{home.openSourceNote}</strong>
-            </p>
+          <CalloutBox className="mt-6" paddingSize="spacious">
+            {Array.isArray(home.openSourceNote) ? (
+              <FormattedText
+                segments={home.openSourceNote}
+                as="p"
+                className="block"
+                style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}
+              />
+            ) : (
+              <p style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
+                <strong style={{ color: "var(--id-accent)" }}>{home.openSourceNote}</strong>
+              </p>
+            )}
           </CalloutBox>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             {home.ctas.map((cta) =>

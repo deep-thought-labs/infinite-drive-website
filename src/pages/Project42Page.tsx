@@ -10,6 +10,7 @@ import {
   CalloutBox,
   BulletList,
   SiteTable,
+  FormattedText,
 } from "@/components/site";
 import newWorldImage from "../assets/DaVincisASCII.jpeg";
 import cypherpunkImage from "../assets/punks.jpeg";
@@ -26,7 +27,16 @@ export function Project42Page() {
 
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
-      <PageHeader title={p.header.title} subtitle={p.header.subtitle} />
+      <PageHeader
+        title={p.header.title}
+        subtitle={
+          Array.isArray(p.header.subtitle) ? (
+            <FormattedText segments={p.header.subtitle} />
+          ) : (
+            p.header.subtitle
+          )
+        }
+      />
 
       <SectionDivider />
 
@@ -70,6 +80,7 @@ export function Project42Page() {
               {p.philosophy.intro}
             </p>
             <SiteTable
+              variant="minimal"
               columns={[
                 { key: "voice", label: p.philosophy.tableHeaderVoice },
                 { key: "truth", label: p.philosophy.tableHeaderTruth },

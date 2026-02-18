@@ -7,3 +7,5 @@ export { ContentCard } from "./ContentCard";
 export { PageSection } from "./PageSection";
 export { PageHeader } from "./PageHeader";
 export { SiteTable } from "./SiteTable";
+export { FormattedText } from "./FormattedText";
+export type { FormattedSegment } from "./FormattedText";

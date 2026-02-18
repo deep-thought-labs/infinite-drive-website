@@ -14,8 +14,11 @@ export const home: LocaleHome = {
     text: "El espacio es grande. Muy grande. No te vas a creer lo inmensa, descomunal y alucinantemente grande que es.",
     author: "Douglas Adams",
   },
-  ecosystemIntro:
-    "Un ecosistema digital completo — una nueva clase de internet construida desde cero.",
+  ecosystemIntro: [
+    { type: "text", content: "Un " },
+    { type: "bold", content: "ecosistema digital completo" },
+    { type: "text", content: " — una nueva clase de internet construida desde cero." },
+  ],
   features: [
     {
       title: "FUNDAMENTO SEGURO",
@@ -45,8 +48,11 @@ export const home: LocaleHome = {
       "Sigue nuestro desarrollo, conecta con la comunidad y forma parte de la construcción de un futuro digital soberano.",
     ctaLabel: "Unirse a la comunidad en Telegram →",
   },
-  openSourceNote:
-    "100% código abierto. Cada protocolo. Cada servicio. Cada línea de código — construido en abierto, propiedad de la humanidad.",
+  openSourceNote: [
+    { type: "boldAccent", content: "100% código abierto." },
+    { type: "text", content: " Cada protocolo. Cada servicio. Cada línea de código — " },
+    { type: "bold", content: "construido en abierto, propiedad de la humanidad." },
+  ],
   closingBlock: {
     title: "Esta es infraestructura para todos.",
     subtitle:

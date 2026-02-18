@@ -7,8 +7,10 @@ import type { LocaleProject42 } from "../../types";
 export const project42: LocaleProject42 = {
   header: {
     title: "Project 42",
-    subtitle:
-      "La respuesta a la soberanía digital — un ciberespacio donde la libertad es código, la privacidad es por defecto y la red pertenece a todos.",
+    subtitle: [
+      { type: "bold", content: "La respuesta a la soberanía digital" },
+      { type: "text", content: " — un ciberespacio donde la libertad es código, la privacidad es por defecto y la red pertenece a todos." },
+    ],
   },
   heroQuote: {
     text: "Gobiernos del Mundo Industrial, gigantes cansados de carne y acero, vengo del Ciberespacio, el nuevo hogar de la Mente. En nombre del futuro, os pido del pasado que nos dejéis en paz. No sois bienvenidos entre nosotros. No tenéis soberanía donde nos reunimos.",
@@ -21,7 +23,10 @@ export const project42: LocaleProject42 = {
     paragraphs: [
       "No lanzamos un producto.",
       "Fundamos una nación.",
-      "Una nación del ciberespacio — abierta a todos, propiedad de nadie, gobernada por código. Donde tus datos son tuyos. Donde tu voz no puede ser silenciada. Donde tu mundo lo construyes tú — no alquilado a una corporación.",
+      "Una nación del ciberespacio — abierta a todos, propiedad de nadie, gobernada por código.",
+      "Donde tus datos son tuyos.",
+      "Donde tu voz no puede ser silenciada.",
+      "Donde tu mundo lo construyes tú — no alquilado a una corporación.",
       "Esto es Project 42 — la respuesta a la vida, el universo y la libertad digital.",
     ],
   },

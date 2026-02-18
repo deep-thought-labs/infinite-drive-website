@@ -14,8 +14,11 @@ export const home: LocaleHome = {
     text: "Space is big. Really big. You just won't believe how vastly, hugely, mind-bogglingly big it is.",
     author: "Douglas Adams",
   },
-  ecosystemIntro:
-    "A complete digital ecosystem — a new kind of internet built from the ground up.",
+  ecosystemIntro: [
+    { type: "text", content: "A " },
+    { type: "bold", content: "complete digital ecosystem" },
+    { type: "text", content: " — a new kind of internet built from the ground up." },
+  ],
   features: [
     {
       title: "SECURE FOUNDATION",
@@ -45,8 +48,11 @@ export const home: LocaleHome = {
       "Follow our development, connect with builders, and be part of building a sovereign digital future.",
     ctaLabel: "Join Telegram Community →",
   },
-  openSourceNote:
-    "100% Open Source. Every protocol. Every service. Every line of code — built in the open, owned by humanity.",
+  openSourceNote: [
+    { type: "boldAccent", content: "100% Open Source." },
+    { type: "text", content: " Every protocol. Every service. Every line of code — " },
+    { type: "bold", content: "built in the open, owned by humanity." },
+  ],
   closingBlock: {
     title: "This is infrastructure for everyone.",
     subtitle:

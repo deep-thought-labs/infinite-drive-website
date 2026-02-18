@@ -7,8 +7,10 @@ import type { LocaleProject42 } from "../../types";
 export const project42: LocaleProject42 = {
   header: {
     title: "Project 42",
-    subtitle:
-      "The answer to digital sovereignty — a cyberspace where freedom is code, privacy is default, and the network belongs to everyone.",
+    subtitle: [
+      { type: "bold", content: "The answer to digital sovereignty" },
+      { type: "text", content: " — a cyberspace where freedom is code, privacy is default, and the network belongs to everyone." },
+    ],
   },
   heroQuote: {
     text: "Governments of the Industrial World, you weary giants of flesh and steel, I come from Cyberspace, the new home of Mind. On behalf of the future, I ask you of the past to leave us alone. You are not welcome among us. You have no sovereignty where we gather.",
@@ -21,7 +23,10 @@ export const project42: LocaleProject42 = {
     paragraphs: [
       "We are not launching a product.",
       "We are founding a nation.",
-      "A cyberspace nation — open to all, owned by none, ruled by code. Where your data is yours. Where your voice cannot be silenced. Where your world is built by you — not rented from a corporation.",
+      "A cyberspace nation — open to all, owned by none, ruled by code.",
+      "Where your data is yours.",
+      "Where your voice cannot be silenced.",
+      "Where your world is built by you — not rented from a corporation.",
       "This is Project 42 — the answer to life, the universe, and digital freedom.",
     ],
   },

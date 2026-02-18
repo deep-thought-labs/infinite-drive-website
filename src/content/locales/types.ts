@@ -26,15 +26,23 @@ export interface LocaleRoutes {
   navRoutes: { path: string; label: string; inNav?: boolean }[];
 }
 
+/** Inline formatting for copy (bold, accent) to match production. */
+export type FormattedSegment =
+  | { type: "text"; content: string }
+  | { type: "bold"; content: string }
+  | { type: "accent"; content: string }
+  | { type: "boldAccent"; content: string };
+
 export interface LocaleHome {
   hero: { title: string; subtitle: string; imageKey: string };
   quote: { text: string; author: string; source?: string };
-  /** Párrafo bajo el hero: "A complete digital ecosystem..." */
-  ecosystemIntro: string;
+  /** Párrafo bajo el hero. Use segments for bold/accent (e.g. "complete digital ecosystem" bold). */
+  ecosystemIntro: string | FormattedSegment[];
   features: { title: string; description: string }[];
   ctas: { label: string; href: string; internal?: boolean }[];
   joinSection: { title: string; description: string; ctaLabel: string };
-  openSourceNote: string;
+  /** e.g. "100% Open Source." accent+bold, rest mixed. */
+  openSourceNote: string | FormattedSegment[];
   /** Bloque final antes de CTAs: "This is infrastructure for everyone." / "From individuals to enterprises..." */
   closingBlock: { title: string; subtitle: string };
 }
@@ -70,7 +78,7 @@ export interface ProtocolItem {
 }
 
 export interface LocaleProject42 {
-  header: { title: string; subtitle: string };
+  header: { title: string; subtitle: string | FormattedSegment[] };
   heroQuote: { text: string; author: string; source?: string };
   newWorld: { title: string; paragraphs: string[]; imageKey: string };
   philosophy: { title: string; intro: string; tableHeaderVoice: string; tableHeaderTruth: string; tableRows: VoiceTruthRow[]; imageKey: string };

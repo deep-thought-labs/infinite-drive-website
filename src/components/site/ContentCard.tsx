@@ -7,6 +7,7 @@ export function ContentCard({
   icon: Icon,
   leading,
   title,
+  titleAlign = "left",
   children,
   compact = false,
   className = "",
@@ -15,6 +16,7 @@ export function ContentCard({
   icon?: React.ElementType;
   leading?: React.ReactNode;
   title?: string;
+  titleAlign?: "left" | "center";
   children: React.ReactNode;
   compact?: boolean;
   className?: string;
@@ -23,12 +25,14 @@ export function ContentCard({
   const padding = compact ? "p-4" : "p-6";
   const hasLeadingColumn = leading != null && Icon == null;
   const hasHeader = Icon != null || leading != null || title != null;
+  const titleClass = titleAlign === "center" ? "font-mono mb-2 text-center" : "font-mono mb-2";
+  const headerClass = titleAlign === "center" ? "flex items-center justify-center gap-4 mb-3" : "flex items-start gap-4 mb-3";
 
   const contentBlock = (
     <>
       {title != null && (
         <h3
-          className="font-mono mb-2"
+          className={titleClass}
           style={{ color: "var(--id-accent)", letterSpacing: "0.05em", fontSize: compact ? "1rem" : "1.2rem" }}
         >
           {title}
@@ -57,7 +61,7 @@ export function ContentCard({
       ) : (
         <>
           {hasHeader && (
-            <div className="flex items-start gap-4 mb-3">
+            <div className={headerClass}>
               {Icon != null && (
                 <span className="shrink-0" style={{ color: "var(--id-accent)" }}>
                   <Icon size={compact ? 20 : 24} />
@@ -65,7 +69,7 @@ export function ContentCard({
               )}
               {title != null && (
                 <h3
-                  className="font-mono"
+                  className={titleAlign === "center" ? "font-mono text-center" : "font-mono"}
                   style={{ color: "var(--id-accent)", letterSpacing: "0.05em", fontSize: compact ? "1rem" : "1.2rem" }}
                 >
                   {title}
