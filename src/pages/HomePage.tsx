@@ -2,15 +2,15 @@ import { useOutletContext } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useContent } from "@/contexts/LocaleContext";
 import { assetsMeta } from "@/content/assets";
+import {
+  QuoteBlock,
+  ContentCard,
+  CalloutBox,
+  SectionDivider,
+} from "@/components/site";
 import dontPanicImage from "@/assets/dontpanic-space.jpg";
 
 type OutletContext = { onNavigate: (path: string) => void };
-
-const cardStyle = {
-  backgroundColor: "#1c2128",
-  border: "1px solid #30363d",
-};
-const headingStyle = { color: "#6ba3db", letterSpacing: "0.05em" as const };
 
 export function HomePage() {
   const { onNavigate } = useOutletContext<OutletContext>();
@@ -27,7 +27,7 @@ export function HomePage() {
             style={{
               fontSize: "clamp(2.5rem, 8vw, 5rem)",
               letterSpacing: "0.1em",
-              color: "#e6edf3",
+              color: "var(--id-text-primary)",
               lineHeight: "1.2",
             }}
           >
@@ -39,7 +39,7 @@ export function HomePage() {
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
               opacity: 0.8,
               letterSpacing: "0.05em",
-              color: "#8b949e",
+              color: "var(--id-text-muted)",
             }}
           >
             {home.hero.subtitle}
@@ -56,48 +56,37 @@ export function HomePage() {
         </div>
 
         <div className="space-y-6 max-w-3xl mx-auto">
-          <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8" }}>
+          <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}>
             {home.ecosystemIntro}
           </p>
-          <div className="p-8 rounded" style={{ ...cardStyle, border: "1px solid #444c56" }}>
-            <blockquote
-              className="italic mb-4"
-              style={{ fontSize: "1rem", lineHeight: "1.8", opacity: 0.9 }}
-            >
-              &quot;{home.quote.text}&quot;
-            </blockquote>
-            <p className="text-sm" style={{ color: "#8b949e" }}>
-              — {home.quote.author}
-            </p>
-          </div>
-          <p style={{ fontSize: "1.1rem", opacity: 0.85, lineHeight: "1.8" }}>
+          <QuoteBlock quote={home.quote.text} author={home.quote.author} />
+          <p style={{ fontSize: "1.1rem", opacity: 0.85, lineHeight: "1.8", color: "var(--id-text-secondary)" }}>
             {site.descriptionLong}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12">
           {home.features.map((feature) => (
-            <div key={feature.title} className="p-6 rounded" style={cardStyle}>
-              <h3 className="font-mono mb-3" style={headingStyle}>
-                {feature.title}
-              </h3>
-              <p style={{ opacity: 0.9, fontSize: "0.95rem" }}>{feature.description}</p>
-            </div>
+            <ContentCard key={feature.title} title={feature.title}>
+              <p style={{ opacity: 0.9, fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
+                {feature.description}
+              </p>
+            </ContentCard>
           ))}
         </div>
 
         <div className="space-y-6 mt-16">
-          <p style={{ fontSize: "1.1rem", opacity: 0.9 }}>
+          <p style={{ fontSize: "1.1rem", opacity: 0.9, color: "var(--id-text-primary)" }}>
             <strong>{home.closingBlock.title}</strong>
           </p>
-          <p style={{ fontSize: "1rem", opacity: 0.7 }}>
+          <p style={{ fontSize: "1rem", opacity: 0.7, color: "var(--id-text-muted)" }}>
             {home.closingBlock.subtitle}
           </p>
-          <div className="p-6 rounded mt-6" style={{ backgroundColor: "#161b22", ...cardStyle }}>
-            <p style={{ fontSize: "0.95rem", color: "#c9d1d9" }}>
-              <strong style={{ color: "#6ba3db" }}>{home.openSourceNote}</strong>
+          <CalloutBox className="mt-6">
+            <p style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
+              <strong style={{ color: "var(--id-accent)" }}>{home.openSourceNote}</strong>
             </p>
-          </div>
+          </CalloutBox>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             {home.ctas.map((cta) =>
               cta.internal ? (
@@ -108,17 +97,17 @@ export function HomePage() {
                   style={
                     cta.internal && cta.href === "/project42"
                       ? {
-                          background: "linear-gradient(135deg, #00d9ff 0%, #a855f7 100%)",
-                          color: "#0d1117",
+                          background: "linear-gradient(135deg, var(--id-accent-soft) 0%, var(--id-accent-secondary) 100%)",
+                          color: "var(--id-bg-page)",
                           border: "none",
                           cursor: "pointer",
                           boxShadow: "0 0 20px rgba(0, 217, 255, 0.3)",
                           letterSpacing: "0.05em",
                         }
                       : {
-                          backgroundColor: "#1c2128",
-                          color: "#6ba3db",
-                          border: "1px solid #6ba3db",
+                          backgroundColor: "var(--id-bg-card)",
+                          color: "var(--id-accent)",
+                          border: "1px solid var(--id-accent)",
                           cursor: "pointer",
                           letterSpacing: "0.05em",
                         }
@@ -128,8 +117,8 @@ export function HomePage() {
                       e.currentTarget.style.boxShadow = "0 0 30px rgba(0, 217, 255, 0.5)";
                       e.currentTarget.style.transform = "translateY(-2px)";
                     } else {
-                      e.currentTarget.style.backgroundColor = "#6ba3db";
-                      e.currentTarget.style.color = "#0d1117";
+                      e.currentTarget.style.backgroundColor = "var(--id-accent)";
+                      e.currentTarget.style.color = "var(--id-bg-page)";
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -137,8 +126,8 @@ export function HomePage() {
                       e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 217, 255, 0.3)";
                       e.currentTarget.style.transform = "translateY(0)";
                     } else {
-                      e.currentTarget.style.backgroundColor = "#1c2128";
-                      e.currentTarget.style.color = "#6ba3db";
+                      e.currentTarget.style.backgroundColor = "var(--id-bg-card)";
+                      e.currentTarget.style.color = "var(--id-accent)";
                     }
                   }}
                 >
@@ -152,9 +141,9 @@ export function HomePage() {
                   rel="noopener noreferrer"
                   className="px-8 py-3 rounded font-mono transition-all inline-block"
                   style={{
-                    backgroundColor: "#1c2128",
-                    color: "#6ba3db",
-                    border: "1px solid #6ba3db",
+                    backgroundColor: "var(--id-bg-card)",
+                    color: "var(--id-accent)",
+                    border: "1px solid var(--id-accent)",
                     textDecoration: "none",
                     letterSpacing: "0.05em",
                   }}
@@ -166,16 +155,19 @@ export function HomePage() {
           </div>
         </div>
 
-        <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+        <SectionDivider />
 
         <section className="mb-16">
           <div
             className="p-8 rounded text-center"
-            style={{ backgroundColor: "#1c2128", border: "1px solid #6ba3db" }}
+            style={{
+              backgroundColor: "var(--id-bg-card)",
+              border: "1px solid var(--id-accent)",
+            }}
           >
             <h2
               className="font-mono mb-4"
-              style={{ fontSize: "1.5rem", color: "#e6edf3", letterSpacing: "0.05em" }}
+              style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}
             >
               {home.joinSection.title}
             </h2>
@@ -183,7 +175,7 @@ export function HomePage() {
               className="mb-6"
               style={{
                 fontSize: "1.1rem",
-                color: "#c9d1d9",
+                color: "var(--id-text-secondary)",
                 maxWidth: "600px",
                 margin: "0 auto 1.5rem",
               }}
@@ -196,16 +188,16 @@ export function HomePage() {
               rel="noopener noreferrer"
               className="inline-block px-8 py-3 rounded font-mono transition-all"
               style={{
-                backgroundColor: "#6ba3db",
-                color: "#0d1117",
+                backgroundColor: "var(--id-accent)",
+                color: "var(--id-bg-page)",
                 textDecoration: "none",
                 letterSpacing: "0.05em",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#8dbde8";
+                e.currentTarget.style.opacity = "0.9";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#6ba3db";
+                e.currentTarget.style.opacity = "1";
               }}
             >
               {home.joinSection.ctaLabel}

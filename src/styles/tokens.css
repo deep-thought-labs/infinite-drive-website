@@ -19,6 +19,7 @@
   /* Accent (links, active states, highlights) */
   --id-accent: #6ba3db;
   --id-accent-soft: #00d9ff;
+  --id-accent-secondary: #a855f7; /* e.g. gradient CTA */
 
   /* Borders */
   --id-border: #30363d;

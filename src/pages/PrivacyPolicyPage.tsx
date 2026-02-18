@@ -42,7 +42,7 @@ export function PrivacyPolicyPage() {
                   href={site.links.telegram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "#6ba3db", textDecoration: "underline" }}
+                  style={{ color: "var(--id-accent)", textDecoration: "underline" }}
                 >
                   Telegram
                 </a>
@@ -51,7 +51,7 @@ export function PrivacyPolicyPage() {
                   href={site.links.deepThoughtLabs}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "#6ba3db", textDecoration: "underline" }}
+                  style={{ color: "var(--id-accent)", textDecoration: "underline" }}
                 >
                   Deep Thought Labs
                 </a>
@@ -61,8 +61,8 @@ export function PrivacyPolicyPage() {
         ))}
       </div>
 
-      <div className="mt-12 pt-8" style={{ borderTop: "1px solid #30363d" }}>
-        <p className="text-sm" style={{ opacity: 0.7, color: "#8b949e" }}>
+      <div className="mt-12 pt-8" style={{ borderTop: "1px solid var(--id-border)" }}>
+        <p className="text-sm" style={{ opacity: 0.7, color: "var(--id-text-muted)" }}>
           {privacy.footerNote}
         </p>
       </div>

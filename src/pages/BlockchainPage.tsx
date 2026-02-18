@@ -1,6 +1,5 @@
 import { useContent } from "@/contexts/LocaleContext";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { PageHeader, SiteTable } from "@/components/site";
+import { PageHeader, SiteTable, SectionDivider, QuoteBlock, PageSection, ContentCard, CalloutBox, BulletList } from "@/components/site";
 
 export function BlockchainPage() {
   const content = useContent();
@@ -10,23 +9,18 @@ export function BlockchainPage() {
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
       <PageHeader title={b.header.title} subtitle={b.header.subtitle} />
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
       <section className="mb-16">
-        <div className="mb-8 p-6 rounded" style={{ backgroundColor: "#1c2128", borderLeft: "2px solid #8b949e" }}>
-          <blockquote className="italic" style={{ color: "#c9d1d9" }}>
-            "{b.intro.quote}"
-          </blockquote>
-          <p className="mt-2 text-sm" style={{ color: "#8b949e" }}>
-            — {b.intro.quoteAuthor}
-          </p>
+        <div className="mb-8">
+          <QuoteBlock quote={b.intro.quote} author={b.intro.quoteAuthor} variant="muted" />
         </div>
         {b.intro.paragraphs.map((p, i) => (
           <p
             key={i}
             style={{
               fontSize: i === 0 ? "1.1rem" : undefined,
-              color: "#c9d1d9",
+              color: "var(--id-text-secondary)",
               marginBottom: i === 0 ? "1.5rem" : undefined,
             }}
           >
@@ -35,126 +29,94 @@ export function BlockchainPage() {
         ))}
       </section>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-8 font-mono" style={{ fontSize: "2rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.coreComponents.title}
-        </h2>
-
+      <PageSection title={b.coreComponents.title} showDividerAbove={false}>
         <div className="space-y-6">
-          <Card style={{ backgroundColor: "#1c2128", borderColor: "#444c56", border: "1px solid" }}>
-            <CardHeader>
-              <CardTitle className="font-mono text-sm" style={{ color: "#c9d1d9", letterSpacing: "0.05em" }}>
-                {b.coreComponents.token42.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p style={{ color: "#c9d1d9" }}>{b.coreComponents.token42.summary}</p>
-              <div className="space-y-3 text-sm">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <span style={{ color: "#8b949e", display: "block", marginBottom: "0.5rem" }}>
-                      {b.coreComponents.token42.purpose}
-                    </span>
-                    <span style={{ color: "#c9d1d9" }}>{b.coreComponents.token42.purposeValue}</span>
-                  </div>
-                  <div>
-                    <span style={{ color: "#8b949e", display: "block", marginBottom: "0.5rem" }}>
-                      {b.coreComponents.token42.totalSupply}
-                    </span>
-                    <span style={{ color: "#c9d1d9" }}>{b.coreComponents.token42.totalSupplyValue}</span>
-                  </div>
-                  <div>
-                    <span style={{ color: "#8b949e", display: "block", marginBottom: "0.5rem" }}>
-                      {b.coreComponents.token42.releaseSchedule}
-                    </span>
-                    <span style={{ color: "#c9d1d9" }}>{b.coreComponents.token42.releaseScheduleValue}</span>
-                  </div>
-                  <div>
-                    <span style={{ color: "#8b949e", display: "block", marginBottom: "0.5rem" }}>
-                      {b.coreComponents.token42.atLaunch}
-                    </span>
-                    <span style={{ color: "#c9d1d9" }}>{b.coreComponents.token42.atLaunchValue}</span>
-                  </div>
+          <ContentCard title={b.coreComponents.token42.title}>
+            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.summary}</p>
+            <div className="space-y-3 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
+                    {b.coreComponents.token42.purpose}
+                  </span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.purposeValue}</span>
+                </div>
+                <div>
+                  <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
+                    {b.coreComponents.token42.totalSupply}
+                  </span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.totalSupplyValue}</span>
+                </div>
+                <div>
+                  <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
+                    {b.coreComponents.token42.releaseSchedule}
+                  </span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.releaseScheduleValue}</span>
+                </div>
+                <div>
+                  <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
+                    {b.coreComponents.token42.atLaunch}
+                  </span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.atLaunchValue}</span>
                 </div>
               </div>
-              <div className="p-4 rounded mt-4" style={{ backgroundColor: "#161b22", borderLeft: "2px solid #6ba3db" }}>
-                <p className="text-sm" style={{ color: "#c9d1d9" }}>
-                  {b.coreComponents.token42.keyUse}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card style={{ backgroundColor: "#1c2128", borderColor: "#444c56", border: "1px solid" }}>
-            <CardHeader>
-              <CardTitle className="font-mono text-sm" style={{ color: "#c9d1d9", letterSpacing: "0.05em" }}>
-                {b.coreComponents.fish.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p style={{ color: "#c9d1d9" }}>{b.coreComponents.fish.summary}</p>
-              <div className="mb-4 p-4 rounded" style={{ backgroundColor: "#161b22", borderLeft: "2px solid #6ba3db" }}>
-                <p className="text-sm" style={{ color: "#c9d1d9" }}>
-                  {b.coreComponents.fish.howToEarn}
-                </p>
-              </div>
-              <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "#c9d1d9" }}>
-                {b.coreComponents.fish.bullets.map((item, i) => (
-                  <li key={i}>→ {item}</li>
-                ))}
-              </ul>
-              <p className="text-sm italic" style={{ color: "#8b949e" }}>
-                {b.coreComponents.fish.seeHow}
+            </div>
+            <CalloutBox className="mt-4">
+              <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                {b.coreComponents.token42.keyUse}
               </p>
-            </CardContent>
-          </Card>
+            </CalloutBox>
+          </ContentCard>
 
-          <Card style={{ backgroundColor: "#1c2128", borderColor: "#444c56", border: "1px solid" }}>
-            <CardHeader>
-              <CardTitle className="font-mono text-sm" style={{ color: "#c9d1d9", letterSpacing: "0.05em" }}>
-                {b.coreComponents.governance.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p style={{ color: "#c9d1d9" }}>{b.coreComponents.governance.summary}</p>
-              <div className="space-y-3" style={{ color: "#c9d1d9" }}>
-                {b.coreComponents.governance.points.map((p, i) => (
-                  <p key={i}>→ {p}</p>
-                ))}
-              </div>
-              <div className="p-4 rounded mt-4" style={{ backgroundColor: "#161b22", borderLeft: "2px solid #6ba3db" }}>
-                <p className="text-sm italic" style={{ color: "#c9d1d9" }}>
-                  "{b.coreComponents.governance.quote}"
-                </p>
-                <p className="mt-2 text-sm" style={{ color: "#8b949e" }}>
-                  — {b.coreComponents.governance.quoteAuthor}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <ContentCard title={b.coreComponents.fish.title}>
+            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.fish.summary}</p>
+            <CalloutBox className="mb-4">
+              <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                {b.coreComponents.fish.howToEarn}
+              </p>
+            </CalloutBox>
+            <BulletList items={b.coreComponents.fish.bullets} />
+            <p className="text-sm italic mt-2" style={{ color: "var(--id-text-muted)" }}>
+              {b.coreComponents.fish.seeHow}
+            </p>
+          </ContentCard>
+
+          <ContentCard title={b.coreComponents.governance.title}>
+            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.governance.summary}</p>
+            <div className="space-y-3" style={{ color: "var(--id-text-secondary)" }}>
+              {b.coreComponents.governance.points.map((p, i) => (
+                <p key={i}>→ {p}</p>
+              ))}
+            </div>
+            <CalloutBox className="mt-4">
+              <p className="text-sm italic" style={{ color: "var(--id-text-secondary)" }}>
+                &quot;{b.coreComponents.governance.quote}&quot;
+              </p>
+              <p className="mt-2 text-sm" style={{ color: "var(--id-text-muted)" }}>
+                — {b.coreComponents.governance.quoteAuthor}
+              </p>
+            </CalloutBox>
+          </ContentCard>
         </div>
-      </section>
+      </PageSection>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-8 font-mono" style={{ fontSize: "2rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.masterPools.title}
-        </h2>
-        <p className="mb-4" style={{ fontSize: "1.1rem", color: "#c9d1d9" }}>
+      <PageSection title={b.masterPools.title}>
+        <p className="mb-4" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
           {b.masterPools.paragraphs[0]}
         </p>
-        <p className="mb-4" style={{ color: "#c9d1d9" }}>
+        <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
           {b.masterPools.paragraphs[1]}
         </p>
-        <div className="mb-6 p-4 rounded" style={{ backgroundColor: "#161b22", borderLeft: "2px solid #8b949e" }}>
-          <p className="text-sm" style={{ color: "#c9d1d9" }}>
-            <strong style={{ color: "#e6edf3" }}>{b.masterPools.noteTitle}</strong> {b.masterPools.note}
+        <CalloutBox variant="muted" className="mb-6">
+          <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+            <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.noteTitle}</strong> {b.masterPools.note}
           </p>
-        </div>
-        <p className="mb-8" style={{ color: "#c9d1d9" }}>
+        </CalloutBox>
+        <p className="mb-8" style={{ color: "var(--id-text-secondary)" }}>
           {b.masterPools.paragraphs[2]}
         </p>
         <SiteTable
@@ -172,110 +134,84 @@ export function BlockchainPage() {
             annualUnlock: row.annualUnlock,
           }))}
         />
-        <div className="p-6 rounded" style={{ backgroundColor: "#161b22", borderLeft: "3px solid #6ba3db" }}>
-          <p style={{ color: "#c9d1d9", fontStyle: "italic" }}>
-            <strong style={{ color: "#e6edf3" }}>{b.masterPools.closingTitle}</strong>
+        <CalloutBox className="mt-4">
+          <p style={{ color: "var(--id-text-secondary)", fontStyle: "italic" }}>
+            <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.closingTitle}</strong>
           </p>
-          <p className="mt-3 text-sm" style={{ color: "#8b949e" }}>
+          <p className="mt-3 text-sm" style={{ color: "var(--id-text-muted)" }}>
             {b.masterPools.closingNote}
           </p>
-        </div>
-      </section>
+        </CalloutBox>
+      </PageSection>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-8 font-mono" style={{ fontSize: "2rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.hyperspace.title}
-        </h2>
-        <div className="mb-6 p-6 rounded" style={{ backgroundColor: "#1c2128", borderLeft: "2px solid #8b949e" }}>
-          <blockquote className="italic" style={{ color: "#c9d1d9" }}>
-            "{b.hyperspace.quote}"
-          </blockquote>
-          <p className="mt-2 text-sm" style={{ color: "#8b949e" }}>
-            — {b.hyperspace.quoteAuthor}
-          </p>
+      <PageSection title={b.hyperspace.title}>
+        <div className="mb-6">
+          <QuoteBlock quote={b.hyperspace.quote} author={b.hyperspace.quoteAuthor} variant="muted" />
         </div>
         {b.hyperspace.paragraphs.map((p, i) => (
-          <p key={i} className="mb-6" style={{ fontSize: "1.1rem", color: "#c9d1d9" }}>
+          <p key={i} className="mb-6" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
             {p}
           </p>
         ))}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div className="p-6 rounded" style={{ backgroundColor: "#1c2128", border: "1px solid #444c56" }}>
-            <h3 className="font-mono mb-4" style={{ fontSize: "1.2rem", color: "#6ba3db", letterSpacing: "0.05em" }}>
-              {b.hyperspace.nativeTitle}
-            </h3>
-            <div className="space-y-3 text-sm" style={{ color: "#c9d1d9" }}>
+          <ContentCard title={b.hyperspace.nativeTitle}>
+            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-secondary)" }}>
               <p>
-                <strong style={{ color: "#e6edf3" }}>{b.hyperspace.nativeSubtitle}</strong>
+                <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.nativeSubtitle}</strong>
               </p>
-              {b.hyperspace.nativeItems.map((item, i) => (
-                <p key={i}>→ {item}</p>
-              ))}
+              <BulletList items={b.hyperspace.nativeItems} />
             </div>
-          </div>
-          <div className="p-6 rounded" style={{ backgroundColor: "#1c2128", border: "1px solid #444c56" }}>
-            <h3 className="font-mono mb-4" style={{ fontSize: "1.2rem", color: "#6ba3db", letterSpacing: "0.05em" }}>
-              {b.hyperspace.bridgesTitle}
-            </h3>
-            <div className="space-y-3 text-sm" style={{ color: "#c9d1d9" }}>
+          </ContentCard>
+          <ContentCard title={b.hyperspace.bridgesTitle}>
+            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-secondary)" }}>
               <p>
-                <strong style={{ color: "#e6edf3" }}>{b.hyperspace.bridgesEthereum}</strong>
+                <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.bridgesEthereum}</strong>
               </p>
-              {b.hyperspace.bridgesEthereumItems.map((item, i) => (
-                <p key={i}>→ {item}</p>
-              ))}
+              <BulletList items={b.hyperspace.bridgesEthereumItems} />
               <p className="pt-2">
-                <strong style={{ color: "#e6edf3" }}>{b.hyperspace.bridgesBitcoin}</strong>
+                <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.bridgesBitcoin}</strong>
               </p>
-              {b.hyperspace.bridgesBitcoinItems.map((item, i) => (
-                <p key={i}>→ {item}</p>
-              ))}
+              <BulletList items={b.hyperspace.bridgesBitcoinItems} />
             </div>
-          </div>
+          </ContentCard>
         </div>
-        <div className="p-6 rounded mb-6" style={{ backgroundColor: "#161b22", border: "1px solid #30363d" }}>
-          <h3 className="font-mono mb-4 text-center" style={{ fontSize: "1.3rem", color: "#6ba3db", letterSpacing: "0.05em" }}>
-            {b.hyperspace.ecosystemsTitle}
-          </h3>
+        <ContentCard title={b.hyperspace.ecosystemsTitle} className="mb-6 text-center">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {b.hyperspace.ecosystems.map((eco) => (
-              <div key={eco.name} className="p-3 rounded" style={{ backgroundColor: "#1c2128" }}>
-                <p className="font-mono text-sm" style={{ color: "#e6edf3" }}>
+              <div key={eco.name} className="p-3 rounded" style={{ backgroundColor: "var(--id-bg-page)" }}>
+                <p className="font-mono text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {eco.name}
                 </p>
-                <p className="text-xs mt-1" style={{ color: "#8b949e" }}>
+                <p className="text-xs mt-1" style={{ color: "var(--id-text-muted)" }}>
                   {eco.tag}
                 </p>
               </div>
             ))}
           </div>
-          <p className="text-sm text-center mt-6 italic" style={{ color: "#8b949e" }}>
+          <p className="text-sm text-center mt-6 italic" style={{ color: "var(--id-text-muted)" }}>
             {b.hyperspace.ecosystemsNote}
           </p>
-        </div>
-        <div className="p-6 rounded" style={{ backgroundColor: "#1c2128", borderLeft: "3px solid #6ba3db" }}>
-          <p style={{ color: "#c9d1d9" }}>
-            <strong style={{ color: "#e6edf3" }}>{b.hyperspace.whyItMatters}</strong>
+        </ContentCard>
+        <CalloutBox>
+          <p style={{ color: "var(--id-text-secondary)" }}>
+            <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.whyItMatters}</strong>
           </p>
-          <p className="mt-3 text-sm italic" style={{ color: "#8b949e" }}>
+          <p className="mt-3 text-sm italic" style={{ color: "var(--id-text-muted)" }}>
             {b.hyperspace.whyItMattersNote}
           </p>
-        </div>
-      </section>
+        </CalloutBox>
+      </PageSection>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-8 font-mono" style={{ fontSize: "2rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.technicalArch.title}
-        </h2>
+      <PageSection title={b.technicalArch.title}>
         <div className="mb-12">
-          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
+          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
             {b.technicalArch.sectionTitle}
           </h3>
-          <p className="mb-6" style={{ fontSize: "1.1rem", color: "#c9d1d9" }}>
+          <p className="mb-6" style={{ fontSize: "1.1rem", color: "var(--id-text-secondary)" }}>
             {b.technicalArch.sectionIntro}
           </p>
           <SiteTable
@@ -289,75 +225,65 @@ export function BlockchainPage() {
               function: row.function,
             }))}
           />
-          <div className="p-6 rounded" style={{ backgroundColor: "#161b22", borderLeft: "3px solid #6ba3db" }}>
-            <p style={{ color: "#c9d1d9", fontStyle: "italic" }}>
-              <strong style={{ color: "#e6edf3" }}>{b.technicalArch.noteTitle}</strong>
+          <CalloutBox>
+            <p style={{ color: "var(--id-text-secondary)", fontStyle: "italic" }}>
+              <strong style={{ color: "var(--id-text-primary)" }}>{b.technicalArch.noteTitle}</strong>
             </p>
             {b.technicalArch.noteParagraphs.map((p, i) => (
-              <p key={i} className="mt-3 text-sm" style={{ color: "#8b949e" }}>
+              <p key={i} className="mt-3 text-sm" style={{ color: "var(--id-text-muted)" }}>
                 {p}
               </p>
             ))}
-          </div>
+          </CalloutBox>
         </div>
         <div>
-          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
+          <h3 className="mb-6 font-mono" style={{ fontSize: "1.5rem", color: "var(--id-text-primary)", letterSpacing: "0.05em" }}>
             {b.technicalArch.specsTitle}
           </h3>
-          <div className="p-6 rounded" style={{ backgroundColor: "#1c2128", border: "1px solid #444c56" }}>
+          <ContentCard>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {b.technicalArch.specs.map((spec) => (
                   <div key={spec.label}>
-                    <h4 className="font-mono text-sm mb-2" style={{ color: "#8b949e" }}>
+                    <h4 className="font-mono text-sm mb-2" style={{ color: "var(--id-text-muted)" }}>
                       {spec.label}
                     </h4>
-                    <p style={{ color: "#c9d1d9" }}>{spec.value}</p>
+                    <p style={{ color: "var(--id-text-secondary)" }}>{spec.value}</p>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-          <p className="text-sm italic mt-4" style={{ color: "#8b949e" }}>
+          </ContentCard>
+          <p className="text-sm italic mt-4" style={{ color: "var(--id-text-muted)" }}>
             {b.technicalArch.docsNote}
           </p>
         </div>
-      </section>
+      </PageSection>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
-      <section className="mb-16">
-        <h2 className="mb-8 font-mono" style={{ fontSize: "2rem", color: "#e6edf3", letterSpacing: "0.05em" }}>
-          {b.howToParticipate.title}
-        </h2>
+      <PageSection title={b.howToParticipate.title}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {b.howToParticipate.cards.map((card) => (
-            <div
-              key={card.title}
-              className="p-6 rounded"
-              style={{ backgroundColor: "#1c2128", border: "1px solid #30363d" }}
-            >
-              <h3 className="font-mono mb-3" style={{ color: "#6ba3db", letterSpacing: "0.05em" }}>
-                {card.title}
-              </h3>
-              <p style={{ color: "#c9d1d9", fontSize: "0.95rem" }}>
+            <ContentCard key={card.title} title={card.title}>
+              <p style={{ color: "var(--id-text-secondary)", fontSize: "0.95rem" }}>
                 {card.description}
               </p>
-            </div>
+            </ContentCard>
           ))}
         </div>
-      </section>
+      </PageSection>
 
-      <div style={{ borderTop: "1px solid #30363d", margin: "3rem 0" }} />
+      <SectionDivider />
 
       <div
         className="p-8 rounded text-center mb-16"
-        style={{ backgroundColor: "#1c2128", border: "1px solid #6ba3db" }}
+        style={{ backgroundColor: "var(--id-bg-card)", border: "1px solid var(--id-accent)" }}
       >
-        <p className="font-mono mb-2" style={{ fontSize: "1.2rem", color: "#6ba3db", letterSpacing: "0.05em" }}>
-          "{b.finalQuote.quote}"
+        <p className="font-mono mb-2" style={{ fontSize: "1.2rem", color: "var(--id-accent)", letterSpacing: "0.05em" }}>
+          &quot;{b.finalQuote.quote}&quot;
         </p>
-        <p className="text-sm" style={{ color: "#8b949e" }}>
+        <p className="text-sm" style={{ color: "var(--id-text-muted)" }}>
           — {b.finalQuote.author}
         </p>
       </div>
