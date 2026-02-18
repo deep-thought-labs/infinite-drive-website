@@ -22,6 +22,7 @@ export function SiteLink({
       style={{
         color: "var(--id-accent)",
         textDecoration: "underline",
+        cursor: "pointer",
         ...style,
       }}
       {...rest}

@@ -25,6 +25,7 @@ export function NavLink({
         paddingBottom: "0.25rem",
         letterSpacing: "0.05em",
         textDecoration: "none",
+        cursor: "pointer",
       }}
       onMouseEnter={(e) => {
         if (!isActive) e.currentTarget.style.color = "var(--id-text-secondary)";

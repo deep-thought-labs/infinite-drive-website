@@ -16,7 +16,7 @@ export function PageHeader({
     <div className={`mb-12 ${className}`.trim()}>
       <SectionHeading level={1}>{title}</SectionHeading>
       {subtitle != null && (
-        <p style={{ fontSize: "1.2rem", color: "var(--id-text-secondary)", maxWidth: "800px" }}>
+        <p style={{ fontSize: "1.2rem", color: "var(--id-text-primary)", maxWidth: "800px" }}>
           {subtitle}
         </p>
       )}

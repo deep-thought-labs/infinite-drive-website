@@ -42,7 +42,7 @@ export function BlockchainPage() {
               {Array.isArray(p) ? <FormattedText segments={p} /> : p}
             </LeadParagraph>
           ) : (
-            <p key={i} style={{ color: "var(--id-text-secondary)" }}>
+            <p key={i} style={{ color: "var(--id-text-primary)" }}>
               {Array.isArray(p) ? <FormattedText segments={p} /> : p}
             </p>
           )
@@ -54,7 +54,7 @@ export function BlockchainPage() {
       <PageSection title={b.coreComponents.title} showDividerAbove={false}>
         <div className="space-y-6">
           <ContentCard title={b.coreComponents.token42.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>
+            <p style={{ color: "var(--id-text-primary)" }}>
               {Array.isArray(b.coreComponents.token42.summary) ? (
                 <FormattedText segments={b.coreComponents.token42.summary} />
               ) : (
@@ -67,19 +67,19 @@ export function BlockchainPage() {
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.purpose}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.purposeValue}</span>
+                  <span style={{ color: "var(--id-text-primary)" }}>{b.coreComponents.token42.purposeValue}</span>
                 </div>
                 <div>
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.totalSupply}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.totalSupplyValue}</span>
+                  <span style={{ color: "var(--id-text-primary)" }}>{b.coreComponents.token42.totalSupplyValue}</span>
                 </div>
                 <div>
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.releaseSchedule}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>
+                  <span style={{ color: "var(--id-text-primary)" }}>
                     {Array.isArray(b.coreComponents.token42.releaseScheduleValue) ? (
                       <FormattedText segments={b.coreComponents.token42.releaseScheduleValue} />
                     ) : (
@@ -91,7 +91,7 @@ export function BlockchainPage() {
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.atLaunch}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>
+                  <span style={{ color: "var(--id-text-primary)" }}>
                     {Array.isArray(b.coreComponents.token42.atLaunchValue) ? (
                       <FormattedText segments={b.coreComponents.token42.atLaunchValue} />
                     ) : (
@@ -102,7 +102,7 @@ export function BlockchainPage() {
               </div>
             </div>
             <CalloutBox className="mt-4">
-              <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+              <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                 {Array.isArray(b.coreComponents.token42.keyUse) ? (
                   <FormattedText segments={b.coreComponents.token42.keyUse} />
                 ) : (
@@ -113,7 +113,7 @@ export function BlockchainPage() {
           </ContentCard>
 
           <ContentCard title={b.coreComponents.fish.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>
+            <p style={{ color: "var(--id-text-primary)" }}>
               {Array.isArray(b.coreComponents.fish.summary) ? (
                 <FormattedText segments={b.coreComponents.fish.summary} />
               ) : (
@@ -121,7 +121,7 @@ export function BlockchainPage() {
               )}
             </p>
             <CalloutBox className="mt-4 mb-4">
-              <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+              <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                 {Array.isArray(b.coreComponents.fish.howToEarn) ? (
                   <FormattedText segments={b.coreComponents.fish.howToEarn} />
                 ) : (
@@ -136,14 +136,14 @@ export function BlockchainPage() {
           </ContentCard>
 
           <ContentCard title={b.coreComponents.governance.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>
+            <p style={{ color: "var(--id-text-primary)" }}>
               {Array.isArray(b.coreComponents.governance.summary) ? (
                 <FormattedText segments={b.coreComponents.governance.summary} />
               ) : (
                 b.coreComponents.governance.summary
               )}
             </p>
-            <div className="space-y-3" style={{ color: "var(--id-text-secondary)" }}>
+            <div className="space-y-3" style={{ color: "var(--id-text-primary)" }}>
               {b.coreComponents.governance.points.map((pt, i) => (
                 <p key={i}>
                   → {Array.isArray(pt) ? <FormattedText segments={pt} /> : pt}
@@ -151,7 +151,7 @@ export function BlockchainPage() {
               ))}
             </div>
             <CalloutBox className="mt-4">
-              <p className="text-sm italic" style={{ color: "var(--id-text-secondary)" }}>
+              <p className="text-sm italic" style={{ color: "var(--id-text-primary)" }}>
                 &quot;{b.coreComponents.governance.quote}&quot;
               </p>
               <p className="mt-2 text-sm" style={{ color: "var(--id-text-muted)" }}>
@@ -172,7 +172,7 @@ export function BlockchainPage() {
             b.masterPools.paragraphs[0]
           )}
         </LeadParagraph>
-        <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
+        <p className="mb-4" style={{ color: "var(--id-text-primary)" }}>
           {Array.isArray(b.masterPools.paragraphs[1]) ? (
             <FormattedText segments={b.masterPools.paragraphs[1]} />
           ) : (
@@ -180,7 +180,7 @@ export function BlockchainPage() {
           )}
         </p>
         <CalloutBox variant="muted" className="mb-6">
-          <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+          <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
             <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.noteTitle}</strong>{" "}
             {Array.isArray(b.masterPools.note) ? (
               <FormattedText segments={b.masterPools.note} />
@@ -189,7 +189,7 @@ export function BlockchainPage() {
             )}
           </p>
         </CalloutBox>
-        <p className="mb-8" style={{ color: "var(--id-text-secondary)" }}>
+        <p className="mb-8" style={{ color: "var(--id-text-primary)" }}>
           {Array.isArray(b.masterPools.paragraphs[2]) ? (
             <FormattedText segments={b.masterPools.paragraphs[2]} />
           ) : (
@@ -212,7 +212,7 @@ export function BlockchainPage() {
           }))}
         />
         <CalloutBox className="mt-4">
-          <p style={{ color: "var(--id-text-secondary)", fontStyle: "italic" }}>
+          <p style={{ color: "var(--id-text-primary)", fontStyle: "italic" }}>
             <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.closingTitle}</strong>
           </p>
           <p className="mt-3 text-sm" style={{ color: "var(--id-text-muted)" }}>
@@ -234,7 +234,7 @@ export function BlockchainPage() {
         ))}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <ContentCard title={b.hyperspace.nativeTitle}>
-            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-primary)" }}>
               <p>
                 <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.nativeSubtitle}</strong>
               </p>
@@ -242,7 +242,7 @@ export function BlockchainPage() {
             </div>
           </ContentCard>
           <ContentCard title={b.hyperspace.bridgesTitle}>
-            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+            <div className="space-y-3 text-sm" style={{ color: "var(--id-text-primary)" }}>
               <p>
                 <strong style={{ color: "var(--id-text-primary)" }}>{b.hyperspace.bridgesEthereum}</strong>
               </p>
@@ -272,7 +272,7 @@ export function BlockchainPage() {
           </p>
         </ContentCard>
         <CalloutBox>
-          <p style={{ color: "var(--id-text-secondary)" }}>
+          <p style={{ color: "var(--id-text-primary)" }}>
             {Array.isArray(b.hyperspace.whyItMatters) ? (
               <FormattedText segments={b.hyperspace.whyItMatters} />
             ) : (
@@ -311,7 +311,7 @@ export function BlockchainPage() {
             }))}
           />
           <CalloutBox>
-            <p style={{ color: "var(--id-text-secondary)", fontStyle: "italic" }}>
+            <p style={{ color: "var(--id-text-primary)", fontStyle: "italic" }}>
               <strong style={{ color: "var(--id-text-primary)" }}>{b.technicalArch.noteTitle}</strong>
             </p>
             {b.technicalArch.noteParagraphs.map((p, i) => (
@@ -333,7 +333,7 @@ export function BlockchainPage() {
                     <SectionHeading level={4} colorVariant="muted" className="mb-2">
                       {spec.label}
                     </SectionHeading>
-                    <p style={{ color: "var(--id-text-secondary)" }}>{spec.value}</p>
+                    <p style={{ color: "var(--id-text-primary)" }}>{spec.value}</p>
                   </div>
                 ))}
               </div>
@@ -351,7 +351,7 @@ export function BlockchainPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {b.howToParticipate.cards.map((card) => (
             <ContentCard key={card.title} title={card.title}>
-              <p style={{ color: "var(--id-text-secondary)", fontSize: "0.95rem" }}>
+              <p style={{ color: "var(--id-text-primary)", fontSize: "0.95rem" }}>
                 {card.description}
               </p>
             </ContentCard>

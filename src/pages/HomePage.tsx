@@ -40,9 +40,8 @@ export function HomePage() {
             className="font-mono"
             style={{
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
-              opacity: 0.8,
               letterSpacing: "0.05em",
-              color: "var(--id-text-muted)",
+              color: "var(--id-text-primary)",
             }}
           >
             {home.hero.subtitle}
@@ -54,7 +53,7 @@ export function HomePage() {
             src={dontPanicImage}
             alt={heroAsset?.alt ?? home.hero.imageKey}
             className="w-full h-full object-cover rounded"
-            style={{ maxHeight: "400px", opacity: 0.9 }}
+            style={{ maxHeight: "400px", opacity: 0.8 }}
           />
         </div>
 
@@ -64,15 +63,15 @@ export function HomePage() {
               segments={home.ecosystemIntro}
               as="p"
               className="block"
-              style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}
+              style={{ fontSize: "1.2rem", lineHeight: "1.8", color: "var(--id-text-primary)" }}
             />
           ) : (
-            <p style={{ fontSize: "1.2rem", opacity: 0.9, lineHeight: "1.8", color: "var(--id-text-primary)" }}>
+            <p style={{ fontSize: "1.2rem", lineHeight: "1.8", color: "var(--id-text-primary)" }}>
               {home.ecosystemIntro}
             </p>
           )}
           <QuoteBlock quote={home.quote.text} author={home.quote.author} variant="fullBorder" />
-          <p style={{ fontSize: "1.1rem", opacity: 0.85, lineHeight: "1.8", color: "var(--id-text-secondary)" }}>
+          <p style={{ fontSize: "1.1rem", lineHeight: "1.8", color: "var(--id-text-primary)" }}>
             {Array.isArray(site.descriptionLong) ? (
               <FormattedText segments={site.descriptionLong} as="span" />
             ) : (
@@ -84,7 +83,7 @@ export function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12">
           {home.features.map((feature) => (
             <ContentCard key={feature.title} title={feature.title} titleAlign="center">
-              <p style={{ opacity: 0.9, fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
+              <p style={{ fontSize: "0.95rem", color: "var(--id-text-primary)" }}>
                 {feature.description}
               </p>
             </ContentCard>
@@ -92,10 +91,10 @@ export function HomePage() {
         </div>
 
         <div className="space-y-6 mt-16">
-          <p style={{ fontSize: "1.1rem", opacity: 0.9, color: "var(--id-text-primary)" }}>
+          <p style={{ fontSize: "1.1rem", color: "var(--id-text-primary)" }}>
             <strong>{home.closingBlock.title}</strong>
           </p>
-          <p style={{ fontSize: "1rem", opacity: 0.7, color: "var(--id-text-muted)" }}>
+          <p style={{ fontSize: "1rem", color: "var(--id-text-primary)" }}>
             {home.closingBlock.subtitle}
           </p>
           <CalloutBox className="mt-6" paddingSize="spacious">
@@ -104,10 +103,10 @@ export function HomePage() {
                 segments={home.openSourceNote}
                 as="p"
                 className="block"
-                style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}
+                style={{ fontSize: "0.95rem", color: "var(--id-text-primary)" }}
               />
             ) : (
-              <p style={{ fontSize: "0.95rem", color: "var(--id-text-secondary)" }}>
+              <p style={{ fontSize: "0.95rem", color: "var(--id-text-primary)" }}>
                 <strong style={{ color: "var(--id-accent)" }}>{home.openSourceNote}</strong>
               </p>
             )}

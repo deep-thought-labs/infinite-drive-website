@@ -1,5 +1,7 @@
 /**
- * Párrafo "lead" de una sección: tamaño 1.1rem y color secondary. Centraliza el patrón repetido.
+ * Párrafo "lead" de una sección: primer texto destacado bajo un título.
+ * Usa color primary y 1.1rem por defecto para consistencia en todo el sitio.
+ * Pasa style para sobrescribir solo cuando el contexto requiera otro color (ej. jerarquía).
  */
 export function LeadParagraph({
   children,
@@ -17,7 +19,7 @@ export function LeadParagraph({
       className={className}
       style={{
         fontSize: "1.1rem",
-        color: "var(--id-text-secondary)",
+        color: "var(--id-text-primary)",
         ...style,
       }}
     >

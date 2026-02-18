@@ -68,7 +68,7 @@ export function SiteTable({
                 <td
                   key={col.key}
                   className={cellStyle}
-                  style={{ color: "var(--id-text-secondary)" }}
+                  style={{ color: "var(--id-text-primary)" }}
                 >
                   {row[col.key]}
                 </td>

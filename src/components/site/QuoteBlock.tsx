@@ -33,7 +33,7 @@ export function QuoteBlock({
     >
       <blockquote
         className="italic mb-4"
-        style={{ fontSize: "0.95rem", lineHeight: "1.8", opacity: 0.9, color: "var(--id-text-secondary)" }}
+        style={{ fontSize: "0.95rem", lineHeight: "1.8", color: "var(--id-text-primary)" }}
       >
         &quot;{quote}&quot;
       </blockquote>

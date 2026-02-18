@@ -2,7 +2,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { useContent } from "@/contexts/LocaleContext";
 import { PageHeader, SectionHeading, SiteLink } from "@/components/site";
 
-const bodyStyle = { opacity: 0.9, lineHeight: "1.7", color: "var(--id-text-secondary)" };
+const bodyStyle = { lineHeight: "1.7", color: "var(--id-text-primary)" };
 
 export function PrivacyPolicyPage() {
   const content = useContent();
@@ -43,7 +43,7 @@ export function PrivacyPolicyPage() {
       </div>
 
       <div className="mt-12 pt-8" style={{ borderTop: "1px solid var(--id-border)" }}>
-        <p className="text-sm" style={{ opacity: 0.7, color: "var(--id-text-muted)" }}>
+        <p className="text-sm" style={{ color: "var(--id-text-muted)" }}>
           {privacy.footerNote}
         </p>
       </div>

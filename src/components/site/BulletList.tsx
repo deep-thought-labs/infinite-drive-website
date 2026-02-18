@@ -13,7 +13,7 @@ export function BulletList({
   return (
     <ul
       className={`space-y-2 text-sm ml-4 ${className}`.trim()}
-      style={{ listStyleType: "none", color: "var(--id-text-secondary)" }}
+      style={{ listStyleType: "none", color: "var(--id-text-primary)" }}
     >
       {items != null
         ? items.map((item, i) => (

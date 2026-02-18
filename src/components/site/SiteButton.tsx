@@ -19,10 +19,12 @@ const variants = {
     hover: {
       boxShadow: "0 0 30px rgba(0, 217, 255, 0.5)",
       transform: "translateY(-2px)",
+      filter: "brightness(1.12)",
     } as CSSProperties,
     leave: {
       boxShadow: "0 0 20px rgba(0, 217, 255, 0.3)",
       transform: "translateY(0)",
+      filter: "none",
     } as CSSProperties,
   },
   secondary: {
@@ -36,10 +38,12 @@ const variants = {
     hover: {
       backgroundColor: "var(--id-accent)",
       color: "var(--id-bg-page)",
+      filter: "brightness(1.1)",
     } as CSSProperties,
     leave: {
       backgroundColor: "var(--id-bg-card)",
       color: "var(--id-accent)",
+      filter: "none",
     } as CSSProperties,
   },
   accent: {
@@ -52,12 +56,12 @@ const variants = {
     hover: {
       transform: "translateY(-2px)",
       boxShadow: "0 4px 16px rgba(0, 217, 255, 0.35)",
-      opacity: 0.95,
+      filter: "brightness(1.15)",
     } as CSSProperties,
     leave: {
       transform: "translateY(0)",
       boxShadow: "none",
-      opacity: 1,
+      filter: "none",
     } as CSSProperties,
   },
 } as const;
@@ -91,7 +95,7 @@ export function SiteButton({
   const v = variants[variant];
   const sizeClass =
     size === "small" ? "px-4 py-2 text-sm" : size === "lg" ? "px-8 py-3" : "px-6 py-3";
-  const baseStyle: CSSProperties = { ...v.base, ...style };
+  const baseStyle: CSSProperties = { ...v.base, cursor: "pointer", ...style };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     const el = e.currentTarget;

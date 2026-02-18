@@ -141,7 +141,8 @@ export interface SovereignServiceCard {
   storageEconomicsDesc?: string;
   storageEconomicsNote?: string;
   computeBoxes?: { title: string; description: string }[];
-  computeBullets?: string[];
+  /** Use segments for bold (Pay per execution, Auto-scaling, etc.). */
+  computeBullets?: (string | FormattedSegment[])[];
 }
 
 /** Capa del stack (Services: How it connects) */
@@ -187,8 +188,10 @@ export interface LocaleServices {
   };
   blockchainCta: {
     title: string;
-    paragraphs: string[];
-    bullets: string[];
+    /** Use segments for bold (Infinite Improbability Drive; [42], Fish). */
+    paragraphs: (string | FormattedSegment[])[];
+    /** Use segments for bold ([42], Fish, DAO governance, etc.). */
+    bullets: (string | FormattedSegment[])[];
     ctaButtonText: string;
   };
   getStarted: {

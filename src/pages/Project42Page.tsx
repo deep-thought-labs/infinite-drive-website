@@ -55,7 +55,7 @@ export function Project42Page() {
       {/* We Are Building a New World */}
       <PageSection title={p.newWorld.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="space-y-4" style={{ color: "var(--id-text-secondary)" }}>
+          <div className="space-y-4" style={{ color: "var(--id-text-primary)" }}>
             {(() => {
               const tightSet = new Set(p.newWorld.tightParagraphIndices ?? []);
               const groups: { tight: boolean; indices: number[] }[] = [];
@@ -109,7 +109,7 @@ export function Project42Page() {
               src={imageByKey[p.newWorld.imageKey] ?? newWorldImage}
               alt={getAlt(p.newWorld.imageKey)}
               className="w-full h-full object-contain md:object-cover rounded"
-              style={{ minHeight: "300px", maxHeight: "400px", opacity: 0.6 }}
+              style={{ minHeight: "300px", maxHeight: "400px", opacity: 0.8 }}
             />
           </div>
         </div>
@@ -121,9 +121,9 @@ export function Project42Page() {
       <PageSection title={p.philosophy.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="mb-6" style={{ color: "var(--id-text-secondary)" }}>
-              {p.philosophy.intro}
-            </p>
+<p className="mb-6" style={{ color: "var(--id-text-primary)" }}>
+            {p.philosophy.intro}
+          </p>
             <SiteTable
               variant="minimal"
               columns={[
@@ -162,7 +162,7 @@ export function Project42Page() {
         <div className="space-y-6">
           {p.ecosystem.pillars.map((pillar) => (
             <ContentCard key={pillar.number} leading={pillar.number} title={pillar.title}>
-              <p className="mb-3" style={{ color: "var(--id-text-secondary)" }}>
+              <p className="mb-3" style={{ color: "var(--id-text-primary)" }}>
                 {pillar.description}
               </p>
               <BulletList
@@ -176,7 +176,7 @@ export function Project42Page() {
 
         <div className="mt-8">
           <CalloutBox>
-            <p style={{ color: "var(--id-text-secondary)" }}>
+            <p style={{ color: "var(--id-text-primary)" }}>
               {Array.isArray(p.ecosystem.closing) ? (
                 <FormattedText segments={p.ecosystem.closing} />
               ) : (
@@ -199,7 +199,7 @@ export function Project42Page() {
           />
         </div>
 
-        <div className="space-y-4" style={{ color: "var(--id-text-secondary)" }}>
+        <div className="space-y-4" style={{ color: "var(--id-text-primary)" }}>
           {p.library.paragraphs.map((text, i) => (
             <p key={i}>
               {Array.isArray(text) ? <FormattedText segments={text} /> : text}
@@ -212,7 +212,7 @@ export function Project42Page() {
             <p
               key={i}
               className={i < p.library.notInventingParagraphs.length - 1 ? "mb-4" : ""}
-              style={{ color: "var(--id-text-secondary)" }}
+              style={{ color: "var(--id-text-primary)" }}
             >
               {Array.isArray(text) ? <FormattedText segments={text} /> : text}
             </p>
@@ -220,7 +220,7 @@ export function Project42Page() {
         </ContentCard>
 
         <ContentCard title={p.library.protocolsTitle} className="mt-8">
-          <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
+          <p className="mb-4" style={{ color: "var(--id-text-primary)" }}>
             {p.library.protocolsIntro}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -229,7 +229,7 @@ export function Project42Page() {
                 <p className="text-sm mb-2" style={{ color: "var(--id-text-muted)" }}>
                   <strong>{proto.name}</strong>
                 </p>
-                <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {proto.description}
                 </p>
               </div>
@@ -243,7 +243,7 @@ export function Project42Page() {
               <p
                 key={i}
                 className={i === 0 ? "mb-3" : "text-sm"}
-                style={{ color: i === 0 ? "var(--id-text-secondary)" : "var(--id-text-muted)" }}
+                style={{ color: i === 0 ? "var(--id-text-primary)" : "var(--id-text-muted)" }}
               >
                 {Array.isArray(text) ? <FormattedText segments={text} /> : text}
               </p>
@@ -257,7 +257,7 @@ export function Project42Page() {
       {/* Thursday Note - Douglas Adams Reference */}
       <PageSection>
         <CalloutBox variant="muted">
-          <p className="text-sm italic mb-2" style={{ color: "var(--id-text-secondary)" }}>
+          <p className="text-sm italic mb-2" style={{ color: "var(--id-text-primary)" }}>
             &quot;{p.thursdayNote.quote}&quot;
           </p>
           <p className="text-sm mb-4" style={{ color: "var(--id-text-muted)" }}>
@@ -268,7 +268,7 @@ export function Project42Page() {
               key={i}
               className="text-sm"
               style={{
-                color: i === 0 ? "var(--id-text-secondary)" : "var(--id-text-muted)",
+                color: i === 0 ? "var(--id-text-primary)" : "var(--id-text-muted)",
                 marginTop: i > 0 ? "0.75rem" : undefined,
               }}
             >
@@ -284,9 +284,9 @@ export function Project42Page() {
       <section className="text-center mb-16">
         <div className="space-y-2">
           {p.taglines.map((line, i) => (
-            <p key={i} className="font-mono" style={{ color: "var(--id-text-secondary)" }}>
-              {line}
-            </p>
+<p key={i} className="font-mono" style={{ color: "var(--id-text-primary)" }}>
+            {line}
+          </p>
           ))}
         </div>
       </section>

@@ -153,6 +153,13 @@ Any other path is redirected to `/` (or `/es` when in the locale-prefixed branch
 - **`components/layout/`** — layout (PageLayout, LocaleGuard).
 - **`components/shared/`** — shared presentational components (e.g. ImageWithFallback).
 - **`components/ui/`** — primitives (shadcn/ui-style). No copy; they receive props from pages or content.
+- **`components/site/`** — site-specific UI (SectionHeading, LeadParagraph, ContentCard, CalloutBox, FormattedText, etc.). These define the **default** style for their element type so the same role looks the same everywhere.
+
+### 5.4 Design guidelines (text and color)
+
+- **Same element / same component → same style.** If it’s the same type of content (e.g. lead paragraph, body text, secondary list), do not customize per page or per instance; only the content changes. Customizations (opacity, color, etc.) are for a **specific purpose** (e.g. a different role like “page subtitle” or “quote”), and those variants must be documented in a central design doc.
+- **Central design reference:** All tokens, allowed opacities, and per-component defaults are defined in **[DESIGN-TOKENS-AND-STYLES.md](DESIGN-TOKENS-AND-STYLES.md)**. Any style that makes an element “unique” (opacity, color, size) must follow that doc or the component’s default; no ad-hoc values that break consistency.
+- **One style per role:** Lead = primary; body / lists = secondary; metadata = muted. Opacity is used only where the design doc allows (e.g. PageHeader subtitle, QuoteBlock). Same component with same content role → no per-instance overrides.
 
 ---
 
@@ -168,4 +175,4 @@ Any other path is redirected to `/` (or `/es` when in the locale-prefixed branch
 | **SEO**           | `lang` on `<html>`; `hreflang` links for en, es, and x-default.                |
 | **Assets**        | Shared across locales; metadata in `content/assets.ts`.                       |
 
-For **how to add sections, edit content, or change the UI globally** (including a single entry point for humans and AI), see **[EDITING-AND-STRUCTURE.md](EDITING-AND-STRUCTURE.md)**. For deployment and local run, see the root **README.md** and **DEPLOY.md**.
+For **design tokens, opacities, and style rules** (same element = same style), see **[DESIGN-TOKENS-AND-STYLES.md](DESIGN-TOKENS-AND-STYLES.md)**. For how to add sections, edit content, or change the UI globally, see **[EDITING-AND-STRUCTURE.md](EDITING-AND-STRUCTURE.md)**. For deployment and local run, see the root **README.md** and **DEPLOY.md**.

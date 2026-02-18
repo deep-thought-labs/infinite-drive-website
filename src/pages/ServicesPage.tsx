@@ -54,7 +54,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.featuresLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.features.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -66,7 +66,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.howItWorksLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.howItWorks.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -78,7 +78,7 @@ function SovereignCard({
 
         {card.example && (
           <div className="p-4 rounded" style={{ backgroundColor: "var(--id-bg-elevated)", borderLeft: "2px solid var(--id-accent)" }}>
-            <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
+            <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
               {card.example}
             </p>
           </div>
@@ -91,7 +91,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-2" style={{ color: "var(--id-accent)" }}>
                   {b.title}
                 </h4>
-                <p className="text-sm" style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
+                <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {b.description}
                 </p>
               </div>
@@ -100,7 +100,7 @@ function SovereignCard({
         )}
 
         {card.bullets && (
-          <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-secondary)" }}>
+          <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-primary)" }}>
             {card.bullets.map((b, i) => (
               <li key={i}>→ {b}</li>
             ))}
@@ -114,7 +114,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.emailLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.emailList.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -126,7 +126,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.messagingLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.messagingList.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -138,7 +138,7 @@ function SovereignCard({
 
         {card.quote && (
           <div className="p-4 rounded" style={{ backgroundColor: "var(--id-bg-elevated)", borderLeft: "2px solid var(--id-text-muted)" }}>
-            <p className="text-sm italic" style={{ color: "var(--id-text-secondary)" }}>
+            <p className="text-sm italic" style={{ color: "var(--id-text-primary)" }}>
               {card.quote}
             </p>
           </div>
@@ -151,7 +151,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.storageHowLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.storageHow.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -163,7 +163,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-3" style={{ color: "var(--id-text-muted)" }}>
                   {card.storageUseCasesLabel}
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-secondary)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {card.storageUseCases.map((f, i) => (
                     <li key={i}>→ {f}</li>
                   ))}
@@ -178,7 +178,7 @@ function SovereignCard({
             <h4 className="font-mono text-sm mb-2" style={{ color: "var(--id-accent)" }}>
               {card.storageEconomicsTitle}
             </h4>
-            <p className="text-sm mb-2" style={{ color: "var(--id-text-secondary)" }}>
+            <p className="text-sm mb-2" style={{ color: "var(--id-text-primary)" }}>
               {card.storageEconomicsDesc}
             </p>
             {card.storageEconomicsNote && (
@@ -196,7 +196,7 @@ function SovereignCard({
                 <h4 className="font-mono text-sm mb-2" style={{ color: "var(--id-accent)" }}>
                   {b.title}
                 </h4>
-                <p className="text-sm" style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
+                <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                   {b.description}
                 </p>
               </div>
@@ -205,9 +205,9 @@ function SovereignCard({
         )}
 
         {card.computeBullets && (
-          <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-secondary)" }}>
+          <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-primary)" }}>
             {card.computeBullets.map((b, i) => (
-              <li key={i}>→ {b}</li>
+              <li key={i}>→ {Array.isArray(b) ? <FormattedText segments={b} /> : b}</li>
             ))}
           </ul>
         )}
@@ -243,11 +243,11 @@ export function ServicesPage() {
             <div className="space-y-4">
               {s.babelfish.paragraphs.map((p, i) =>
                 i === 0 ? (
-                  <LeadParagraph key={i} style={{ opacity: 0.9 }}>
+                  <LeadParagraph key={i}>
                     {Array.isArray(p) ? <FormattedText segments={p} /> : p}
                   </LeadParagraph>
                 ) : (
-                  <p key={i} style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
+                  <p key={i} style={{ color: "var(--id-text-primary)" }}>
                     {Array.isArray(p) ? <FormattedText segments={p} /> : p}
                   </p>
                 )
@@ -268,7 +268,7 @@ export function ServicesPage() {
           <SectionHeading level={3} colorVariant="accent" className="mb-4">
             {s.babelfish.protocol.title}
           </SectionHeading>
-          <p className="mb-4" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
+          <p className="mb-4" style={{ color: "var(--id-text-primary)" }}>
             {Array.isArray(s.babelfish.protocol.intro) ? (
               <FormattedText segments={s.babelfish.protocol.intro} />
             ) : (
@@ -280,7 +280,7 @@ export function ServicesPage() {
               <SectionHeading level={4} colorVariant="muted" className="mb-3">
                 {s.babelfish.protocol.whatItDoesLabel}
               </SectionHeading>
-              <ul className="space-y-2 text-sm" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
+              <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                 {s.babelfish.protocol.whatItDoes.map((f, i) => (
                   <li key={i}>→ {f}</li>
                 ))}
@@ -290,14 +290,14 @@ export function ServicesPage() {
               <SectionHeading level={4} colorVariant="muted" className="mb-3">
                 {s.babelfish.protocol.howItWorksLabel}
               </SectionHeading>
-              <ul className="space-y-2 text-sm" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
+              <ul className="space-y-2 text-sm" style={{ color: "var(--id-text-primary)" }}>
                 {s.babelfish.protocol.howItWorks.map((f, i) => (
                   <li key={i}>→ {f}</li>
                 ))}
               </ul>
             </div>
           </div>
-          <p className="text-sm italic mt-6" style={{ opacity: 0.7, color: "var(--id-text-muted)" }}>
+          <p className="text-sm italic mt-6" style={{ color: "var(--id-text-muted)" }}>
             {s.babelfish.protocol.whitepaperLabel}{" "}
             <SiteLink href={s.babelfish.protocol.whitepaperUrl}>
               deep-thought.computer/projects/babelfish
@@ -313,7 +313,7 @@ export function ServicesPage() {
               iconPosition="top"
               title={s.babelfish.architectureCards[i].title}
             >
-              <p className="text-sm" style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
+              <p className="text-sm" style={{ color: "var(--id-text-primary)" }}>
                 {s.babelfish.architectureCards[i].description}
               </p>
             </ContentCard>
@@ -324,7 +324,7 @@ export function ServicesPage() {
       <SectionDivider />
 
       <PageSection title={s.sovereign.title}>
-        <LeadParagraph className="mb-8 max-w-[800px]" style={{ opacity: 0.9 }}>
+        <LeadParagraph className="mb-8 max-w-[800px]">
           {Array.isArray(s.sovereign.intro) ? (
             <FormattedText segments={s.sovereign.intro} />
           ) : (
@@ -349,7 +349,7 @@ export function ServicesPage() {
                   {Array.isArray(p) ? <FormattedText segments={p} /> : p}
                 </LeadParagraph>
               ) : (
-                <p key={i} style={{ color: "var(--id-text-secondary)" }}>
+                <p key={i} style={{ color: "var(--id-text-primary)" }}>
                   {Array.isArray(p) ? <FormattedText segments={p} /> : p}
                 </p>
               )
@@ -400,23 +400,27 @@ export function ServicesPage() {
               {s.blockchainCta.title}
             </SectionHeading>
             <div className="space-y-4">
-              {s.blockchainCta.paragraphs.map((p, i) => (
+              {s.blockchainCta.paragraphs.map((p, i) =>
                 i === 0 ? (
-                  <LeadParagraph key={i}>{p}</LeadParagraph>
+                  <LeadParagraph key={i}>
+                    {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                  </LeadParagraph>
                 ) : (
-                  <p key={i} style={{ color: "var(--id-text-secondary)" }}>{p}</p>
-                )
-              ))}
-              <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-secondary)" }}>
+<p key={i} style={{ color: "var(--id-text-primary)" }}>
+                  {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                </p>
+              )
+              )}
+              <ul className="space-y-2 text-sm ml-4" style={{ listStyleType: "none", color: "var(--id-text-primary)" }}>
                 {s.blockchainCta.bullets.map((b, i) => (
-                  <li key={i}>→ {b}</li>
+                  <li key={i}>→ {Array.isArray(b) ? <FormattedText segments={b} /> : b}</li>
                 ))}
               </ul>
             </div>
           </div>
           <div>
             <ContentCard icon={Database} iconPosition="top" title="INFINITE IMPROBABILITY DRIVE">
-              <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
+              <p className="mb-4" style={{ color: "var(--id-text-primary)" }}>
                 A sovereign blockchain designed for a digital nation — where trust meets Bistromathics.
               </p>
               {onNavigate && (
@@ -438,7 +442,7 @@ export function ServicesPage() {
       <PageSection title={s.getStarted.title}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <ContentCard title={s.getStarted.asUser.title}>
-            <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-secondary)" }}>
+            <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-primary)" }}>
               {s.getStarted.asUser.steps.map((step, i) => (
                 <li key={i}>{i + 1}. {step}</li>
               ))}
@@ -456,7 +460,7 @@ export function ServicesPage() {
           </ContentCard>
 
           <ContentCard title={s.getStarted.asBuilder.title}>
-            <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-secondary)" }}>
+            <ul className="space-y-2 text-sm mb-4" style={{ color: "var(--id-text-primary)" }}>
               {s.getStarted.asBuilder.steps.map((step, i) => (
                 <li key={i}>{i + 1}. {step}</li>
               ))}
@@ -478,7 +482,7 @@ export function ServicesPage() {
           <p style={{ fontSize: "1.1rem", color: "var(--id-text-primary)", marginBottom: "1rem" }}>
             <strong>{s.getStarted.footer.line1}</strong>
           </p>
-          <p style={{ opacity: 0.8, color: "var(--id-text-secondary)" }}>
+          <p style={{ color: "var(--id-text-primary)" }}>
             {s.getStarted.footer.line2}
           </p>
         </CalloutBox>
