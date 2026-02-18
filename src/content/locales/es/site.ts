@@ -9,8 +9,11 @@ export const site: LocaleSite = {
   tagline: "El motor de la libertad digital",
   descriptionShort:
     "Un ecosistema digital completo — una nueva clase de internet construida desde cero.",
-  descriptionLong:
-    "Infinite Drive no es solo almacenamiento. Es una infraestructura viva que impulsa una nación digital soberana.",
+  descriptionLong: [
+    { type: "text", content: "Infinite Drive no es solo almacenamiento. Es una " },
+    { type: "bold", content: "infraestructura viva" },
+    { type: "text", content: " que impulsa una nación digital soberana." },
+  ],
   year: "2025",
   links: {
     telegram: "https://t.me/+nt8ysid_-8VlMDVh",

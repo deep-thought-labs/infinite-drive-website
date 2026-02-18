@@ -19,7 +19,16 @@ export function BlockchainPage() {
 
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
-      <PageHeader title={b.header.title} subtitle={b.header.subtitle} />
+      <PageHeader
+        title={b.header.title}
+        subtitle={
+          Array.isArray(b.header.subtitle) ? (
+            <FormattedText segments={b.header.subtitle} />
+          ) : (
+            b.header.subtitle
+          )
+        }
+      />
 
       <SectionDivider />
 
@@ -30,11 +39,11 @@ export function BlockchainPage() {
         {b.intro.paragraphs.map((p, i) =>
           i === 0 ? (
             <LeadParagraph key={i} className="mb-6">
-              {p}
+              {Array.isArray(p) ? <FormattedText segments={p} /> : p}
             </LeadParagraph>
           ) : (
             <p key={i} style={{ color: "var(--id-text-secondary)" }}>
-              {p}
+              {Array.isArray(p) ? <FormattedText segments={p} /> : p}
             </p>
           )
         )}
@@ -45,7 +54,13 @@ export function BlockchainPage() {
       <PageSection title={b.coreComponents.title} showDividerAbove={false}>
         <div className="space-y-6">
           <ContentCard title={b.coreComponents.token42.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.summary}</p>
+            <p style={{ color: "var(--id-text-secondary)" }}>
+              {Array.isArray(b.coreComponents.token42.summary) ? (
+                <FormattedText segments={b.coreComponents.token42.summary} />
+              ) : (
+                b.coreComponents.token42.summary
+              )}
+            </p>
             <div className="space-y-3 text-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -64,28 +79,54 @@ export function BlockchainPage() {
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.releaseSchedule}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.releaseScheduleValue}</span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>
+                    {Array.isArray(b.coreComponents.token42.releaseScheduleValue) ? (
+                      <FormattedText segments={b.coreComponents.token42.releaseScheduleValue} />
+                    ) : (
+                      b.coreComponents.token42.releaseScheduleValue
+                    )}
+                  </span>
                 </div>
                 <div>
                   <span style={{ color: "var(--id-text-muted)", display: "block", marginBottom: "0.5rem" }}>
                     {b.coreComponents.token42.atLaunch}
                   </span>
-                  <span style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.token42.atLaunchValue}</span>
+                  <span style={{ color: "var(--id-text-secondary)" }}>
+                    {Array.isArray(b.coreComponents.token42.atLaunchValue) ? (
+                      <FormattedText segments={b.coreComponents.token42.atLaunchValue} />
+                    ) : (
+                      b.coreComponents.token42.atLaunchValue
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
             <CalloutBox className="mt-4">
               <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
-                {b.coreComponents.token42.keyUse}
+                {Array.isArray(b.coreComponents.token42.keyUse) ? (
+                  <FormattedText segments={b.coreComponents.token42.keyUse} />
+                ) : (
+                  b.coreComponents.token42.keyUse
+                )}
               </p>
             </CalloutBox>
           </ContentCard>
 
           <ContentCard title={b.coreComponents.fish.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.fish.summary}</p>
+            <p style={{ color: "var(--id-text-secondary)" }}>
+              {Array.isArray(b.coreComponents.fish.summary) ? (
+                <FormattedText segments={b.coreComponents.fish.summary} />
+              ) : (
+                b.coreComponents.fish.summary
+              )}
+            </p>
             <CalloutBox className="mt-4 mb-4">
               <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
-                {b.coreComponents.fish.howToEarn}
+                {Array.isArray(b.coreComponents.fish.howToEarn) ? (
+                  <FormattedText segments={b.coreComponents.fish.howToEarn} />
+                ) : (
+                  b.coreComponents.fish.howToEarn
+                )}
               </p>
             </CalloutBox>
             <BulletList items={b.coreComponents.fish.bullets} />
@@ -95,10 +136,18 @@ export function BlockchainPage() {
           </ContentCard>
 
           <ContentCard title={b.coreComponents.governance.title}>
-            <p style={{ color: "var(--id-text-secondary)" }}>{b.coreComponents.governance.summary}</p>
+            <p style={{ color: "var(--id-text-secondary)" }}>
+              {Array.isArray(b.coreComponents.governance.summary) ? (
+                <FormattedText segments={b.coreComponents.governance.summary} />
+              ) : (
+                b.coreComponents.governance.summary
+              )}
+            </p>
             <div className="space-y-3" style={{ color: "var(--id-text-secondary)" }}>
-              {b.coreComponents.governance.points.map((p, i) => (
-                <p key={i}>→ {p}</p>
+              {b.coreComponents.governance.points.map((pt, i) => (
+                <p key={i}>
+                  → {Array.isArray(pt) ? <FormattedText segments={pt} /> : pt}
+                </p>
               ))}
             </div>
             <CalloutBox className="mt-4">
@@ -117,18 +166,35 @@ export function BlockchainPage() {
 
       <PageSection title={b.masterPools.title}>
         <LeadParagraph className="mb-4">
-          {b.masterPools.paragraphs[0]}
+          {Array.isArray(b.masterPools.paragraphs[0]) ? (
+            <FormattedText segments={b.masterPools.paragraphs[0]} />
+          ) : (
+            b.masterPools.paragraphs[0]
+          )}
         </LeadParagraph>
         <p className="mb-4" style={{ color: "var(--id-text-secondary)" }}>
-          {b.masterPools.paragraphs[1]}
+          {Array.isArray(b.masterPools.paragraphs[1]) ? (
+            <FormattedText segments={b.masterPools.paragraphs[1]} />
+          ) : (
+            b.masterPools.paragraphs[1]
+          )}
         </p>
         <CalloutBox variant="muted" className="mb-6">
           <p className="text-sm" style={{ color: "var(--id-text-secondary)" }}>
-            <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.noteTitle}</strong> {b.masterPools.note}
+            <strong style={{ color: "var(--id-text-primary)" }}>{b.masterPools.noteTitle}</strong>{" "}
+            {Array.isArray(b.masterPools.note) ? (
+              <FormattedText segments={b.masterPools.note} />
+            ) : (
+              b.masterPools.note
+            )}
           </p>
         </CalloutBox>
         <p className="mb-8" style={{ color: "var(--id-text-secondary)" }}>
-          {b.masterPools.paragraphs[2]}
+          {Array.isArray(b.masterPools.paragraphs[2]) ? (
+            <FormattedText segments={b.masterPools.paragraphs[2]} />
+          ) : (
+            b.masterPools.paragraphs[2]
+          )}
         </p>
         <SiteTable
           className="mb-6"
@@ -163,7 +229,7 @@ export function BlockchainPage() {
         </div>
         {b.hyperspace.paragraphs.map((p, i) => (
           <LeadParagraph key={i} className="mb-6">
-            {p}
+            {Array.isArray(p) ? <FormattedText segments={p} /> : p}
           </LeadParagraph>
         ))}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -227,7 +293,11 @@ export function BlockchainPage() {
             {b.technicalArch.sectionTitle}
           </SectionHeading>
           <LeadParagraph className="mb-6">
-            {b.technicalArch.sectionIntro}
+            {Array.isArray(b.technicalArch.sectionIntro) ? (
+              <FormattedText segments={b.technicalArch.sectionIntro} />
+            ) : (
+              b.technicalArch.sectionIntro
+            )}
           </LeadParagraph>
           <SiteTable
             className="mb-6"

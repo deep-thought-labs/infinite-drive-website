@@ -23,22 +23,24 @@ export const project42: LocaleProject42 = {
     tightParagraphIndices: [2, 3, 4, 5],
     paragraphs: [
       "No lanzamos un producto.",
-      "Fundamos una nación.",
       [
-        { type: "bold", content: "Una nación del ciberespacio" },
+        { type: "text", content: "Fundamos una " },
+        { type: "bold", content: "nación" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "Una " },
+        { type: "bold", content: "nación del ciberespacio" },
         { type: "text", content: " — abierta a todos, propiedad de nadie, gobernada por código." },
       ],
+      "Donde tus datos son tuyos.",
+      "Donde tu voz no puede ser silenciada.",
+      "Donde tu mundo lo construyes tú — no alquilado a una corporación.",
       [
-        { type: "bold", content: "Donde tus datos son tuyos." },
+        { type: "text", content: "Esto es " },
+        { type: "bold", content: "Project 42" },
+        { type: "text", content: " — la respuesta a la vida, el universo y la libertad digital." },
       ],
-      [
-        { type: "bold", content: "Donde tu voz no puede ser silenciada." },
-      ],
-      [
-        { type: "bold", content: "Donde tu mundo lo construyes tú" },
-        { type: "text", content: " — no alquilado a una corporación." },
-      ],
-      "Esto es Project 42 — la respuesta a la vida, el universo y la libertad digital.",
     ],
   },
   philosophy: {
@@ -52,26 +54,32 @@ export const project42: LocaleProject42 = {
       { voice: "Eric Hughes", truth: "Los cypherpunks escriben código." },
       { voice: "John Perry Barlow", truth: "No tenemos gobierno elegido — y no queremos uno." },
       { voice: "Satoshi Nakamoto", truth: "Confía en las matemáticas, no en los hombres." },
-      { voice: "Douglas Adams", truth: "No entres en pánico." },
+      { voice: "Douglas Adams", truth: [{ type: "italic", content: "No entres en pánico." }] },
     ],
   },
   ecosystem: {
     title: "El ecosistema",
-    intro:
-      "Project 42 no es un solo producto — es una nación digital completa con cuatro pilares interconectados:",
-    closing:
-      "Estos cuatro pilares funcionan juntos como un sistema unificado — cada uno fortalece a los demás, creando una red que se vuelve más poderosa con cada usuario, cada nodo, cada contribución.",
+    intro: [
+      { type: "text", content: "Project 42 no es un solo producto — es una " },
+      { type: "bold", content: "nación digital completa" },
+      { type: "text", content: " con cuatro pilares interconectados:" },
+    ],
+    closing: [
+      { type: "text", content: "Estos cuatro pilares funcionan juntos como " },
+      { type: "bold", content: "un sistema unificado" },
+      { type: "text", content: " — cada uno fortalece a los demás, creando una red que se vuelve más poderosa con cada usuario, cada nodo, cada contribución." },
+    ],
     pillars: [
       {
         number: "01",
         title: "THE INFINITE IMPROBABILITY DRIVE",
         description: "La base blockchain — una capa soberana completa para confianza, gobernanza y coordinación económica.",
         bullets: [
-          "Consenso Proof of Contribution — recompensa a quienes construyen y mantienen",
-          "Gobernanza DAO desde el bloque uno — decisiones on-chain por la comunidad",
-          "Improbability [42] — token de gobernanza para staking, votación y utilidad de red",
-          "Liquidez algorítmica — Fish recompensa y equilibra los flujos de valor del ecosistema",
-          "Modelo económico de 42 años — pensado para generaciones, no trimestres",
+          [{ type: "bold", content: "Proof of Contribution" }, { type: "text", content: " — recompensa a quienes construyen y mantienen" }],
+          [{ type: "bold", content: "Gobernanza DAO" }, { type: "text", content: " desde el bloque uno — decisiones on-chain por la comunidad" }],
+          [{ type: "bold", content: "Improbability [42]" }, { type: "text", content: " — token de gobernanza para staking, votación y utilidad de red" }],
+          [{ type: "bold", content: "Liquidez algorítmica" }, { type: "text", content: " — Fish recompensa y equilibra los flujos de valor del ecosistema" }],
+          [{ type: "bold", content: "Modelo económico de 42 años" }, { type: "text", content: " — pensado para generaciones, no trimestres" }],
         ],
       },
       {
@@ -105,15 +113,38 @@ export const project42: LocaleProject42 = {
       "La historia hasta ahora: Al principio se creó el Universo. Esto ha enfadado a mucha gente y ha sido considerado ampliamente como una mala jugada.",
     quoteAuthor: "Douglas Adams, El Restaurante del Fin del Mundo",
     paragraphs: [
-      "Una vez, la humanidad construyó la Biblioteca de Alejandría — un templo del conocimiento que guardaba la sabiduría del mundo.",
+      [
+        { type: "text", content: "Una vez, la humanidad construyó la " },
+        { type: "bold", content: "Biblioteca de Alejandría" },
+        { type: "text", content: " — un templo del conocimiento que guardaba la sabiduría del mundo." },
+      ],
       "Ardió. El conocimiento se perdió. Los imperios cayeron.",
-      "Project 42 es la Biblioteca de Alejandría reconstruida en código — pero esta vez no puede arder.",
+      [
+        { type: "bold", content: "Project 42 es la Biblioteca de Alejandría reconstruida en código" },
+        { type: "text", content: " — pero esta vez no puede arder." },
+      ],
     ],
     notInventingTitle: "NO ESTAMOS INVENTANDO LA RUEDA",
     notInventingParagraphs: [
-      "Nos apoyamos en hombros de gigantes — construyendo un ecosistema abierto e interconectado donde protocolos, servicios y comunidades colaboran hacia un bien común.",
-      "No comercializamos el trabajo ajeno. Integramos, honramos y extendemos tecnologías open-source probadas en una red unificada y resiliente.",
-      "Cada línea de código es open source. Cada protocolo es público. Cada innovación pertenece a la humanidad.",
+      [
+        { type: "text", content: "Nos apoyamos en hombros de gigantes — construyendo un " },
+        { type: "bold", content: "ecosistema abierto e interconectado" },
+        { type: "text", content: " donde protocolos, servicios y comunidades colaboran hacia un bien común." },
+      ],
+      [
+        { type: "text", content: "No comercializamos el trabajo ajeno. " },
+        { type: "bold", content: "Integramos, honramos y extendemos" },
+        { type: "text", content: " tecnologías open-source probadas en una red unificada y resiliente." },
+      ],
+      [
+        { type: "text", content: "Cada línea de código es " },
+        { type: "bold", content: "open source" },
+        { type: "text", content: ". Cada protocolo es " },
+        { type: "bold", content: "público" },
+        { type: "text", content: ". Cada innovación pertenece a la " },
+        { type: "bold", content: "humanidad" },
+        { type: "text", content: "." },
+      ],
     ],
     protocolsTitle: "CONSTRUIDO SOBRE PROTOCOLOS ABIERTOS Y TECNOLOGÍAS ALINEADAS",
     protocolsIntro:
@@ -130,15 +161,28 @@ export const project42: LocaleProject42 = {
       { name: "xAI", description: "Modelos de IA alineados con el florecimiento humano" },
     ],
     survivalParagraphs: [
-      "Construimos una red descentralizada, colaborativa e indestructible — no por lucro, sino por supervivencia.",
-      "Los modelos económicos que diseñamos no son para enriquecimiento personal. Son mecanismos necesarios para la operabilidad de la red, la seguridad de la cadena y la distribución justa de incentivos a todos los participantes. Como la propia Guía del Autoestopista — \"Un libro totalmente extraordinario. Quizá el más extraordinario, ciertamente el libro de más éxito que haya salido de las grandes corporaciones editoriales de Ursa Minor.\"",
+      [
+        { type: "bold", content: "Construimos una red descentralizada, colaborativa e indestructible" },
+        { type: "text", content: " — no por lucro, sino por " },
+        { type: "bold", content: "supervivencia" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "Los modelos económicos que diseñamos no son para enriquecimiento personal. Son " },
+        { type: "bold", content: "mecanismos necesarios" },
+        { type: "text", content: " para la operabilidad de la red, la seguridad de la cadena y la distribución justa de incentivos a todos los participantes. Como la propia Guía del Autoestopista — \"Un libro totalmente extraordinario. Quizá el más extraordinario, ciertamente el libro de más éxito que haya salido de las grandes corporaciones editoriales de Ursa Minor.\"" },
+      ],
     ],
   },
   thursdayNote: {
     quote: "Debe de ser jueves. Nunca pude pillarle el truco a los jueves.",
     quoteAuthor: "Arthur Dent, La Guía del Autoestopista Galáctico",
     paragraphs: [
-      "Los jueves siempre han sido días extraños en la galaxia. Pero quizá sea porque son días en que lo imposible se vuelve probable. Cuando se construyen desvíos del hiperespacio. Cuando se fundan naciones digitales. Cuando 42 por fin tiene sentido.",
+      [
+        { type: "text", content: "Los jueves siempre han sido días extraños en la galaxia. Pero quizá sea porque son días en que lo imposible se vuelve probable. Cuando se construyen desvíos del hiperespacio. Cuando se fundan naciones digitales. Cuando " },
+        { type: "bold", content: "42" },
+        { type: "text", content: " por fin tiene sentido." },
+      ],
       "Si estás leyendo esto un jueves, puede que estés en el lugar y el momento adecuados.",
     ],
   },

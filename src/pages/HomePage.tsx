@@ -73,7 +73,11 @@ export function HomePage() {
           )}
           <QuoteBlock quote={home.quote.text} author={home.quote.author} variant="fullBorder" />
           <p style={{ fontSize: "1.1rem", opacity: 0.85, lineHeight: "1.8", color: "var(--id-text-secondary)" }}>
-            {site.descriptionLong}
+            {Array.isArray(site.descriptionLong) ? (
+              <FormattedText segments={site.descriptionLong} as="span" />
+            ) : (
+              site.descriptionLong
+            )}
           </p>
         </div>
 

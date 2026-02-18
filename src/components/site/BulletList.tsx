@@ -6,7 +6,7 @@ export function BulletList({
   children,
   className = "",
 }: {
-  items?: string[];
+  items?: (string | React.ReactNode)[];
   children?: React.ReactNode;
   className?: string;
 }) {

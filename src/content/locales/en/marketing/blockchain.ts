@@ -7,14 +7,21 @@ import type { LocaleBlockchain } from "../../types";
 export const blockchain: LocaleBlockchain = {
   header: {
     title: "Infinite Improbability Drive",
-    subtitle:
-      "The blockchain foundation that powers Project 42 — where trust meets Bistromathics.",
+    subtitle: [
+      { type: "text", content: "The blockchain foundation that powers Project 42 — where " },
+      { type: "bold", content: "trust meets Bistromathics" },
+      { type: "text", content: "." },
+    ],
   },
   intro: {
     quote: "Trust math, not men.",
     quoteAuthor: "Satoshi Nakamoto",
     paragraphs: [
-      "The Infinite Improbability Drive is the security and economic heart of Project 42 — a sovereign protocol that powers governance and secures the entire ecosystem.",
+      [
+        { type: "text", content: "The " },
+        { type: "bold", content: "Infinite Improbability Drive" },
+        { type: "text", content: " is the security and economic heart of Project 42 — a sovereign protocol that powers governance and secures the entire ecosystem." },
+      ],
       "Named after Douglas Adams' revolutionary engine from The Hitchhiker's Guide to the Galaxy, our blockchain makes the improbable possible — a truly sovereign digital nation.",
     ],
   },
@@ -22,25 +29,42 @@ export const blockchain: LocaleBlockchain = {
     title: "Core Components",
     token42: {
       title: "IMPROBABILITY [42] — GOVERNANCE & UTILITY TOKEN",
-      summary:
-        "The governance and utility token that keeps the blockchain alive — used for staking, voting, and securing the network.",
+      summary: [
+        { type: "text", content: "The " },
+        { type: "bold", content: "governance and utility token" },
+        { type: "text", content: " that keeps the blockchain alive — used for staking, voting, and securing the network." },
+      ],
       purpose: "Purpose",
       purposeValue: "Governance, staking, network security, and protocol fees",
       totalSupply: "Total Supply",
       totalSupplyValue: "100 million cups of Improbability [42]",
       releaseSchedule: "Release Schedule",
-      releaseScheduleValue: "Locked at genesis, released gradually over 42 years",
+      releaseScheduleValue: [
+        { type: "text", content: "Locked at genesis, released gradually over " },
+        { type: "bold", content: "42 years" },
+      ],
       atLaunch: "At Launch",
-      atLaunchValue: "Only 100 cups in circulation — earned by first guardians",
-      keyUse:
-        "Stake Improbability [42] to participate in consensus, vote on proposals, and earn protocol rewards.",
+      atLaunchValue: [
+        { type: "text", content: "Only " },
+        { type: "bold", content: "100 cups" },
+        { type: "text", content: " in circulation — earned by first guardians" },
+      ],
+      keyUse: [
+        { type: "bold", content: "Key Use: " },
+        { type: "text", content: "Stake Improbability [42] to participate in consensus, vote on proposals, and earn protocol rewards." },
+      ],
     },
     fish: {
       title: "FISH — NETWORK CONTRIBUTION & LIQUIDITY TOKEN",
-      summary:
-        "The reward token earned by contributing to the network — a living current of value born from network activity.",
-      howToEarn:
-        "How to Earn Fish: Share storage, provide compute power, host services, run BabelFish nodes, or contribute bandwidth to the P2P network.",
+      summary: [
+        { type: "text", content: "The " },
+        { type: "bold", content: "reward token" },
+        { type: "text", content: " earned by contributing to the network — a living current of value born from network activity." },
+      ],
+      howToEarn: [
+        { type: "bold", content: "How to Earn Fish: " },
+        { type: "text", content: "Share storage, provide compute power, host services, run BabelFish nodes, or contribute bandwidth to the P2P network." },
+      ],
       bullets: [
         "Earned through network contributions (storage, compute, bandwidth)",
         "Provides liquidity between [42], Bitcoin, and stablecoins",
@@ -52,13 +76,25 @@ export const blockchain: LocaleBlockchain = {
     },
     governance: {
       title: "GOVERNANCE — POWER TO THE PEOPLE",
-      summary:
-        "Project 42 is a DAO from day one — ruled by code, governed by contributors.",
+      summary: [
+        { type: "text", content: "Project 42 is a " },
+        { type: "bold", content: "DAO from day one" },
+        { type: "text", content: " — ruled by code, governed by contributors." },
+      ],
       points: [
-        "No founders. No investors. No bosses.",
-        "Deep Thought Labs → a research sanctuary, funded by the DAO, serving the mission",
-        "42-year horizon → we are building for generations, not quarters",
-        "Decisions made on-chain → transparent, immutable, and fair",
+        [{ type: "bold", content: "No founders. No investors. No bosses." }],
+        [
+          { type: "bold", content: "Deep Thought Labs" },
+          { type: "text", content: " → a research sanctuary, funded by the DAO, serving the mission" },
+        ],
+        [
+          { type: "bold", content: "42-year horizon" },
+          { type: "text", content: " → we are building for generations, not quarters" },
+        ],
+        [
+          { type: "bold", content: "Decisions made on-chain" },
+          { type: "text", content: " → transparent, immutable, and fair" },
+        ],
       ],
       quote: "We have no elected government — and we don't want one.",
       quoteAuthor: "John Perry Barlow",
@@ -67,12 +103,40 @@ export const blockchain: LocaleBlockchain = {
   masterPools: {
     title: "Master Pools: Token Distribution",
     paragraphs: [
-      "The 100 million cups of Improbability [42] are locked at genesis and released gradually over 42 years, controlled by the DAO from block 1.",
-      "At launch, practically 0% liquid tokens circulate in the market. New tokens are generated exclusively through chain inflation, awarded directly by the protocol to validators as rewards for securing the network.",
-      "Validators are the first to receive tokens and introduce them to the market. Additionally, these pools are continuously refinanced through transaction fee collection, ensuring perpetual sustainability.",
+      [
+        { type: "text", content: "The 100 million " },
+        { type: "bold", content: "cups of Improbability [42]" },
+        { type: "text", content: " are " },
+        { type: "bold", content: "locked at genesis" },
+        { type: "text", content: " and released gradually over " },
+        { type: "bold", content: "42 years" },
+        { type: "text", content: ", controlled by the DAO from block 1." },
+      ],
+      [
+        { type: "text", content: "At launch, " },
+        { type: "bold", content: "practically 0% liquid tokens" },
+        { type: "text", content: " circulate in the market. New tokens are generated exclusively through " },
+        { type: "bold", content: "chain inflation" },
+        { type: "text", content: ", awarded directly by the protocol to " },
+        { type: "bold", content: "validators" },
+        { type: "text", content: " as rewards for securing the network." },
+      ],
+      [
+        { type: "text", content: "Validators are the first to " },
+        { type: "bold", content: "receive tokens" },
+        { type: "text", content: " and introduce them to the market. Additionally, these pools are continuously refinanced through " },
+        { type: "bold", content: "transaction fee collection" },
+        { type: "text", content: ", ensuring perpetual sustainability." },
+      ],
     ],
     noteTitle: "Note on liquidity:",
-    note: "While nearly all tokens remain locked, the Fish Bootstrap pool is strategically deployed to populate liquidity pools across markets. This distribution is algorithmically managed through the Fish protocol — an intelligent mechanism that balances market liquidity with long-term sustainability. Details on Fish's algorithmic behavior and tokenomics are covered in its dedicated protocol documentation.",
+    note: [
+      { type: "text", content: "While nearly all tokens remain locked, the " },
+      { type: "accent", content: "Fish Bootstrap pool" },
+      { type: "text", content: " is strategically deployed to populate liquidity pools across markets. This distribution is algorithmically managed through the " },
+      { type: "accent", content: "Fish protocol" },
+      { type: "text", content: " — an intelligent mechanism that balances market liquidity with long-term sustainability. Details on Fish's algorithmic behavior and tokenomics are covered in its dedicated protocol documentation." },
+    ],
     tableColumns: { pool: "Pool", percent: "%", purpose: "Purpose", annualUnlock: "Annual Unlock" },
     rows: [
       { pool: "A. Strategic Delegation", percent: "40%", purpose: "Never spent — only delegated", annualUnlock: "1.33M" },
@@ -92,8 +156,18 @@ export const blockchain: LocaleBlockchain = {
       "The plans for the demolition of Earth were on display at the local planning department in Alpha Centauri for fifty of your Earth years... If you can't be bothered to take an interest in local affairs, that's your own lookout.",
     quoteAuthor: "Douglas Adams, The Hitchhiker's Guide to the Galaxy",
     paragraphs: [
-      "Just as the Vogons built hyperspace bypasses across the galaxy, Project 42 maintains direct highways between blockchain ecosystems — frictionless pathways for tokens, data, and value.",
-      "No wormholes. No delays. No bureaucratic paperwork filed in triplicate. Just instant, trustless transfers across the cryptoverse.",
+      [
+        { type: "text", content: "Just as the Vogons built " },
+        { type: "bold", content: "hyperspace bypasses" },
+        { type: "text", content: " across the galaxy, Project 42 maintains " },
+        { type: "bold", content: "direct highways" },
+        { type: "text", content: " between blockchain ecosystems — frictionless pathways for tokens, data, and value." },
+      ],
+      [
+        { type: "text", content: "No wormholes. No delays. No bureaucratic paperwork filed in triplicate. Just " },
+        { type: "bold", content: "instant, trustless transfers" },
+        { type: "text", content: " across the cryptoverse." },
+      ],
     ],
     nativeTitle: "NATIVE INTEROPERABILITY",
     nativeSubtitle: "IBC Protocol (Inter-Blockchain Communication)",
@@ -137,8 +211,11 @@ export const blockchain: LocaleBlockchain = {
   technicalArch: {
     title: "Technical Architecture",
     sectionTitle: "Full-Stack Sovereign Internet Layer",
-    sectionIntro:
-      "Infinite Improbability Drive is not just a blockchain — it's a complete internet stack built for sovereignty.",
+    sectionIntro: [
+      { type: "text", content: "Infinite Improbability Drive is not just a blockchain — it's a " },
+      { type: "bold", content: "complete internet stack" },
+      { type: "text", content: " built for sovereignty." },
+    ],
     tableColumns: { layer: "Layer", function: "Function" },
     tableRows: [
       { layer: "Consensus", function: "CometBFT — no single point of failure" },

@@ -9,7 +9,8 @@ export interface LocaleSite {
   brand: string;
   tagline: string;
   descriptionShort: string;
-  descriptionLong: string;
+  /** Párrafo bajo la cita. Use segments para bold (ej. "living infrastructure"). */
+  descriptionLong: string | FormattedSegment[];
   year: string;
   links: {
     telegram: string;
@@ -26,12 +27,13 @@ export interface LocaleRoutes {
   navRoutes: { path: string; label: string; inNav?: boolean }[];
 }
 
-/** Inline formatting for copy (bold, accent) to match production. */
+/** Inline formatting for copy (bold, accent, italic) to match production. */
 export type FormattedSegment =
   | { type: "text"; content: string }
   | { type: "bold"; content: string }
   | { type: "accent"; content: string }
-  | { type: "boldAccent"; content: string };
+  | { type: "boldAccent"; content: string }
+  | { type: "italic"; content: string };
 
 export interface LocaleHome {
   hero: { title: string; subtitle: string; imageKey: string };
@@ -57,18 +59,18 @@ export interface LocalePrivacy {
   footerNote: string;
 }
 
-/** Fila de tabla voz/verdad (Project42 filosofía) */
+/** Fila de tabla voz/verdad (Project42 filosofía). truth puede ser segmentos para cursiva (ej. Don't Panic.). */
 export interface VoiceTruthRow {
   voice: string;
-  truth: string;
+  truth: string | FormattedSegment[];
 }
 
-/** Pilar del ecosistema (Project42) */
+/** Pilar del ecosistema (Project42). bullets puede ser segmentos para negrita (ej. "Proof of Contribution"). */
 export interface EcosystemPillar {
   number: string;
   title: string;
   description: string;
-  bullets: string[];
+  bullets: (string | FormattedSegment[])[];
 }
 
 /** Protocolo/tecnología (Project42 library) */
@@ -88,20 +90,30 @@ export interface LocaleProject42 {
     imageKey: string;
   };
   philosophy: { title: string; intro: string; tableHeaderVoice: string; tableHeaderTruth: string; tableRows: VoiceTruthRow[]; imageKey: string };
-  ecosystem: { title: string; intro: string; pillars: EcosystemPillar[]; closing: string };
+  ecosystem: {
+    title: string;
+    /** Use segments for bold (e.g. "complete digital nation"). */
+    intro: string | FormattedSegment[];
+    pillars: EcosystemPillar[];
+    /** Use segments for bold (e.g. "one unified system"). */
+    closing: string | FormattedSegment[];
+  };
   library: {
     title: string;
     quote: string;
     quoteAuthor: string;
-    paragraphs: string[];
+    /** Use segments for bold (e.g. "Library of Alexandria"). */
+    paragraphs: (string | FormattedSegment[])[];
     notInventingTitle: string;
-    notInventingParagraphs: string[];
+    /** Use segments for bold (open, interconnected ecosystem; integrate honor extend; open source; public; humanity). */
+    notInventingParagraphs: (string | FormattedSegment[])[];
     protocolsTitle: string;
     protocolsIntro: string;
     protocols: ProtocolItem[];
-    survivalParagraphs: string[];
+    /** Use segments for bold (We're building...; survival; necessary mechanisms). */
+    survivalParagraphs: (string | FormattedSegment[])[];
   };
-  thursdayNote: { quote: string; quoteAuthor: string; paragraphs: string[] };
+  thursdayNote: { quote: string; quoteAuthor: string; /** Use segments for bold (e.g. "42"). */ paragraphs: (string | FormattedSegment[])[] };
   taglines: string[];
 }
 
@@ -140,14 +152,16 @@ export interface StackLayer {
 }
 
 export interface LocaleServices {
-  header: { title: string; subtitle: string };
+  header: { title: string; /** Use segments for bold (e.g. "decentralized, user-owned, and unstoppable"). */ subtitle: string | FormattedSegment[] };
   babelfish: {
     title: string;
-    paragraphs: string[];
+    /** Use segments for bold (global P2P backbone, living infrastructure). */
+    paragraphs: (string | FormattedSegment[])[];
     imageKey: string;
     protocol: {
       title: string;
-      intro: string;
+      /** Use segments for bold + accent (direct device-to-blockchain; 100% open source). */
+      intro: string | FormattedSegment[];
       whatItDoesLabel: string;
       whatItDoes: string[];
       howItWorksLabel: string;
@@ -159,12 +173,14 @@ export interface LocaleServices {
   };
   sovereign: {
     title: string;
-    intro: string;
+    /** Use segments for bold (e.g. "enterprise-grade infrastructure"). */
+    intro: string | FormattedSegment[];
     services: SovereignServiceCard[];
   };
   howItConnects: {
     title: string;
-    paragraphs: string[];
+    /** Use segments for bold (BabelFish Network, Infinite Improbability Drive, etc.). */
+    paragraphs: (string | FormattedSegment[])[];
     imageKey: string;
     stackTitle: string;
     layers: StackLayer[];
@@ -210,47 +226,59 @@ export interface TechSpec {
 }
 
 export interface LocaleBlockchain {
-  header: { title: string; subtitle: string };
+  header: { title: string; /** Use segments for bold (e.g. "trust meets Bistromathics"). */ subtitle: string | FormattedSegment[] };
   intro: {
     quote: string;
     quoteAuthor: string;
-    paragraphs: string[];
+    /** First paragraph may use segments for bold (e.g. "Infinite Improbability Drive"). */
+    paragraphs: (string | FormattedSegment[])[];
   };
   coreComponents: {
     title: string;
     token42: {
       title: string;
-      summary: string;
+      /** Use segments for bold (e.g. "governance and utility token"). */
+      summary: string | FormattedSegment[];
       purpose: string;
       purposeValue: string;
       totalSupply: string;
       totalSupplyValue: string;
       releaseSchedule: string;
-      releaseScheduleValue: string;
+      /** Use segments for bold (e.g. "42 years"). */
+      releaseScheduleValue: string | FormattedSegment[];
       atLaunch: string;
-      atLaunchValue: string;
-      keyUse: string;
+      /** Use segments for bold (e.g. "100 cups"). */
+      atLaunchValue: string | FormattedSegment[];
+      /** Use segments so only "Key Use:" is bold. */
+      keyUse: string | FormattedSegment[];
     };
     fish: {
       title: string;
-      summary: string;
-      howToEarn: string;
+      /** Use segments for bold (e.g. "reward token"). */
+      summary: string | FormattedSegment[];
+      /** Use segments so only "How to Earn Fish:" is bold. */
+      howToEarn: string | FormattedSegment[];
       bullets: string[];
       seeHow: string;
     };
     governance: {
       title: string;
-      summary: string;
-      points: string[];
+      /** Use segments for bold (e.g. "DAO from day one"). */
+      summary: string | FormattedSegment[];
+      /** Use segments for bold on key phrases in each point. */
+      points: (string | FormattedSegment[])[];
       quote: string;
       quoteAuthor: string;
     };
   };
   masterPools: {
     title: string;
-    paragraphs: string[];
+    /** Use segments for bold (cups of Improbability [42], locked at genesis, 42 years, etc.). */
+    paragraphs: (string | FormattedSegment[])[];
+    /** Bold label (e.g. "Note on liquidity:") — kept for backwards compat; use note segments for full control. */
     noteTitle: string;
-    note: string;
+    /** Use segments for accent on "Fish Bootstrap pool" / "Fish protocol" etc. */
+    note: string | FormattedSegment[];
     tableColumns: { pool: string; percent: string; purpose: string; annualUnlock: string };
     rows: MasterPoolRow[];
     closingTitle: string;
@@ -260,7 +288,8 @@ export interface LocaleBlockchain {
     title: string;
     quote: string;
     quoteAuthor: string;
-    paragraphs: string[];
+    /** Use segments for bold (hyperspace bypasses, direct highways, instant trustless transfers). */
+    paragraphs: (string | FormattedSegment[])[];
     nativeTitle: string;
     nativeSubtitle: string;
     nativeItems: string[];
@@ -279,7 +308,8 @@ export interface LocaleBlockchain {
   technicalArch: {
     title: string;
     sectionTitle: string;
-    sectionIntro: string;
+    /** Use segments for bold (e.g. "complete internet stack"). */
+    sectionIntro: string | FormattedSegment[];
     tableColumns: { layer: string; function: string };
     tableRows: TechArchRow[];
     noteTitle: string;

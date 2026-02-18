@@ -7,14 +7,21 @@ import type { LocaleBlockchain } from "../../types";
 export const blockchain: LocaleBlockchain = {
   header: {
     title: "Infinite Improbability Drive",
-    subtitle:
-      "La base blockchain que impulsa Project 42 — donde la confianza se encuentra con la Bistromática.",
+    subtitle: [
+      { type: "text", content: "La base blockchain que impulsa Project 42 — donde " },
+      { type: "bold", content: "la confianza se encuentra con la Bistromática" },
+      { type: "text", content: "." },
+    ],
   },
   intro: {
     quote: "Confía en las matemáticas, no en los hombres.",
     quoteAuthor: "Satoshi Nakamoto",
     paragraphs: [
-      "Infinite Improbability Drive es el corazón de seguridad y economía de Project 42 — un protocolo soberano que impulsa la gobernanza y asegura todo el ecosistema.",
+      [
+        { type: "text", content: "El " },
+        { type: "bold", content: "Infinite Improbability Drive" },
+        { type: "text", content: " es el corazón de seguridad y economía de Project 42 — un protocolo soberano que impulsa la gobernanza y asegura todo el ecosistema." },
+      ],
       "Llamada así por el motor revolucionario de Douglas Adams en La Guía del Autoestopista Galáctico, nuestra blockchain hace lo improbable posible — una nación digital verdaderamente soberana.",
     ],
   },
@@ -22,25 +29,42 @@ export const blockchain: LocaleBlockchain = {
     title: "Componentes principales",
     token42: {
       title: "IMPROBABILITY [42] — TOKEN DE GOBERNANZA Y UTILIDAD",
-      summary:
-        "El token de gobernanza y utilidad que mantiene viva la blockchain — usado para staking, votación y asegurar la red.",
+      summary: [
+        { type: "text", content: "El " },
+        { type: "bold", content: "token de gobernanza y utilidad" },
+        { type: "text", content: " que mantiene viva la blockchain — usado para staking, votación y asegurar la red." },
+      ],
       purpose: "Propósito",
       purposeValue: "Gobernanza, staking, seguridad de red y tasas del protocolo",
       totalSupply: "Suministro total",
       totalSupplyValue: "100 millones de tazas de Improbability [42]",
       releaseSchedule: "Calendario de liberación",
-      releaseScheduleValue: "Bloqueado en genesis, liberado gradualmente durante 42 años",
+      releaseScheduleValue: [
+        { type: "text", content: "Bloqueado en genesis, liberado gradualmente durante " },
+        { type: "bold", content: "42 años" },
+      ],
       atLaunch: "Al lanzamiento",
-      atLaunchValue: "Solo 100 tazas en circulación — ganadas por los primeros guardianes",
-      keyUse:
-        "Haz staking de Improbability [42] para participar en el consenso, votar propuestas y ganar recompensas del protocolo.",
+      atLaunchValue: [
+        { type: "text", content: "Solo " },
+        { type: "bold", content: "100 tazas" },
+        { type: "text", content: " en circulación — ganadas por los primeros guardianes" },
+      ],
+      keyUse: [
+        { type: "bold", content: "Uso clave: " },
+        { type: "text", content: "Haz staking de Improbability [42] para participar en el consenso, votar propuestas y ganar recompensas del protocolo." },
+      ],
     },
     fish: {
       title: "FISH — TOKEN DE CONTRIBUCIÓN A LA RED Y LIQUIDEZ",
-      summary:
-        "El token de recompensa ganado al contribuir a la red — una corriente viva de valor nacida de la actividad de la red.",
-      howToEarn:
-        "Cómo ganar Fish: Comparte almacenamiento, aporta potencia de cómputo, aloja servicios, ejecuta nodos BabelFish o contribuye ancho de banda a la red P2P.",
+      summary: [
+        { type: "text", content: "El " },
+        { type: "bold", content: "token de recompensa" },
+        { type: "text", content: " ganado al contribuir a la red — una corriente viva de valor nacida de la actividad de la red." },
+      ],
+      howToEarn: [
+        { type: "bold", content: "Cómo ganar Fish: " },
+        { type: "text", content: "Comparte almacenamiento, aporta potencia de cómputo, aloja servicios, ejecuta nodos BabelFish o contribuye ancho de banda a la red P2P." },
+      ],
       bullets: [
         "Se gana mediante contribuciones a la red (almacenamiento, cómputo, ancho de banda)",
         "Proporciona liquidez entre [42], Bitcoin y stablecoins",
@@ -52,13 +76,25 @@ export const blockchain: LocaleBlockchain = {
     },
     governance: {
       title: "GOBERNANZA — EL PODER PARA LA GENTE",
-      summary:
-        "Project 42 es un DAO desde el primer día — gobernado por código, administrado por contribuidores.",
+      summary: [
+        { type: "text", content: "Project 42 es un " },
+        { type: "bold", content: "DAO desde el primer día" },
+        { type: "text", content: " — gobernado por código, administrado por contribuidores." },
+      ],
       points: [
-        "Sin fundadores. Sin inversores. Sin jefes.",
-        "Deep Thought Labs → un santuario de investigación, financiado por el DAO, al servicio de la misión",
-        "Horizonte de 42 años → construimos para generaciones, no para trimestres",
-        "Decisiones on-chain → transparentes, inmutables y justas",
+        [{ type: "bold", content: "Sin fundadores. Sin inversores. Sin jefes." }],
+        [
+          { type: "bold", content: "Deep Thought Labs" },
+          { type: "text", content: " → un santuario de investigación, financiado por el DAO, al servicio de la misión" },
+        ],
+        [
+          { type: "bold", content: "Horizonte de 42 años" },
+          { type: "text", content: " → construimos para generaciones, no para trimestres" },
+        ],
+        [
+          { type: "bold", content: "Decisiones on-chain" },
+          { type: "text", content: " → transparentes, inmutables y justas" },
+        ],
       ],
       quote: "No tenemos gobierno elegido — y no queremos uno.",
       quoteAuthor: "John Perry Barlow",
@@ -67,12 +103,40 @@ export const blockchain: LocaleBlockchain = {
   masterPools: {
     title: "Master Pools: distribución de tokens",
     paragraphs: [
-      "Los 100 millones de tazas de Improbability [42] están bloqueados en genesis y se liberan gradualmente durante 42 años, controlados por el DAO desde el bloque 1.",
-      "Al lanzamiento, prácticamente 0% de tokens líquidos circulan en el mercado. Los nuevos tokens se generan exclusivamente mediante la inflación de la cadena, otorgados directamente por el protocolo a los validadores como recompensa por asegurar la red.",
-      "Los validadores son los primeros en recibir tokens e introducirlos en el mercado. Además, estos pools se refinancian continuamente con la recaudación de tasas de transacción, garantizando una sostenibilidad perpetua.",
+      [
+        { type: "text", content: "Los 100 millones de " },
+        { type: "bold", content: "tazas de Improbability [42]" },
+        { type: "text", content: " están " },
+        { type: "bold", content: "bloqueados en genesis" },
+        { type: "text", content: " y se liberan gradualmente durante " },
+        { type: "bold", content: "42 años" },
+        { type: "text", content: ", controlados por el DAO desde el bloque 1." },
+      ],
+      [
+        { type: "text", content: "Al lanzamiento, " },
+        { type: "bold", content: "prácticamente 0% de tokens líquidos" },
+        { type: "text", content: " circulan en el mercado. Los nuevos tokens se generan exclusivamente mediante la " },
+        { type: "bold", content: "inflación de la cadena" },
+        { type: "text", content: ", otorgados directamente por el protocolo a los " },
+        { type: "bold", content: "validadores" },
+        { type: "text", content: " como recompensa por asegurar la red." },
+      ],
+      [
+        { type: "text", content: "Los validadores son los primeros en " },
+        { type: "bold", content: "recibir tokens" },
+        { type: "text", content: " e introducirlos en el mercado. Además, estos pools se refinancian continuamente con la " },
+        { type: "bold", content: "recaudación de tasas de transacción" },
+        { type: "text", content: ", garantizando una sostenibilidad perpetua." },
+      ],
     ],
     noteTitle: "Nota sobre liquidez:",
-    note: "Aunque casi todos los tokens permanecen bloqueados, el pool Fish Bootstrap se despliega estratégicamente para poblar los pools de liquidez en los mercados. Esta distribución se gestiona algorítmicamente mediante el protocolo Fish — un mecanismo inteligente que equilibra la liquidez del mercado con la sostenibilidad a largo plazo. Los detalles sobre el comportamiento algorítmico y la tokenómica de Fish se recogen en su documentación de protocolo.",
+    note: [
+      { type: "text", content: "Aunque casi todos los tokens permanecen bloqueados, el " },
+      { type: "accent", content: "pool Fish Bootstrap" },
+      { type: "text", content: " se despliega estratégicamente para poblar los pools de liquidez en los mercados. Esta distribución se gestiona algorítmicamente mediante el " },
+      { type: "accent", content: "protocolo Fish" },
+      { type: "text", content: " — un mecanismo inteligente que equilibra la liquidez del mercado con la sostenibilidad a largo plazo. Los detalles sobre el comportamiento algorítmico y la tokenómica de Fish se recogen en su documentación de protocolo." },
+    ],
     tableColumns: { pool: "Pool", percent: "%", purpose: "Propósito", annualUnlock: "Desbloqueo anual" },
     rows: [
       { pool: "A. Delegación estratégica", percent: "40%", purpose: "Nunca gastado — solo delegado", annualUnlock: "1,33M" },
@@ -92,8 +156,18 @@ export const blockchain: LocaleBlockchain = {
       "Los planes para la demolición de la Tierra estuvieron expuestos en el departamento de urbanismo local de Alfa Centauri durante cincuenta de vuestros años terrestres... Si no te molestas en interesarte por los asuntos locales, es tu problema.",
     quoteAuthor: "Douglas Adams, La Guía del Autoestopista Galáctico",
     paragraphs: [
-      "Igual que los Vogones construyeron desvíos del hiperespacio por la galaxia, Project 42 mantiene autopistas directas entre ecosistemas blockchain — vías sin fricción para tokens, datos y valor.",
-      "Sin agujeros de gusano. Sin retrasos. Sin papeleo burocrático por triplicado. Solo transferencias instantáneas y sin confianza a través del criptoverso.",
+      [
+        { type: "text", content: "Igual que los Vogones construyeron " },
+        { type: "bold", content: "desvíos del hiperespacio" },
+        { type: "text", content: " por la galaxia, Project 42 mantiene " },
+        { type: "bold", content: "autopistas directas" },
+        { type: "text", content: " entre ecosistemas blockchain — vías sin fricción para tokens, datos y valor." },
+      ],
+      [
+        { type: "text", content: "Sin agujeros de gusano. Sin retrasos. Sin papeleo burocrático por triplicado. Solo " },
+        { type: "bold", content: "transferencias instantáneas y sin confianza" },
+        { type: "text", content: " a través del criptoverso." },
+      ],
     ],
     nativeTitle: "INTEROPERABILIDAD NATIVA",
     nativeSubtitle: "Protocolo IBC (Comunicación entre blockchains)",
@@ -137,8 +211,11 @@ export const blockchain: LocaleBlockchain = {
   technicalArch: {
     title: "Arquitectura técnica",
     sectionTitle: "Capa de internet soberana de pila completa",
-    sectionIntro:
-      "Infinite Improbability Drive no es solo una blockchain — es una pila de internet completa construida para la soberanía.",
+    sectionIntro: [
+      { type: "text", content: "Infinite Improbability Drive no es solo una blockchain — es una " },
+      { type: "bold", content: "pila de internet completa" },
+      { type: "text", content: " construida para la soberanía." },
+    ],
     tableColumns: { layer: "Capa", function: "Función" },
     tableRows: [
       { layer: "Consenso", function: "CometBFT — sin punto único de fallo" },

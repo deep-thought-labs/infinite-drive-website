@@ -7,20 +7,36 @@ import type { LocaleServices } from "../../types";
 export const services: LocaleServices = {
   header: {
     title: "The Network & Services",
-    subtitle:
-      "A complete sovereign internet infrastructure — decentralized, user-owned, and unstoppable.",
+    subtitle: [
+      { type: "text", content: "A complete sovereign internet infrastructure — " },
+      { type: "bold", content: "decentralized, user-owned, and unstoppable" },
+      { type: "text", content: "." },
+    ],
   },
   babelfish: {
     title: "BabelFish Network",
     imageKey: "networkMesh",
     paragraphs: [
-      "The global P2P backbone that powers everything — a network of networks connecting blockchains, services, and devices into a resilient supermesh.",
-      "BabelFish is not just a protocol — it's a living infrastructure that grows stronger with every node, every connection, every user.",
+      [
+        { type: "text", content: "The " },
+        { type: "bold", content: "global P2P backbone" },
+        { type: "text", content: " that powers everything — a network of networks connecting blockchains, services, and devices into a resilient supermesh." },
+      ],
+      [
+        { type: "text", content: "BabelFish is not just a protocol — it's a " },
+        { type: "bold", content: "living infrastructure" },
+        { type: "text", content: " that grows stronger with every node, every connection, every user." },
+      ],
     ],
     protocol: {
       title: "THE BABELFISH PROTOCOL",
-      intro:
-        "A revolutionary protocol that enables direct device-to-blockchain communication without intermediaries. 100% open source — built on proven protocols like Bitcoin, Nostr, IPFS, Pears, and QVAC SDK.",
+      intro: [
+        { type: "text", content: "A revolutionary protocol that enables " },
+        { type: "bold", content: "direct device-to-blockchain communication" },
+        { type: "text", content: " without intermediaries. " },
+        { type: "boldAccent", content: "100% open source" },
+        { type: "text", content: " — built on proven protocols like Bitcoin, Nostr, IPFS, Pears, and QVAC SDK." },
+      ],
       whatItDoesLabel: "WHAT IT DOES",
       whatItDoes: [
         "Resolves domains to blockchain addresses",
@@ -48,8 +64,11 @@ export const services: LocaleServices = {
   },
   sovereign: {
     title: "Sovereign Internet Services",
-    intro:
-      "Real tools for real freedom — enterprise-grade infrastructure, decentralized and user-controlled. No gatekeepers. No censorship. No compromise.",
+    intro: [
+      { type: "text", content: "Real tools for real freedom — " },
+      { type: "bold", content: "enterprise-grade infrastructure" },
+      { type: "text", content: ", decentralized and user-controlled. No gatekeepers. No censorship. No compromise." },
+    ],
     services: [
       {
         title: "DECENTRALIZED DNS — OWN YOUR NAME FOREVER",
@@ -179,8 +198,22 @@ export const services: LocaleServices = {
     title: "How It All Connects",
     imageKey: "connectedSystems",
     paragraphs: [
-      "Every service runs on BabelFish Network. Every transaction settles on the Infinite Improbability Drive blockchain. Everything is powered by Improbability [42] and Fish.",
-      "This is not a collection of separate products — it's a unified ecosystem where every part strengthens the whole.",
+      [
+        { type: "text", content: "Every service runs on " },
+        { type: "bold", content: "BabelFish Network" },
+        { type: "text", content: ". Every transaction settles on the " },
+        { type: "bold", content: "Infinite Improbability Drive blockchain" },
+        { type: "text", content: ". Everything is powered by " },
+        { type: "bold", content: "Improbability [42]" },
+        { type: "text", content: " and " },
+        { type: "bold", content: "Fish" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "This is not a collection of separate products — it's a " },
+        { type: "bold", content: "unified ecosystem" },
+        { type: "text", content: " where every part strengthens the whole." },
+      ],
     ],
     stackTitle: "THE STACK",
     layers: [

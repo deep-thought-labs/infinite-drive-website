@@ -17,6 +17,7 @@ import {
   SiteButton,
   SiteLink,
   LeadParagraph,
+  FormattedText,
 } from "@/components/site";
 
 type OutletContext = { onNavigate: (path: string) => void };
@@ -223,7 +224,16 @@ export function ServicesPage() {
 
   return (
     <main className="flex-1 px-4 md:px-8 py-12 max-w-7xl mx-auto w-full">
-      <PageHeader title={s.header.title} subtitle={s.header.subtitle} />
+      <PageHeader
+        title={s.header.title}
+        subtitle={
+          Array.isArray(s.header.subtitle) ? (
+            <FormattedText segments={s.header.subtitle} />
+          ) : (
+            s.header.subtitle
+          )
+        }
+      />
 
       <SectionDivider />
 
@@ -231,13 +241,17 @@ export function ServicesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
           <div>
             <div className="space-y-4">
-              {s.babelfish.paragraphs.map((p, i) => (
+              {s.babelfish.paragraphs.map((p, i) =>
                 i === 0 ? (
-                  <LeadParagraph key={i} style={{ opacity: 0.9 }}>{p}</LeadParagraph>
+                  <LeadParagraph key={i} style={{ opacity: 0.9 }}>
+                    {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                  </LeadParagraph>
                 ) : (
-                  <p key={i} style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>{p}</p>
+                  <p key={i} style={{ opacity: 0.85, color: "var(--id-text-secondary)" }}>
+                    {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                  </p>
                 )
-              ))}
+              )}
             </div>
           </div>
           <div>
@@ -255,7 +269,11 @@ export function ServicesPage() {
             {s.babelfish.protocol.title}
           </SectionHeading>
           <p className="mb-4" style={{ opacity: 0.9, color: "var(--id-text-secondary)" }}>
-            {s.babelfish.protocol.intro}
+            {Array.isArray(s.babelfish.protocol.intro) ? (
+              <FormattedText segments={s.babelfish.protocol.intro} />
+            ) : (
+              s.babelfish.protocol.intro
+            )}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -307,7 +325,11 @@ export function ServicesPage() {
 
       <PageSection title={s.sovereign.title}>
         <LeadParagraph className="mb-8 max-w-[800px]" style={{ opacity: 0.9 }}>
-          {s.sovereign.intro}
+          {Array.isArray(s.sovereign.intro) ? (
+            <FormattedText segments={s.sovereign.intro} />
+          ) : (
+            s.sovereign.intro
+          )}
         </LeadParagraph>
         <div className="space-y-6">
           {s.sovereign.services.map((card, i) => (
@@ -321,13 +343,17 @@ export function ServicesPage() {
       <PageSection title={s.howItConnects.title}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
           <div className="space-y-4">
-            {s.howItConnects.paragraphs.map((p, i) => (
+            {s.howItConnects.paragraphs.map((p, i) =>
               i === 0 ? (
-                <LeadParagraph key={i}>{p}</LeadParagraph>
+                <LeadParagraph key={i}>
+                  {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                </LeadParagraph>
               ) : (
-                <p key={i} style={{ color: "var(--id-text-secondary)" }}>{p}</p>
+                <p key={i} style={{ color: "var(--id-text-secondary)" }}>
+                  {Array.isArray(p) ? <FormattedText segments={p} /> : p}
+                </p>
               )
-            ))}
+            )}
           </div>
           <div>
             <ImageWithFallback

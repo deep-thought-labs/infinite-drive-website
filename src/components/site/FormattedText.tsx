@@ -23,9 +23,11 @@ export function FormattedText({
         const key = `${i}-${seg.type}-${seg.content.slice(0, 12)}`;
         const isBold = seg.type === "bold" || seg.type === "boldAccent";
         const isAccent = seg.type === "accent" || seg.type === "boldAccent";
+        const isItalic = seg.type === "italic";
         const style: React.CSSProperties = {
           fontWeight: isBold ? "bold" : undefined,
           color: isAccent ? "var(--id-accent)" : undefined,
+          fontStyle: isItalic ? "italic" : undefined,
         };
         return (
           <span key={key} style={Object.keys(style).length ? style : undefined}>

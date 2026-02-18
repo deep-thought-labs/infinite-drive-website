@@ -23,22 +23,24 @@ export const project42: LocaleProject42 = {
     tightParagraphIndices: [2, 3, 4, 5],
     paragraphs: [
       "We are not launching a product.",
-      "We are founding a nation.",
       [
-        { type: "bold", content: "A cyberspace nation" },
+        { type: "text", content: "We are " },
+        { type: "bold", content: "founding a nation" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "A " },
+        { type: "bold", content: "cyberspace nation" },
         { type: "text", content: " — open to all, owned by none, ruled by code." },
       ],
+      "Where your data is yours.",
+      "Where your voice cannot be silenced.",
+      "Where your world is built by you — not rented from a corporation.",
       [
-        { type: "bold", content: "Where your data is yours." },
+        { type: "text", content: "This is " },
+        { type: "bold", content: "Project 42" },
+        { type: "text", content: " — the answer to life, the universe, and digital freedom." },
       ],
-      [
-        { type: "bold", content: "Where your voice cannot be silenced." },
-      ],
-      [
-        { type: "bold", content: "Where your world is built by you" },
-        { type: "text", content: " — not rented from a corporation." },
-      ],
-      "This is Project 42 — the answer to life, the universe, and digital freedom.",
     ],
   },
   philosophy: {
@@ -52,26 +54,32 @@ export const project42: LocaleProject42 = {
       { voice: "Eric Hughes", truth: "Cypherpunks write code." },
       { voice: "John Perry Barlow", truth: "We have no elected government — and we don't want one." },
       { voice: "Satoshi Nakamoto", truth: "Trust math, not men." },
-      { voice: "Douglas Adams", truth: "Don't Panic." },
+      { voice: "Douglas Adams", truth: [{ type: "italic", content: "Don't Panic." }] },
     ],
   },
   ecosystem: {
     title: "The Ecosystem",
-    intro:
-      "Project 42 is not a single product — it's a complete digital nation with four interconnected pillars:",
-    closing:
-      "These four pillars work together as one unified system — each strengthens the others, creating a network that becomes more powerful with every user, every node, every contribution.",
+    intro: [
+      { type: "text", content: "Project 42 is not a single product — it's a " },
+      { type: "bold", content: "complete digital nation" },
+      { type: "text", content: " with four interconnected pillars:" },
+    ],
+    closing: [
+      { type: "text", content: "These four pillars work together as " },
+      { type: "bold", content: "one unified system" },
+      { type: "text", content: " — each strengthens the others, creating a network that becomes more powerful with every user, every node, every contribution." },
+    ],
     pillars: [
       {
         number: "01",
         title: "THE INFINITE IMPROBABILITY DRIVE",
         description: "The blockchain foundation — a complete sovereign layer for trust, governance, and economic coordination.",
         bullets: [
-          "Proof of Contribution consensus — rewards those who build and maintain",
-          "DAO governance from block one — decisions made on-chain by the community",
-          "Improbability [42] — governance token for staking, voting, and network utility",
-          "Algorithmic Liquidity — Fish rewards and balances ecosystem value flows",
-          "42-year economic model — built for generations, not quarters",
+          [{ type: "bold", content: "Proof of Contribution" }, { type: "text", content: " consensus — rewards those who build and maintain" }],
+          [{ type: "bold", content: "DAO governance" }, { type: "text", content: " from block one — decisions made on-chain by the community" }],
+          [{ type: "bold", content: "Improbability [42]" }, { type: "text", content: " — governance token for staking, voting, and network utility" }],
+          [{ type: "bold", content: "Algorithmic Liquidity" }, { type: "text", content: " — Fish rewards and balances ecosystem value flows" }],
+          [{ type: "bold", content: "42-year economic model" }, { type: "text", content: " — built for generations, not quarters" }],
         ],
       },
       {
@@ -105,15 +113,38 @@ export const project42: LocaleProject42 = {
       "The story so far: In the beginning the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move.",
     quoteAuthor: "Douglas Adams, The Restaurant at the End of the Universe",
     paragraphs: [
-      "Once, humanity built the Library of Alexandria — a temple of knowledge that held the world's wisdom.",
+      [
+        { type: "text", content: "Once, humanity built the " },
+        { type: "bold", content: "Library of Alexandria" },
+        { type: "text", content: " — a temple of knowledge that held the world's wisdom." },
+      ],
       "It burned. Knowledge was lost. Empires fell.",
-      "Project 42 is the Library of Alexandria rebuilt in code — but this time, it cannot burn.",
+      [
+        { type: "bold", content: "Project 42 is the Library of Alexandria rebuilt in code" },
+        { type: "text", content: " — but this time, it cannot burn." },
+      ],
     ],
     notInventingTitle: "WE ARE NOT INVENTING THE WHEEL",
     notInventingParagraphs: [
-      "We stand on the shoulders of giants — building an open, interconnected ecosystem where protocols, services, and communities collaborate toward a common good.",
-      "We don't commercialize the work of others. We integrate, honor, and extend proven open-source technologies into a unified, resilient network.",
-      "Every line of code is open source. Every protocol is public. Every innovation belongs to humanity.",
+      [
+        { type: "text", content: "We stand on the shoulders of giants — building an " },
+        { type: "bold", content: "open, interconnected ecosystem" },
+        { type: "text", content: " where protocols, services, and communities collaborate toward a common good." },
+      ],
+      [
+        { type: "text", content: "We don't commercialize the work of others. We " },
+        { type: "bold", content: "integrate, honor, and extend" },
+        { type: "text", content: " proven open-source technologies into a unified, resilient network." },
+      ],
+      [
+        { type: "text", content: "Every line of code is " },
+        { type: "bold", content: "open source" },
+        { type: "text", content: ". Every protocol is " },
+        { type: "bold", content: "public" },
+        { type: "text", content: ". Every innovation belongs to " },
+        { type: "bold", content: "humanity" },
+        { type: "text", content: "." },
+      ],
     ],
     protocolsTitle: "BUILT ON OPEN PROTOCOLS & ALIGNED TECHNOLOGIES",
     protocolsIntro:
@@ -130,15 +161,28 @@ export const project42: LocaleProject42 = {
       { name: "xAI", description: "AI models aligned with human flourishing" },
     ],
     survivalParagraphs: [
-      "We're building a decentralized, collaborative, indestructible network — not for profit, but for survival.",
-      "The economic models we design are not for personal enrichment. They are necessary mechanisms for network operability, chain security, and fair distribution of incentives to all participants. Like the Hitchhiker's Guide itself — \"A wholly remarkable book. Perhaps the most remarkable, certainly the most successful book ever to come out of the great publishing corporations of Ursa Minor.\"",
+      [
+        { type: "bold", content: "We're building a decentralized, collaborative, indestructible network" },
+        { type: "text", content: " — not for profit, but for " },
+        { type: "bold", content: "survival" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "The economic models we design are not for personal enrichment. They are " },
+        { type: "bold", content: "necessary mechanisms" },
+        { type: "text", content: " for network operability, chain security, and fair distribution of incentives to all participants. Like the Hitchhiker's Guide itself — \"A wholly remarkable book. Perhaps the most remarkable, certainly the most successful book ever to come out of the great publishing corporations of Ursa Minor.\"" },
+      ],
     ],
   },
   thursdayNote: {
     quote: "This must be Thursday. I never could get the hang of Thursdays.",
     quoteAuthor: "Arthur Dent, The Hitchhiker's Guide to the Galaxy",
     paragraphs: [
-      "Thursdays have always been strange days in the galaxy. But perhaps that's because they're days when impossible things become probable. When hyperspace bypasses get built. When digital nations get founded. When 42 finally makes sense.",
+      [
+        { type: "text", content: "Thursdays have always been strange days in the galaxy. But perhaps that's because they're days when impossible things become probable. When hyperspace bypasses get built. When digital nations get founded. When " },
+        { type: "bold", content: "42" },
+        { type: "text", content: " finally makes sense." },
+      ],
       "If you're reading this on a Thursday, you might just be in the right place at the right time.",
     ],
   },

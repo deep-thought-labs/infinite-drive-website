@@ -130,7 +130,10 @@ export function Project42Page() {
                 { key: "voice", label: p.philosophy.tableHeaderVoice },
                 { key: "truth", label: p.philosophy.tableHeaderTruth },
               ]}
-              rows={p.philosophy.tableRows.map((row) => ({ voice: row.voice, truth: row.truth }))}
+              rows={p.philosophy.tableRows.map((row) => ({
+                voice: row.voice,
+                truth: Array.isArray(row.truth) ? <FormattedText segments={row.truth} /> : row.truth,
+              }))}
             />
           </div>
           <div className="order-first lg:order-last">
@@ -149,7 +152,11 @@ export function Project42Page() {
       {/* The Ecosystem */}
       <PageSection title={p.ecosystem.title}>
         <LeadParagraph className="mb-8">
-          {p.ecosystem.intro}
+          {Array.isArray(p.ecosystem.intro) ? (
+            <FormattedText segments={p.ecosystem.intro} />
+          ) : (
+            p.ecosystem.intro
+          )}
         </LeadParagraph>
 
         <div className="space-y-6">
@@ -158,14 +165,24 @@ export function Project42Page() {
               <p className="mb-3" style={{ color: "var(--id-text-secondary)" }}>
                 {pillar.description}
               </p>
-              <BulletList items={pillar.bullets} />
+              <BulletList
+                items={pillar.bullets.map((b, bi) =>
+                  Array.isArray(b) ? <FormattedText key={bi} segments={b} /> : b
+                )}
+              />
             </ContentCard>
           ))}
         </div>
 
         <div className="mt-8">
           <CalloutBox>
-            <p style={{ color: "var(--id-text-secondary)" }}>{p.ecosystem.closing}</p>
+            <p style={{ color: "var(--id-text-secondary)" }}>
+              {Array.isArray(p.ecosystem.closing) ? (
+                <FormattedText segments={p.ecosystem.closing} />
+              ) : (
+                p.ecosystem.closing
+              )}
+            </p>
           </CalloutBox>
         </div>
       </PageSection>
@@ -184,7 +201,9 @@ export function Project42Page() {
 
         <div className="space-y-4" style={{ color: "var(--id-text-secondary)" }}>
           {p.library.paragraphs.map((text, i) => (
-            <p key={i}>{text}</p>
+            <p key={i}>
+              {Array.isArray(text) ? <FormattedText segments={text} /> : text}
+            </p>
           ))}
         </div>
 
@@ -195,7 +214,7 @@ export function Project42Page() {
               className={i < p.library.notInventingParagraphs.length - 1 ? "mb-4" : ""}
               style={{ color: "var(--id-text-secondary)" }}
             >
-              {text}
+              {Array.isArray(text) ? <FormattedText segments={text} /> : text}
             </p>
           ))}
         </ContentCard>
@@ -226,7 +245,7 @@ export function Project42Page() {
                 className={i === 0 ? "mb-3" : "text-sm"}
                 style={{ color: i === 0 ? "var(--id-text-secondary)" : "var(--id-text-muted)" }}
               >
-                {text}
+                {Array.isArray(text) ? <FormattedText segments={text} /> : text}
               </p>
             ))}
           </CalloutBox>
@@ -253,7 +272,7 @@ export function Project42Page() {
                 marginTop: i > 0 ? "0.75rem" : undefined,
               }}
             >
-              {text}
+              {Array.isArray(text) ? <FormattedText segments={text} /> : text}
             </p>
           ))}
         </CalloutBox>

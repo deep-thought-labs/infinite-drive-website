@@ -7,20 +7,36 @@ import type { LocaleServices } from "../../types";
 export const services: LocaleServices = {
   header: {
     title: "La red y los servicios",
-    subtitle:
-      "Una infraestructura de internet soberana completa — descentralizada, propiedad de los usuarios e imparable.",
+    subtitle: [
+      { type: "text", content: "Una infraestructura de internet soberana completa — " },
+      { type: "bold", content: "descentralizada, propiedad de los usuarios e imparable" },
+      { type: "text", content: "." },
+    ],
   },
   babelfish: {
     title: "BabelFish Network",
     imageKey: "networkMesh",
     paragraphs: [
-      "La columna vertebral P2P global que impulsa todo — una red de redes que conecta blockchains, servicios y dispositivos en una supermalla resiliente.",
-      "BabelFish no es solo un protocolo — es una infraestructura viva que se fortalece con cada nodo, cada conexión, cada usuario.",
+      [
+        { type: "text", content: "La " },
+        { type: "bold", content: "columna vertebral P2P global" },
+        { type: "text", content: " que impulsa todo — una red de redes que conecta blockchains, servicios y dispositivos en una supermalla resiliente." },
+      ],
+      [
+        { type: "text", content: "BabelFish no es solo un protocolo — es una " },
+        { type: "bold", content: "infraestructura viva" },
+        { type: "text", content: " que se fortalece con cada nodo, cada conexión, cada usuario." },
+      ],
     ],
     protocol: {
       title: "EL PROTOCOLO BABELFISH",
-      intro:
-        "Un protocolo revolucionario que permite la comunicación directa dispositivo-a-blockchain sin intermediarios. 100% open source — construido sobre protocolos probados como Bitcoin, Nostr, IPFS, Pears y QVAC SDK.",
+      intro: [
+        { type: "text", content: "Un protocolo revolucionario que permite la " },
+        { type: "bold", content: "comunicación directa dispositivo-a-blockchain" },
+        { type: "text", content: " sin intermediarios. " },
+        { type: "boldAccent", content: "100% open source" },
+        { type: "text", content: " — construido sobre protocolos probados como Bitcoin, Nostr, IPFS, Pears y QVAC SDK." },
+      ],
       whatItDoesLabel: "QUÉ HACE",
       whatItDoes: [
         "Resuelve dominios a direcciones blockchain",
@@ -48,8 +64,11 @@ export const services: LocaleServices = {
   },
   sovereign: {
     title: "Servicios de internet soberanos",
-    intro:
-      "Herramientas reales para libertad real — infraestructura de nivel empresarial, descentralizada y controlada por el usuario. Sin guardianes. Sin censura. Sin compromisos.",
+    intro: [
+      { type: "text", content: "Herramientas reales para libertad real — " },
+      { type: "bold", content: "infraestructura de nivel empresarial" },
+      { type: "text", content: ", descentralizada y controlada por el usuario. Sin guardianes. Sin censura. Sin compromisos." },
+    ],
     services: [
       {
         title: "DNS DESCENTRALIZADO — TU NOMBRE PARA SIEMPRE",
@@ -179,8 +198,22 @@ export const services: LocaleServices = {
     title: "Cómo se conecta todo",
     imageKey: "connectedSystems",
     paragraphs: [
-      "Cada servicio corre sobre BabelFish Network. Cada transacción se liquida en la blockchain Infinite Improbability Drive. Todo está impulsado por Improbability [42] y Fish.",
-      "No es una colección de productos separados — es un ecosistema unificado donde cada parte fortalece al conjunto.",
+      [
+        { type: "text", content: "Cada servicio corre sobre " },
+        { type: "bold", content: "BabelFish Network" },
+        { type: "text", content: ". Cada transacción se liquida en la blockchain " },
+        { type: "bold", content: "Infinite Improbability Drive" },
+        { type: "text", content: ". Todo está impulsado por " },
+        { type: "bold", content: "Improbability [42]" },
+        { type: "text", content: " y " },
+        { type: "bold", content: "Fish" },
+        { type: "text", content: "." },
+      ],
+      [
+        { type: "text", content: "No es una colección de productos separados — es un " },
+        { type: "bold", content: "ecosistema unificado" },
+        { type: "text", content: " donde cada parte fortalece al conjunto." },
+      ],
     ],
     stackTitle: "LA PILA",
     layers: [
