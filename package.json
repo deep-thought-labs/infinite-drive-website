@@ -55,6 +55,7 @@
       },
       "scripts": {
           "dev": "vite",
-          "build": "vite build"
+          "build": "vite build",
+          "dump:production-html": "node scripts/dump-production-html-instructions.mjs"
       }
   }

@@ -1,0 +1,32 @@
+/**
+ * Infinite Drive website — design tokens
+ * Single source for colors and key spacing. Use these variables everywhere
+ * so global visual changes require editing only this file.
+ * See docs/EDITING-AND-STRUCTURE.md and docs/UI-COMPONENT-ROADMAP.md.
+ */
+
+:root {
+  /* Backgrounds */
+  --id-bg-page: #0d1117;
+  --id-bg-card: #1c2128;
+  --id-bg-elevated: #161b22;
+
+  /* Text */
+  --id-text-primary: #e6edf3;
+  --id-text-secondary: #c9d1d9;
+  --id-text-muted: #8b949e;
+
+  /* Accent (links, active states, highlights) */
+  --id-accent: #6ba3db;
+  --id-accent-soft: #00d9ff;
+  --id-accent-secondary: #a855f7; /* e.g. gradient CTA */
+
+  /* Borders */
+  --id-border: #30363d;
+  --id-border-strong: #444c56;
+  --id-border-subtle: #21262d;
+
+  /* Spacing / layout */
+  --id-section-gap: 3rem;
+  --id-radius: 0.375rem;
+}

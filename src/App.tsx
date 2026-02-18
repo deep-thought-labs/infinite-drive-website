@@ -1,107 +1,114 @@
 import { NetworkCanvas } from "./components/NetworkCanvas";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link, useLocation, useNavigate, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+  useParams,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { Project42Page } from "./pages/Project42Page";
 import { BlockchainPage } from "./pages/BlockchainPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { Menu, X } from "lucide-react";
+import {
+  defaultLocale,
+  supportedLocales,
+  pathWithLocale,
+  BASE_PATHS,
+  getContent,
+  getPreferredLocale,
+  getBasePathFromPathname,
+} from "@/content/i18n";
+import { LocaleGuard } from "./components/layout/LocaleGuard";
+import { NavLink } from "./components/layout/NavLink";
+import { MobileNavLink } from "./components/layout/MobileNavLink";
+import { LocaleSelector } from "./components/layout/LocaleSelector";
+import { LocaleProvider } from "./contexts/LocaleContext";
 
-const ROUTES = {
-  home: "/",
-  project42: "/project42",
-  services: "/services",
-  blockchain: "/blockchain",
-  privacy: "/privacy",
-} as const;
-
-function NavLink({
-  to,
-  children,
-  isActive,
-}: {
-  to: string;
-  children: React.ReactNode;
-  isActive: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      className="text-sm font-mono transition-all duration-200"
-      style={{
-        color: isActive ? "#00d9ff" : "#8b949e",
-        borderBottomWidth: "2px",
-        borderBottomStyle: "solid",
-        borderBottomColor: isActive ? "#00d9ff" : "transparent",
-        paddingBottom: "0.25rem",
-        letterSpacing: "0.05em",
-        textDecoration: "none",
-      }}
-      onMouseEnter={(e) => {
-        if (!isActive) e.currentTarget.style.color = "#c9d1d9";
-      }}
-      onMouseLeave={(e) => {
-        if (!isActive) e.currentTarget.style.color = "#8b949e";
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function MobileNavLink({
-  to,
-  children,
-  isActive,
-  onNavigate,
-}: {
-  to: string;
-  children: React.ReactNode;
-  isActive: boolean;
-  onNavigate: () => void;
-}) {
-  return (
-    <Link
-      to={to}
-      onClick={onNavigate}
-      className="text-left font-mono transition-all duration-200 px-4 py-2 rounded block"
-      style={{
-        color: isActive ? "#00d9ff" : "#8b949e",
-        background: isActive ? "rgba(0, 217, 255, 0.1)" : "transparent",
-        border: "none",
-        cursor: "pointer",
-        letterSpacing: "0.05em",
-        textDecoration: "none",
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
-
-export default function App() {
+/**
+ * Shell con nav, footer y Outlet. Lee el locale de useParams (undefined = default).
+ */
+function AppShell() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { locale: paramLocale } = useParams<"locale">();
+  const currentLocale = paramLocale ?? defaultLocale;
   const pathname = location.pathname;
+
+  const basePath = getBasePathFromPathname(pathname);
+  const preferred = getPreferredLocale();
+  const shouldRedirectToPreferred =
+    !paramLocale && preferred && preferred !== defaultLocale;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
 
+  // Fase 7: lang y hreflang para SEO por idioma
+  useEffect(() => {
+    document.documentElement.lang = currentLocale;
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const dataAttr = "data-infinite-drive-hreflang";
+    document.querySelectorAll(`link[${dataAttr}]`).forEach((el) => el.remove());
+    if (origin) {
+      supportedLocales.forEach((locale) => {
+        const path = pathWithLocale(locale, basePath) || "/";
+        const link = document.createElement("link");
+        link.rel = "alternate";
+        link.hreflang = locale;
+        link.href = `${origin}${path}`;
+        link.setAttribute(dataAttr, "true");
+        document.head.appendChild(link);
+      });
+      const defaultPath = pathWithLocale(defaultLocale, basePath) || "/";
+      const xDefault = document.createElement("link");
+      xDefault.rel = "alternate";
+      xDefault.hreflang = "x-default";
+      xDefault.href = `${origin}${defaultPath}`;
+      xDefault.setAttribute(dataAttr, "true");
+      document.head.appendChild(xDefault);
+    }
+    return () => {
+      document.querySelectorAll(`link[${dataAttr}]`).forEach((el) => el.remove());
+    };
+  }, [currentLocale, basePath]);
+
+  if (shouldRedirectToPreferred && preferred) {
+    return <Navigate to={pathWithLocale(preferred, basePath)} replace />;
+  }
+
   const handleNavigate = (path: string) => {
-    navigate(path);
+    navigate(pathWithLocale(currentLocale, path));
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleLocaleChange = (locale: "en" | "es") => {
+    navigate(pathWithLocale(locale, basePath));
+    setMobileMenuOpen(false);
+  };
+
+  const homePath = pathWithLocale(currentLocale, BASE_PATHS.home);
+  const privacyPath = pathWithLocale(currentLocale, BASE_PATHS.privacy);
+  const routesContent = getContent(currentLocale).routes;
+  const navRoutes = routesContent.navRoutes;
+  const privacyLabel =
+    routesContent.routeDefs.find((r) => r.path === BASE_PATHS.privacy)?.label ?? "Privacy";
+
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "#0d1117", color: "#e6edf3" }}
-    >
-      <NetworkCanvas />
+    <LocaleProvider locale={currentLocale}>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{ backgroundColor: "var(--id-bg-page)", color: "var(--id-text-primary)" }}
+      >
+        <NetworkCanvas />
 
       <nav
         className="fixed top-0 left-0 right-0 transition-all duration-300"
@@ -115,10 +122,10 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link
-            to={ROUTES.home}
+            to={homePath}
             className="font-mono hover:opacity-80 transition-opacity"
             style={{
-              color: "#e6edf3",
+              color: "var(--id-text-primary)",
               fontSize: "1.1rem",
               letterSpacing: "0.05em",
               textDecoration: "none",
@@ -127,28 +134,20 @@ export default function App() {
             INFINITE DRIVE
           </Link>
 
-          <div className="hidden md:flex gap-6">
-            <NavLink to={ROUTES.home} isActive={pathname === ROUTES.home}>
-              Home
-            </NavLink>
-            <NavLink
-              to={ROUTES.project42}
-              isActive={pathname === ROUTES.project42}
-            >
-              Project 42
-            </NavLink>
-            <NavLink
-              to={ROUTES.services}
-              isActive={pathname === ROUTES.services}
-            >
-              Network
-            </NavLink>
-            <NavLink
-              to={ROUTES.blockchain}
-              isActive={pathname === ROUTES.blockchain}
-            >
-              Foundation
-            </NavLink>
+          <div className="hidden md:flex gap-6 items-center">
+            {navRoutes.map(({ path, label }) => {
+              const to = pathWithLocale(currentLocale, path);
+              return (
+                <NavLink key={to} to={to} isActive={pathname === to}>
+                  {label}
+                </NavLink>
+              );
+            })}
+            <LocaleSelector
+              currentLocale={currentLocale}
+              onNavigateLocale={handleLocaleChange}
+              variant="desktop"
+            />
           </div>
 
           <button
@@ -158,7 +157,7 @@ export default function App() {
               background: "none",
               border: "none",
               cursor: "pointer",
-              color: "#00d9ff",
+              color: "var(--id-accent-soft)",
               padding: "0.5rem",
             }}
           >
@@ -175,54 +174,40 @@ export default function App() {
             }}
           >
             <div className="flex flex-col gap-4">
-              <MobileNavLink
-                to={ROUTES.home}
-                isActive={pathname === ROUTES.home}
-                onNavigate={() => setMobileMenuOpen(false)}
+              {navRoutes.map(({ path, label }) => {
+                const to = pathWithLocale(currentLocale, path);
+                return (
+                  <MobileNavLink
+                    key={to}
+                    to={to}
+                    isActive={pathname === to}
+                    onNavigate={() => setMobileMenuOpen(false)}
+                  >
+                    {label}
+                  </MobileNavLink>
+                );
+              })}
+              <div
+                className="pt-2 mt-2"
+                style={{ borderTop: "1px solid rgba(0, 217, 255, 0.1)" }}
               >
-                Home
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.project42}
-                isActive={pathname === ROUTES.project42}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Project 42
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.services}
-                isActive={pathname === ROUTES.services}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Network
-              </MobileNavLink>
-              <MobileNavLink
-                to={ROUTES.blockchain}
-                isActive={pathname === ROUTES.blockchain}
-                onNavigate={() => setMobileMenuOpen(false)}
-              >
-                Foundation
-              </MobileNavLink>
+                <span className="font-mono text-xs px-4" style={{ color: "var(--id-text-muted)" }}>
+                  {currentLocale === "es" ? "Idioma" : "Language"}
+                </span>
+                <LocaleSelector
+                  currentLocale={currentLocale}
+                  onNavigateLocale={handleLocaleChange}
+                  variant="mobile"
+                  onMobileSelect={() => setMobileMenuOpen(false)}
+                />
+              </div>
             </div>
           </div>
         )}
       </nav>
 
       <div className="flex-1 relative" style={{ zIndex: 1, marginTop: "80px" }}>
-        <Routes>
-          <Route
-            path={ROUTES.home}
-            element={<HomePage onNavigate={handleNavigate} />}
-          />
-          <Route path={ROUTES.project42} element={<Project42Page />} />
-          <Route path={ROUTES.blockchain} element={<BlockchainPage />} />
-          <Route
-            path={ROUTES.services}
-            element={<ServicesPage onNavigate={handleNavigate} />}
-          />
-          <Route path={ROUTES.privacy} element={<PrivacyPolicyPage />} />
-          <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
-        </Routes>
+        <Outlet context={{ onNavigate: handleNavigate }} />
       </div>
 
       <footer
@@ -248,7 +233,7 @@ export default function App() {
                   borderBottomColor: "transparent",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderBottomColor = "#00d9ff")
+                  (e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderBottomColor = "transparent")
@@ -258,7 +243,7 @@ export default function App() {
               </a>
               {" • "}
               <Link
-                to={ROUTES.privacy}
+                to={privacyPath}
                 className="transition-colors font-mono"
                 style={{
                   color: "inherit",
@@ -268,15 +253,15 @@ export default function App() {
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#00d9ff";
-                  e.currentTarget.style.borderBottomColor = "#00d9ff";
+                  e.currentTarget.style.color = "var(--id-accent-soft)";
+                  e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = "inherit";
                   e.currentTarget.style.borderBottomColor = "transparent";
                 }}
               >
-                Privacy
+                {privacyLabel}
               </Link>
               {" • 2025"}
             </p>
@@ -288,14 +273,14 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="transition-colors font-mono"
                 style={{
-                  color: "#00d9ff",
+                  color: "var(--id-accent-soft)",
                   borderBottomWidth: "1px",
                   borderBottomStyle: "solid",
                   borderBottomColor: "transparent",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderBottomColor = "#00d9ff")
+                  (e.currentTarget.style.borderBottomColor = "var(--id-accent-soft)")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderBottomColor = "transparent")
@@ -307,6 +292,35 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </LocaleProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      {/* Sin prefijo de locale: idioma por defecto */}
+      <Route path="/" element={<AppShell />}>
+        <Route index element={<HomePage />} />
+        <Route path="project42" element={<Project42Page />} />
+        <Route path="blockchain" element={<BlockchainPage />} />
+        <Route path="services" element={<ServicesPage />} />
+        <Route path="privacy" element={<PrivacyPolicyPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+
+      {/* Con prefijo de locale: /en, /es, ... */}
+      <Route path="/:locale" element={<LocaleGuard />}>
+        <Route element={<AppShell />}>
+          <Route index element={<HomePage />} />
+          <Route path="project42" element={<Project42Page />} />
+          <Route path="blockchain" element={<BlockchainPage />} />
+          <Route path="services" element={<ServicesPage />} />
+          <Route path="privacy" element={<PrivacyPolicyPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
