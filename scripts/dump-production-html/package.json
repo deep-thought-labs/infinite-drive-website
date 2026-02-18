@@ -1,0 +1,12 @@
+{
+  "name": "dump-production-html",
+  "private": true,
+  "description": "Opcional: volcado del HTML de producción para análisis. No es necesario para dev/build/deploy.",
+  "type": "module",
+  "scripts": {
+    "dump": "node dump-production-html.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

@@ -22,18 +22,21 @@ Playwright abre un navegador (headless o con ventana), carga cada URL, espera a 
 - Leer **todo el HTML** del documento o de `#root` (incluyendo `<strong>`, `<span>`, `style`, clases).
 - Guardarlo en archivos (por ejemplo `docs/production-snapshots/home.html`) para inspeccionar o procesar.
 
-**Ventajas:** Repetible, se puede ejecutar con `npm run` cuando quieras actualizar las capturas.  
-**Desventaja:** Hay que instalar Playwright como dependencia de desarrollo.
+**Ventajas:** Repetible, se puede ejecutar cuando quieras actualizar las capturas.  
+**Nota:** El script es **opcional**; Playwright solo se instala dentro de su carpeta, no en el proyecto principal (así dev/build/deploy no dependen de él).
 
-En este repo hay un script listo: **`scripts/dump-production-html.mjs`**. Uso:
+En este repo hay un script listo en **`scripts/dump-production-html/`**. Uso:
 
 ```bash
+cd scripts/dump-production-html
 npm install
-npm run dump:production-html
+npm run dump
 ```
 
-(La primera vez, `npm install` instalará Playwright como devDependency.)  
-Los HTML se guardan en **`docs/production-snapshots/`** (home.html, project42.html, blockchain.html, services.html, privacy.html). Esa carpeta está en `.gitignore` para no versionar los volcados.
+(La primera vez, `npm install` instalará Playwright **solo en esa carpeta**.)  
+Los HTML se guardan en **`docs/archive/production-snapshots/`** (home.html, project42.html, blockchain.html, services.html, privacy.html).
+
+Desde la raíz también puedes ejecutar `npm run dump:production-html` para ver estas instrucciones.
 
 ---
 

@@ -4,6 +4,8 @@ This folder contains documents that describe **past implementation phases** or *
 
 **For the current architecture and how the site works today**, see **[../ARCHITECTURE.md](../ARCHITECTURE.md)** in the parent folder.
 
+**Script opcional (volcar HTML de producción):** si necesitas volver a generar los snapshots de producción, usa `scripts/dump-production-html/` (ahí se instala solo Playwright; el proyecto principal no lo requiere). Ver [HOW-TO-GET-PRODUCTION-HTML.md](HOW-TO-GET-PRODUCTION-HTML.md).
+
 | File / folder | Description |
 |----------------|--------------|
 | `I18N-DECISIONS.md` | Early i18n decisions (now reflected in ARCHITECTURE.md) |

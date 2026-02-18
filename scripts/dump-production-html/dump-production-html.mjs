@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
  * Volcado del HTML renderizado de las páginas de producción (infinitedrive.xyz).
- * Requiere: npm install -D playwright
- * Uso: node scripts/dump-production-html.mjs
+ * Dependencias: solo las de esta carpeta (playwright). No forma parte del proyecto principal.
  *
- * El HTML se guarda en docs/production-snapshots/ para poder inspeccionar
- * etiquetas (strong, span), estilos inline y clases y así documentar
- * variantes de texto (negrita, color) en PRODUCTION-TEXTS-REGISTER.md.
+ * Uso (desde la raíz del repo):
+ *   cd scripts/dump-production-html && npm install && npm run dump
+ *
+ * El HTML se guarda en docs/archive/production-snapshots/ para inspeccionar
+ * etiquetas, estilos inline y documentar variantes de texto si hace falta.
  */
 
 import { chromium } from "playwright";
@@ -17,7 +18,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BASE = "https://infinitedrive.xyz";
 const ROUTES = ["/", "/project42", "/blockchain", "/services", "/privacy"];
-const OUT_DIR = join(__dirname, "..", "docs", "production-snapshots");
+const OUT_DIR = join(__dirname, "..", "..", "docs", "archive", "production-snapshots");
 
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
